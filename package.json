@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
-    "data:territories": "node scripts/build-territories.mjs"
+    "data:territories": "node scripts/build-territories.mjs",
+    "data:projects": "node scripts/build-projects.mjs",
+    "data:earth": "node scripts/build-earth-grid.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

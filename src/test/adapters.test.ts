@@ -81,9 +81,11 @@ describe('adapters/signals', () => {
 });
 
 describe('adapters/earth', () => {
-  it('produces cols*rows cells with ndvi in [0,1]', () => {
-    const f = buildEarthField(atlas, 12, 8);
-    expect(f.cells.length).toBe(12 * 8);
+  it('produces cols*rows cells with ndvi in [0,1] from the grid', () => {
+    const f = buildEarthField(atlas);
+    expect(f.cols).toBeGreaterThan(0);
+    expect(f.rows).toBeGreaterThan(0);
+    expect(f.cells.length).toBe(f.cols * f.rows);
     for (const c of f.cells) {
       expect(c.ndvi).toBeGreaterThanOrEqual(0);
       expect(c.ndvi).toBeLessThanOrEqual(1);
@@ -91,7 +93,13 @@ describe('adapters/earth', () => {
   });
 
   it('is deterministic — no randomness', () => {
-    expect(buildEarthField(atlas, 12, 8)).toEqual(buildEarthField(atlas, 12, 8));
+    expect(buildEarthField(atlas)).toEqual(buildEarthField(atlas));
+  });
+
+  it('carries provenance from the grid (source + capture date)', () => {
+    const f = buildEarthField(atlas);
+    expect(f.source).toBeTruthy();
+    expect(f.capturedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 
   it('summary ndvi range brackets the mean', () => {

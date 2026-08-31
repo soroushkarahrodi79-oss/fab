@@ -1,4 +1,5 @@
-import type { AtlasData } from '../data/types';
+import type { AtlasData, EarthGrid } from '../data/types';
+import gridData from '../data/earth/grid.generated.json';
 
 export interface EarthCell {
   col: number;
@@ -11,10 +12,9 @@ export interface EarthCell {
 export interface OrbitArc {
   sourceId: string;
   label: string;
-  // Two control points + a phase, in grid-normalised space (0..1).
   y0: number;
   y1: number;
-  bow: number; // vertical bow of the arc
+  bow: number;
 }
 
 export interface EarthField {
@@ -22,6 +22,8 @@ export interface EarthField {
   rows: number;
   cells: EarthCell[];
   arcs: OrbitArc[];
+  source: string;
+  capturedAt: string;
   summary: {
     ndviMin: number;
     ndviMax: number;
@@ -38,11 +40,9 @@ export const COVER_CLASSES = [
   'coniferous forest',
 ] as const;
 
-// Deterministic hash → [0,1). No Math.random anywhere: the field is reproducible.
-function hash(col: number, row: number): number {
-  const x = Math.sin(col * 12.9898 + row * 78.233) * 43758.5453;
-  return x - Math.floor(x);
-}
+// The raw EO raster — a mock composite now, a real Sentinel-2 grid later. The
+// swap happens in the data file, not here (see docs/EARTH_REAL_DATA.md).
+const grid = gridData as EarthGrid;
 
 function coverFor(ndvi: number): number {
   if (ndvi < 0.28) return 0;
@@ -52,81 +52,50 @@ function coverFor(ndvi: number): number {
 }
 
 /**
- * Build a deterministic Earth-observation field from mock data. NO external
- * satellite API and NO randomness: a coherent NDVI-like scalar field anchored
- * to the real observation values, classified into land cover, with heat-flag
- * anomalies. Sentinel sources become labelled orbital arcs.
- *
- * The Sentinel-2 replacement point is exactly here — real raster tiles feed the
- * same EarthField shape and the Canvas viz is untouched.
+ * Shape the raw EarthGrid into the EARTH view model: classify land cover per
+ * cell, flag heat anomalies from unvalidated in-AOI temperature observations,
+ * derive labelled orbital arcs, and summarise. Deterministic and source-
+ * agnostic — it never learns whether the grid was mock or real.
  */
-export function buildEarthField(
-  data: AtlasData,
-  cols = 40,
-  rows = 24,
-): EarthField {
-  // Anchor points from real NDVI observations, mapped into grid space by their
-  // rank so the field reflects the data rather than pure procedure.
-  const ndviObs = data.observations.filter((o) => o.variable === 'ndvi');
-  const anchors = ndviObs.map((o, i) => ({
-    col: ((i + 1) / (ndviObs.length + 1)) * cols,
-    row: (0.35 + 0.3 * hash(i, 7)) * rows,
-    value: o.value,
-  }));
+export function buildEarthField(data: AtlasData): EarthField {
+  const { cols, rows, bbox, nodata } = grid;
+  const [minLon, minLat, maxLon, maxLat] = bbox;
+  const spanLon = maxLon - minLon || 1;
+  const spanLat = maxLat - minLat || 1;
 
-  const heatFlags = data.observations.filter(
-    (o) => o.variable === 'temperature' && !o.validated,
-  ).length;
+  // Map unvalidated temperature observations inside the AOI to grid cells.
+  const anomalyCells = new Set<string>();
+  for (const o of data.observations) {
+    if (o.variable !== 'temperature' || o.validated) continue;
+    const [lon, lat] = o.at;
+    if (lon < minLon || lon > maxLon || lat < minLat || lat > maxLat) continue;
+    const col = Math.min(cols - 1, Math.floor(((lon - minLon) / spanLon) * cols));
+    const row = Math.min(rows - 1, Math.floor(((maxLat - lat) / spanLat) * rows)); // north up
+    anomalyCells.add(`${col},${row}`);
+  }
 
   const cells: EarthCell[] = [];
+  const coverCounts = new Array(COVER_CLASSES.length).fill(0);
   let sum = 0;
+  let count = 0;
   let min = 1;
   let max = 0;
-  const coverCounts = new Array(COVER_CLASSES.length).fill(0);
-
-  // Distribute anomaly flags onto the highest-value (hottest/most-vegetated
-  // contrast) cells deterministically.
-  const anomalyTargets = new Set<string>();
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
-      // Smooth coherent base field via layered sines.
-      const base =
-        0.5 +
-        0.22 * Math.sin(col * 0.35 + row * 0.12) +
-        0.14 * Math.sin(row * 0.5 - col * 0.09) +
-        0.06 * (hash(col, row) - 0.5);
-
-      // Pull toward nearby observation anchors (inverse-distance).
-      let anchorPull = 0;
-      let weight = 0;
-      for (const a of anchors) {
-        const d2 = (col - a.col) ** 2 + (row - a.row) ** 2;
-        const w = 1 / (1 + d2 * 0.12);
-        anchorPull += a.value * w;
-        weight += w;
-      }
-      const anchored = weight > 0 ? (base + anchorPull) / (1 + weight) : base;
-      const ndvi = Math.min(1, Math.max(0, anchored));
-
+      const raw = grid.values[row * cols + col];
+      const masked = nodata !== undefined && raw === nodata;
+      const ndvi = masked ? 0 : Math.min(1, Math.max(0, raw));
       const cover = coverFor(ndvi);
-      coverCounts[cover]++;
-      sum += ndvi;
-      if (ndvi < min) min = ndvi;
-      if (ndvi > max) max = ndvi;
-
-      cells.push({ col, row, ndvi, cover, anomaly: false });
+      if (!masked) {
+        coverCounts[cover]++;
+        sum += ndvi;
+        count++;
+        if (ndvi < min) min = ndvi;
+        if (ndvi > max) max = ndvi;
+      }
+      cells.push({ col, row, ndvi, cover, anomaly: anomalyCells.has(`${col},${row}`) });
     }
-  }
-
-  // Mark `heatFlags` anomalies at deterministic, spread-out grid positions.
-  for (let k = 0; k < heatFlags; k++) {
-    const col = Math.floor(((k + 1) / (heatFlags + 1)) * cols);
-    const row = Math.floor((0.25 + 0.5 * hash(k, 3)) * rows);
-    anomalyTargets.add(`${col},${row}`);
-  }
-  for (const c of cells) {
-    if (anomalyTargets.has(`${c.col},${c.row}`)) c.anomaly = true;
   }
 
   const satellites = data.sources.filter((s) => s.kind === 'satellite');
@@ -145,12 +114,14 @@ export function buildEarthField(
     rows,
     cells,
     arcs,
+    source: grid.source,
+    capturedAt: grid.capturedAt,
     summary: {
-      ndviMin: min,
-      ndviMax: max,
-      ndviMean: sum / (cols * rows),
+      ndviMin: count ? min : 0,
+      ndviMax: count ? max : 0,
+      ndviMean: count ? sum / count : 0,
       dominantCover: COVER_CLASSES[dominant],
-      anomalies: anomalyTargets.size,
+      anomalies: anomalyCells.size,
     },
   };
 }

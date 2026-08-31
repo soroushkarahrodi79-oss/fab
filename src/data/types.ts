@@ -88,6 +88,25 @@ export interface Observation {
   note?: string;
 }
 
+/**
+ * Raw Earth-observation raster for the EARTH module — a resampled NDVI field
+ * over a territory's bounding box. This is the seam where a real Sentinel-2
+ * derived grid replaces the mock provider (see docs/EARTH_REAL_DATA.md); the
+ * adapter and viz consume this shape unchanged either way.
+ */
+export interface EarthGrid {
+  source: string; // "mock-deterministic" | "sentinel-2"
+  variable: 'ndvi';
+  territoryId?: string;
+  bbox: [number, number, number, number]; // [minLon, minLat, maxLon, maxLat]
+  cols: number;
+  rows: number;
+  capturedAt: string; // ISO date of the (composite) acquisition
+  cloudCover?: number; // 0..1
+  nodata?: number; // sentinel value for masked cells
+  values: number[]; // row-major NDVI, length cols*rows
+}
+
 /** Derived — never authored directly. Produced by adapters/fieldState. */
 export interface FieldState {
   activeSignals: number;
