@@ -1,0 +1,124 @@
+[
+  {
+    "id": "snto",
+    "label": "SNTO",
+    "status": "active",
+    "summary": "Smart Natural Tourism Observatory (SNTO): A geospatial intelligence platform using Sentinel-2 and socio-economic data (INE) to monitor trail degradation, ris…",
+    "domains": [
+      "tourism",
+      "geospatial",
+      "earth-observation",
+      "climate",
+      "software"
+    ],
+    "sourceIds": [
+      "github",
+      "sentinel-2"
+    ],
+    "repoUrl": "https://github.com/soroushkarahrodi79-oss/snto-smart-tourism-observatory",
+    "note": "Derived from GitHub repo soroushkarahrodi79-oss/snto-smart-tourism-observatory (pushed 2026-08-31)."
+  },
+  {
+    "id": "travel-crm",
+    "label": "Travel CRM",
+    "status": "active",
+    "summary": "Open-source travel agency CRM built with Google Sheets and Apps Script—leads, reservations, installment payments, roles, audit log, responsive dashboard.",
+    "domains": [
+      "tourism",
+      "software"
+    ],
+    "sourceIds": [
+      "github"
+    ],
+    "repoUrl": "https://github.com/soroushkarahrodi79-oss/travel-agency-crm-google-sheets",
+    "note": "Derived from GitHub repo soroushkarahrodi79-oss/travel-agency-crm-google-sheets (pushed 2026-07-29)."
+  },
+  {
+    "id": "snto-alpine",
+    "label": "SNTO Alpine",
+    "status": "active",
+    "summary": "Smart Natural Tourism Observatory — Alpine Edition (Sierra Nevada Pilot).",
+    "domains": [
+      "tourism",
+      "geospatial",
+      "earth-observation",
+      "climate"
+    ],
+    "sourceIds": [
+      "github",
+      "sentinel-2"
+    ],
+    "repoUrl": "https://github.com/soroushkarahrodi79-oss/snto-alpine",
+    "note": "Derived from GitHub repo soroushkarahrodi79-oss/snto-alpine (pushed 2026-08-26)."
+  },
+  {
+    "id": "hati-madrid",
+    "label": "HATI Madrid",
+    "status": "active",
+    "summary": "Heat-adaptive tourism opportunity screening in Madrid — reproducible research pilot (manuscript in preparation). Private.",
+    "domains": [
+      "tourism",
+      "climate"
+    ],
+    "territoryIds": [
+      "madrid"
+    ],
+    "sourceIds": [
+      "github"
+    ],
+    "repoUrl": "https://github.com/soroushkarahrodi79-oss/heat-adaptive-tourism-madrid",
+    "note": "Derived from GitHub repo soroushkarahrodi79-oss/heat-adaptive-tourism-madrid (pushed 2026-08-23)."
+  },
+  {
+    "id": "fieldos",
+    "label": "FieldOS",
+    "status": "active",
+    "summary": "Offline-first field research PWA for structured tourism evidence, GPS provenance and portable GeoJSON/CSV exports.",
+    "domains": [
+      "tourism",
+      "geospatial",
+      "field",
+      "software"
+    ],
+    "sourceIds": [
+      "github",
+      "field-survey"
+    ],
+    "repoUrl": "https://github.com/soroushkarahrodi79-oss/fieldos",
+    "note": "Derived from GitHub repo soroushkarahrodi79-oss/fieldos (pushed 2026-08-26)."
+  },
+  {
+    "id": "radar",
+    "label": "Radar",
+    "status": "concept",
+    "summary": "Evidence-first tourism signal validation experiment: Signal -> Evidence -> Decision -> Action. Phase 0 (pre-build validation), not yet built.",
+    "domains": [
+      "tourism",
+      "software"
+    ],
+    "sourceIds": [
+      "github",
+      "field-survey"
+    ],
+    "repoUrl": "https://github.com/soroushkarahrodi79-oss/radar",
+    "note": "Derived from GitHub repo soroushkarahrodi79-oss/radar (pushed 2026-08-31)."
+  },
+  {
+    "id": "firstlook-mad",
+    "label": "FirstLook MAD",
+    "status": "active",
+    "summary": "Sistema distribuido de primera respuesta y apoyo a la decisión mediante UAS para incendios forestales en la Comunidad de Madrid.",
+    "domains": [
+      "mobility",
+      "climate"
+    ],
+    "territoryIds": [
+      "madrid"
+    ],
+    "sourceIds": [
+      "github"
+    ],
+    "repoUrl": "https://github.com/soroushkarahrodi79-oss/firstlook-mad",
+    "note": "Derived from GitHub repo soroushkarahrodi79-oss/firstlook-mad (pushed 2026-08-27)."
+  }
+]

@@ -29,4 +29,11 @@ export const sources: ResearchSource[] = [
     kind: 'model',
     detail: 'Deterministic classification over the EO grid',
   },
+  {
+    id: 'github',
+    label: 'GitHub',
+    kind: 'repository',
+    agency: 'github.com',
+    detail: 'Source repositories for the research software projects',
+  },
 ];

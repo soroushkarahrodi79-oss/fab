@@ -1,0 +1,150 @@
+{
+  "source": "github:search_repositories user:soroushkarahrodi79-oss",
+  "fetched_at": "2026-08-31",
+  "repos": [
+    {
+      "name": "snto-smart-tourism-observatory",
+      "full_name": "soroushkarahrodi79-oss/snto-smart-tourism-observatory",
+      "description": "Smart Natural Tourism Observatory (SNTO): A geospatial intelligence platform using Sentinel-2 and socio-economic data (INE) to monitor trail degradation, risk, and intervention budgets in protected areas.",
+      "language": "Python",
+      "topics": [
+        "data-science",
+        "postgis",
+        "python",
+        "remote-sensing",
+        "sentinel-2",
+        "smart-tourism",
+        "streamlit",
+        "sustainability"
+      ],
+      "archived": false,
+      "fork": false,
+      "stargazers_count": 0,
+      "homepage": "https://snto-observatory.happyground-be027676.swedencentral.azurecontainerapps.io/",
+      "html_url": "https://github.com/soroushkarahrodi79-oss/snto-smart-tourism-observatory",
+      "created_at": "2026-06-03T22:35:04Z",
+      "pushed_at": "2026-08-31T17:42:33Z"
+    },
+    {
+      "name": "travel-agency-crm-google-sheets",
+      "full_name": "soroushkarahrodi79-oss/travel-agency-crm-google-sheets",
+      "description": "Open-source travel agency CRM built with Google Sheets and Apps Script—leads, reservations, installment payments, roles, audit log, responsive dashboard.",
+      "language": "JavaScript",
+      "topics": [
+        "booking-management",
+        "crm",
+        "google-apps-script",
+        "google-sheets",
+        "javascript",
+        "open-source",
+        "payments",
+        "sales",
+        "travel-agency",
+        "web-app"
+      ],
+      "archived": false,
+      "fork": false,
+      "stargazers_count": 0,
+      "homepage": "https://soroushkarahrodi79-oss.github.io/travel-agency-crm-google-sheets/",
+      "html_url": "https://github.com/soroushkarahrodi79-oss/travel-agency-crm-google-sheets",
+      "created_at": "2026-07-24T16:57:14Z",
+      "pushed_at": "2026-07-29T12:47:10Z"
+    },
+    {
+      "name": "snto-alpine",
+      "full_name": "soroushkarahrodi79-oss/snto-alpine",
+      "description": "Smart Natural Tourism Observatory — Alpine Edition (Sierra Nevada Pilot).",
+      "language": "Python",
+      "topics": [
+        "geospatial",
+        "protected-areas",
+        "prototype",
+        "python",
+        "remote-sensing",
+        "sentinel-2",
+        "tourism-research"
+      ],
+      "archived": false,
+      "fork": false,
+      "stargazers_count": 0,
+      "homepage": null,
+      "html_url": "https://github.com/soroushkarahrodi79-oss/snto-alpine",
+      "created_at": "2026-07-26T19:42:14Z",
+      "pushed_at": "2026-08-26T17:26:20Z"
+    },
+    {
+      "name": "heat-adaptive-tourism-madrid",
+      "full_name": "soroushkarahrodi79-oss/heat-adaptive-tourism-madrid",
+      "description": "Heat-adaptive tourism opportunity screening in Madrid — reproducible research pilot (manuscript in preparation). Private.",
+      "language": "Python",
+      "topics": [],
+      "archived": false,
+      "fork": false,
+      "stargazers_count": 0,
+      "homepage": null,
+      "html_url": "https://github.com/soroushkarahrodi79-oss/heat-adaptive-tourism-madrid",
+      "created_at": "2026-08-19T09:07:32Z",
+      "pushed_at": "2026-08-23T14:04:36Z"
+    },
+    {
+      "name": "fieldos",
+      "full_name": "soroushkarahrodi79-oss/fieldos",
+      "description": "Offline-first field research PWA for structured tourism evidence, GPS provenance and portable GeoJSON/CSV exports.",
+      "language": "TypeScript",
+      "topics": [
+        "evidence-collection",
+        "field-research",
+        "geojson",
+        "geolocation",
+        "indexeddb",
+        "offline-first",
+        "pwa",
+        "react",
+        "tourism-research",
+        "typescript"
+      ],
+      "archived": false,
+      "fork": false,
+      "stargazers_count": 0,
+      "homepage": "https://fieldos-sigma.vercel.app",
+      "html_url": "https://github.com/soroushkarahrodi79-oss/fieldos",
+      "created_at": "2026-08-21T18:19:59Z",
+      "pushed_at": "2026-08-26T18:46:34Z"
+    },
+    {
+      "name": "radar",
+      "full_name": "soroushkarahrodi79-oss/radar",
+      "description": "Evidence-first tourism signal validation experiment: Signal -> Evidence -> Decision -> Action. Phase 0 (pre-build validation), not yet built.",
+      "language": "TypeScript",
+      "topics": [
+        "decision-support",
+        "evidence",
+        "research-tool",
+        "tourism",
+        "typescript",
+        "validation"
+      ],
+      "archived": false,
+      "fork": false,
+      "stargazers_count": 0,
+      "homepage": null,
+      "html_url": "https://github.com/soroushkarahrodi79-oss/radar",
+      "created_at": "2026-08-23T18:26:44Z",
+      "pushed_at": "2026-08-31T14:50:44Z"
+    },
+    {
+      "name": "firstlook-mad",
+      "full_name": "soroushkarahrodi79-oss/firstlook-mad",
+      "description": "Sistema distribuido de primera respuesta y apoyo a la decisión mediante UAS para incendios forestales en la Comunidad de Madrid.",
+      "language": "Python",
+      "topics": [],
+      "archived": false,
+      "fork": false,
+      "stargazers_count": 0,
+      "homepage": null,
+      "html_url": "https://github.com/soroushkarahrodi79-oss/firstlook-mad",
+      "created_at": "2026-08-26T17:57:44Z",
+      "pushed_at": "2026-08-27T14:50:51Z"
+    }
+  ]
+}
