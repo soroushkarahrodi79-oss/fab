@@ -21,6 +21,9 @@ describe('EARTH fallback', () => {
     expect(screen.getByText(/EO FIELD/)).toBeInTheDocument();
     expect(screen.getByText(/NDVI/)).toBeInTheDocument();
     expect(screen.getByText(/dominant cover/)).toBeInTheDocument();
+    // Provenance must travel with the numbers — the mock field is never
+    // presented as evidence without its source label.
+    expect(screen.getByText(/mock-deterministic/)).toBeInTheDocument();
   });
 });
 

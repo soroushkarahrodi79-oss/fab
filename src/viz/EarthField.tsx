@@ -122,6 +122,9 @@ export function EarthField({ data }: { data: AtlasData }) {
   }, [field, reducedMotion]);
 
   const s = field.summary;
+  // Provenance travels with the numbers: the field is never a bare readout.
+  // `field.source` is "mock-deterministic" now, "sentinel-2" when real.
+  const provenance = `${field.source} · ${field.capturedAt}`;
   const summaryText = `NDVI ${s.ndviMin.toFixed(2)}–${s.ndviMax.toFixed(2)} (mean ${s.ndviMean.toFixed(2)}) · dominant cover ${s.dominantCover} · ${s.anomalies} anomal${s.anomalies === 1 ? 'y' : 'ies'} flagged`;
 
   return (
@@ -140,7 +143,8 @@ export function EarthField({ data }: { data: AtlasData }) {
     >
       <canvas ref={canvasRef} className="earth__canvas" aria-hidden="true" />
       <figcaption className="earth__caption u-micro">
-        <span className="earth__caption-title">EO FIELD</span> {summaryText}
+        <span className="earth__caption-title">EO FIELD</span>{' '}
+        <span className="earth__caption-src">{provenance}</span> · {summaryText}
       </figcaption>
     </figure>
   );

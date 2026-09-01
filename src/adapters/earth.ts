@@ -44,6 +44,18 @@ export const COVER_CLASSES = [
 // swap happens in the data file, not here (see docs/EARTH_REAL_DATA.md).
 const grid = gridData as EarthGrid;
 
+/**
+ * Provenance of the EARTH raster, read straight from the raw grid. Surfaced in
+ * the UI (module meta + figcaption) so the field is never presented as evidence
+ * without its source: `source` is "mock-deterministic" now and becomes
+ * "sentinel-2" when real data lands — the label follows the data, it is not
+ * authored in a component.
+ */
+export const earthProvenance: { source: string; capturedAt: string } = {
+  source: grid.source,
+  capturedAt: grid.capturedAt,
+};
+
 function coverFor(ndvi: number): number {
   if (ndvi < 0.28) return 0;
   if (ndvi < 0.45) return 1;

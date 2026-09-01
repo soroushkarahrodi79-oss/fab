@@ -204,6 +204,7 @@
   line-height: 1.4;
 }
 .earth__caption-title { color: var(--signal); }
+.earth__caption-src { color: var(--signal-warm); }
 
 /* ---- FIELD STATE core -------------------------------------------------- */
 .core {

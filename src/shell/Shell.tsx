@@ -1,6 +1,7 @@
 import { lazy, Suspense, useMemo } from 'react';
 import type { AtlasData } from '../data/types';
 import { deriveFieldState } from '../adapters/fieldState';
+import { earthProvenance } from '../adapters/earth';
 import { Masthead } from './Masthead';
 import { Module } from './Module';
 import { TerritoryMap } from '../viz/TerritoryMap';
@@ -39,7 +40,7 @@ export function Shell({ data }: { data: AtlasData }) {
           <Module
             code="02"
             title="EARTH"
-            meta="EO · deterministic"
+            meta={`EO · ${earthProvenance.source}`}
             state={data.observations.length ? 'idle' : 'empty'}
           >
             <Suspense fallback={<div className="viz-skeleton" aria-hidden="true" />}>

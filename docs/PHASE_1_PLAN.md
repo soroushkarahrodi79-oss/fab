@@ -6,9 +6,17 @@ The exact, bounded implementation. Anything not listed here is out of scope.
 
 A single-page Vite + React + TS application: one full-screen field instrument
 with a central FIELD STATE core and three modules (TERRITORY, EARTH, SIGNALS)
-around it, driven entirely by deterministic mock data conforming to
-`DATA_CONTRACT.md`, with a keyboard/pointer FIELD SCANNER, reduced-motion and
-canvas-off fallbacks, and a passing test/lint/typecheck/build.
+around it, driven by data conforming to `DATA_CONTRACT.md`, with a
+keyboard/pointer FIELD SCANNER, reduced-motion and canvas-off fallbacks, and a
+passing test/lint/typecheck/build.
+
+> **Provenance update (post-plan).** Two mock seams were promoted to real
+> build-time snapshot data without touching any viz — proving the Q4 seam:
+> **TERRITORY** now carries authoritative INE municipal geometry (`es-atlas`),
+> and **PROJECTS** are derived from the author's real GitHub repositories. No
+> runtime/live API is used (deterministic committed snapshots). **EARTH** stays
+> a deterministic mock NDVI grid (labelled `mock-deterministic` in the UI)
+> behind a prepared Sentinel-2 seam; signals and observations stay mock.
 
 ## Build order
 
@@ -55,7 +63,9 @@ docs/ (Phase 0 documents)
 ## Mock data driving each visualisation
 
 - **TERRITORY**: Madrid (urban), Sierra de Guadarrama (protected, code PNSG),
-  Sierra del Rincón (protected/biosphere). Real centroids; simple polygon rings.
+  Sierra del Rincón (protected/biosphere). Real centroids; geometry is now
+  authoritative INE municipal boundaries (`scripts/build-territories.mjs`),
+  which replaced the original hand-authored placeholder rings.
 - **EARTH**: deterministic NDVI/land-cover grid seeded from a fixed constant +
   a set of `Observation`s over Guadarrama; two orbital arcs labelled
   SENTINEL-2 / SENTINEL-1. No external calls.
