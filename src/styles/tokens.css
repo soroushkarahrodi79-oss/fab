@@ -1,0 +1,59 @@
+/*
+ * FIELD ATLAS — design tokens.
+ * The single source of visual truth. See docs/VISUAL_SYSTEM.md.
+ * Colour is a data channel; the palette is intentionally small so that a
+ * coloured mark always means a category.
+ */
+:root {
+  /* ground / surface */
+  --ground: #080a0c;
+  --panel: #0e1114;
+  --panel-line: #1b2126;
+  --panel-line-bright: #2c3742;
+
+  /* ink */
+  --ink: #c9d4d1;
+  --ink-dim: #6b7a78;
+  --ink-faint: #3a4644;
+
+  /* semantic data channels */
+  --signal: #7fe3c4;       /* active / live */
+  --signal-warm: #d9a441;  /* environmental / heat */
+  --signal-cool: #5fa8d3;  /* source / EO / water */
+  --alert: #d9694f;        /* anomaly / needs validation */
+
+  /* typography */
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", monospace;
+  --font-sans: ui-sans-serif, "Inter", system-ui, -apple-system, sans-serif;
+
+  --fs-micro: 0.6875rem;
+  --fs-label: 0.75rem;
+  --fs-body: 0.8125rem;
+  --fs-title: 1rem;
+  --fs-figure: 1.5rem;
+
+  --track-label: 0.14em;
+  --track-tight: 0.08em;
+
+  /* spacing — 4px base grid */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s6: 24px;
+  --s8: 32px;
+  --s12: 48px;
+
+  /* motion */
+  --dur-state: 180ms;
+  --dur-entry: 560ms;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+/* Reduced motion collapses all transitions to instant state changes. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-state: 0ms;
+    --dur-entry: 0ms;
+  }
+}

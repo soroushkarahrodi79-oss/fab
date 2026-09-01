@@ -10,8 +10,13 @@ of which renders real structured data rather than decorative animation.
 
 - **Phase 0** — concept architecture (see [`docs/`](docs/)).
 - **Phase 1** — vertical slice: central FIELD STATE core + three modules
-  (TERRITORY, EARTH, SIGNALS), deterministic mock data, FIELD SCANNER,
-  reduced-motion and canvas-off fallbacks.
+  (TERRITORY, EARTH, SIGNALS), a keyboard/pointer FIELD SCANNER, reduced-motion
+  and canvas-off fallbacks. Data provenance is mixed and honest at each seam:
+  **TERRITORY** geometry is real INE municipal boundaries and **PROJECTS** are
+  derived from the author's real GitHub repositories (both build-time
+  snapshots, no runtime API), while **EARTH** is still a deterministic mock
+  NDVI grid — labelled `mock-deterministic` in the UI — behind a prepared
+  Sentinel-2 seam. Signals and observations remain deterministic mock data.
 
 ## Stack
 
