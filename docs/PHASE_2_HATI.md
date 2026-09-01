@@ -51,8 +51,10 @@ parses raw HATI files (`hati-architecture.test.ts` enforces this).
 - Evidence status is taken from HATI's own markers, never invented:
   - outdoor thermal decisions → `modelled` (SOLWEIG/UTCI; no field validation
     exists in HATI);
-  - indoor (`INDOOR_NOT_MODELLED`) → `documented`, and **no** UTCI value is
-    stored (missing means missing);
+  - indoor (`INDOOR_NOT_MODELLED`) → the `INDOOR_REFUGE` decision is `derived`
+    (a rule over documented OSM/opening-hours evidence, whose own status stays
+    documented); the thermal environment is not modelled, so **no** UTCI value
+    is stored (missing means missing);
   - the genuine A24 solar-boundary `UNSTABLE` case → `simulated`, never softened.
 - The temporal frame (one historical episode, 2023-08-21, 3 modelled timestamps)
   and the "not live / not forecast / distances straight-line / thermal not

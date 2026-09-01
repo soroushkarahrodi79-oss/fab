@@ -26,9 +26,9 @@ Transcribed from the HATI project's own limitations disclosure
   is **no field validation** anywhere in the project. FAB therefore labels
   outdoor thermal-based decisions `modelled`, never `observed`.
 - **Indoor assets are `INDOOR_NOT_MODELLED`** — SOLWEIG models the outdoor
-  environment only. Their decision rests on documented indoor-refuge rules and
-  opening hours, so FAB labels them `documented` and stores **no** UTCI value
-  (missing means missing).
+  environment only. The `INDOOR_REFUGE` decision is a rule applied to documented
+  indoor/opening-hours evidence, so FAB labels the decision `derived` (its OSM
+  basis stays documented) and stores **no** UTCI value (missing means missing).
 - **A24 (La Rosaleda) @ 18:00 is a genuine, irreducible solar-boundary
   `UNSTABLE` case** — its decision flips under the tested solar-forcing
   envelope. FAB labels such decisions `simulated` (scenario-forced model runs)

@@ -41,10 +41,18 @@ const EXPERIENCE_LABEL: Record<string, string> = {
 const EVIDENCE_STATUS_LABEL: Record<EvidenceStatus, string> = {
   observed: 'Observed (measured in the field)',
   documented: 'Documented (authoritative record, not measured)',
-  derived: 'Derived (computed by rule)',
+  derived: 'Derived (rule-based, not measured)',
   modelled: 'Modelled (SOLWEIG/UTCI, not field-measured)',
   simulated: 'Simulated (decision flips under the tested forcing envelope)',
 };
+/**
+ * Indoor-refuge decisions are `derived`: a rule applied to documented
+ * indoor/opening-hours evidence, with the thermal state explicitly not modelled.
+ * Spell that out so the scanner never implies a measured indoor temperature.
+ */
+const INDOOR_DERIVED_LABEL =
+  'Derived — rule-based from documented indoor/opening-hours evidence; ' +
+  'indoor thermal not physically modelled';
 
 export const decisionStateLabel = (t: string) => DECISION_STATE_LABEL[t] ?? t;
 export const confidenceLabel = (t?: string) => (t ? (CONFIDENCE_LABEL[t] ?? t) : undefined);
@@ -114,6 +122,11 @@ const SOURCE_LABEL: Record<string, string> = {
 function nodeFrom(d: Decision, asset: Asset | undefined, x: number, y: number): ScenarioNode {
   const attr = d.attributes ?? {};
   const utci = d.metrics?.find((m) => m.key === 'utci')?.value ?? null;
+  const indoorNotModelled = attr.thermal_state === 'INDOOR_NOT_MODELLED';
+  const evLabel =
+    d.evidenceStatus === 'derived' && indoorNotModelled
+      ? INDOOR_DERIVED_LABEL
+      : evidenceStatusLabel(d.evidenceStatus);
   return {
     decisionId: d.id,
     assetId: d.assetId,
@@ -128,7 +141,7 @@ function nodeFrom(d: Decision, asset: Asset | undefined, x: number, y: number): 
     constraintReason: d.constraintReason,
     constraintLabel: exclusionLabel(d.constraintReason),
     evidenceStatus: d.evidenceStatus,
-    evidenceStatusLabel: evidenceStatusLabel(d.evidenceStatus),
+    evidenceStatusLabel: evLabel,
     evidenceConfidence: d.evidenceConfidence,
     utci,
     experienceType: attr.experience_type || undefined,

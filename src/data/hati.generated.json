@@ -840,7 +840,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -865,7 +865,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -890,7 +890,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -915,7 +915,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -940,7 +940,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1102,7 +1102,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1128,7 +1128,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1154,7 +1154,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1180,7 +1180,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1206,7 +1206,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1232,7 +1232,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1258,7 +1258,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1284,7 +1284,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1658,7 +1658,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1683,7 +1683,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1708,7 +1708,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1733,7 +1733,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1827,7 +1827,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1853,7 +1853,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1879,7 +1879,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1905,7 +1905,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1931,7 +1931,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1957,7 +1957,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -1983,7 +1983,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2009,7 +2009,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2035,7 +2035,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2479,7 +2479,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2504,7 +2504,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2529,7 +2529,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2589,7 +2589,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2615,7 +2615,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2641,7 +2641,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2667,7 +2667,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2693,7 +2693,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2719,7 +2719,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2745,7 +2745,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2771,7 +2771,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2797,7 +2797,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -2823,7 +2823,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3302,7 +3302,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3566,7 +3566,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3592,7 +3592,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3618,7 +3618,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3644,7 +3644,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3670,7 +3670,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3696,7 +3696,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3722,7 +3722,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3748,7 +3748,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3774,7 +3774,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3800,7 +3800,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3826,7 +3826,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -3852,7 +3852,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4121,7 +4121,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4146,7 +4146,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4171,7 +4171,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4196,7 +4196,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4221,7 +4221,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4246,7 +4246,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4306,7 +4306,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4332,7 +4332,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4358,7 +4358,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4384,7 +4384,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4410,7 +4410,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4436,7 +4436,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4462,7 +4462,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4941,7 +4941,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4966,7 +4966,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -4991,7 +4991,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5016,7 +5016,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5041,7 +5041,7 @@
       "role": "alternative",
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5203,7 +5203,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5229,7 +5229,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5255,7 +5255,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5281,7 +5281,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5307,7 +5307,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5333,7 +5333,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5359,7 +5359,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5385,7 +5385,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5964,7 +5964,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -5990,7 +5990,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6016,7 +6016,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6042,7 +6042,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6068,7 +6068,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6094,7 +6094,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6120,7 +6120,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6146,7 +6146,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6172,7 +6172,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6198,7 +6198,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6224,7 +6224,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6250,7 +6250,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6276,7 +6276,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6581,7 +6581,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6607,7 +6607,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6633,7 +6633,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6659,7 +6659,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6685,7 +6685,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6711,7 +6711,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6737,7 +6737,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6763,7 +6763,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "CLOSED_AT_TIMESTAMP",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6789,7 +6789,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6815,7 +6815,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6841,7 +6841,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6867,7 +6867,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",
@@ -6893,7 +6893,7 @@
       "state": "INDOOR_REFUGE",
       "confidence": "INDOOR_BYPASS",
       "constraintReason": "ACCESSIBILITY_CONSTRAINT",
-      "evidenceStatus": "documented",
+      "evidenceStatus": "derived",
       "evidenceConfidence": "MODERATE",
       "attributes": {
         "indoor_outdoor": "indoor",

@@ -43,14 +43,16 @@ describe('SCENARIO navigation & scanner', () => {
     expect(within(scanner).getByText(/Source · heat-exposed/)).toBeInTheDocument();
   });
 
-  it('distinguishes an indoor refuge as documented, with no faked thermal value', () => {
+  it('distinguishes an indoor refuge as derived (rule-based), with no faked thermal value', () => {
     mount('S1');
     const scanner = screen.getByRole('complementary', { name: /field scanner/i });
     const prado = screen.getByRole('img', { name: /Museo del Prado/i });
     fireEvent.focus(prado);
 
     expect(within(scanner).getByText(/Indoor refuge/i)).toBeInTheDocument();
-    expect(within(scanner).getByText(/Documented/i)).toBeInTheDocument();
+    // rule-based on documented evidence; must not imply measured indoor thermal
+    expect(within(scanner).getByText(/Derived/i)).toBeInTheDocument();
+    expect(within(scanner).getByText(/not physically modelled/i)).toBeInTheDocument();
     // no invented UTCI for an indoor asset
     expect(within(scanner).queryByText(/UTCI/)).not.toBeInTheDocument();
   });

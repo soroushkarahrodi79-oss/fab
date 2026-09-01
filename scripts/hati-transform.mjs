@@ -61,16 +61,27 @@ const S = (n) => Number(String(n).replace(/^S/, '')); // "S1" → 1 (natural sor
 
 /**
  * Scientific status of a decision, from HATI's own markers — never invented:
- *  - indoor asset (thermal not physically modelled) → decision rests on a
- *    documented indoor rule + documented hours  → `documented`
+ *  - indoor asset (thermal not physically modelled) → the INDOOR_REFUGE
+ *    decision is a RULE applied to documented indoor/opening-hours evidence,
+ *    so the decision itself is `derived` (the underlying OSM evidence is
+ *    documented; the thermal environment is explicitly not modelled).
  *  - outdoor, decision flips under the tested solar envelope (UNSTABLE) →
  *    scenario-forced model run                    → `simulated`
  *  - outdoor, otherwise                            → modelled thermal (UTCI)
  */
 function evidenceStatusFor(thermalState, confidence) {
-  if (thermalState === 'INDOOR_NOT_MODELLED') return 'documented';
+  if (thermalState === 'INDOOR_NOT_MODELLED') return 'derived';
   if (confidence === 'UNSTABLE') return 'simulated';
   return 'modelled';
+}
+
+/**
+ * The source that backs a decision's evidence: the documented OSM record for
+ * indoor (rule-based) decisions, the SOLWEIG/UTCI model for outdoor thermal
+ * decisions. Chosen by the thermal basis, not by the status label.
+ */
+function basisSource(thermalState) {
+  return thermalState === 'INDOOR_NOT_MODELLED' ? 'openstreetmap' : 'solweig-utci';
 }
 
 function utciMetric(value, evidenceStatus) {
@@ -111,7 +122,7 @@ export function buildHati(raw) {
         n_alternatives: clean(r.n_candidate_alternatives),
       },
       provenance: {
-        sourceId: status === 'documented' ? 'openstreetmap' : 'solweig-utci',
+        sourceId: basisSource(clean(r.source_thermal_state)),
         sourceRepo: HATI_REPO,
         sourceFile: 'data/processed/phase3_scenarios_summary.csv',
         sourceRef: sid,
@@ -164,7 +175,7 @@ export function buildHati(raw) {
         walk_min: clean(r.walk_min),
       },
       provenance: {
-        sourceId: status === 'documented' ? 'openstreetmap' : 'solweig-utci',
+        sourceId: basisSource(thermal),
         sourceRepo: HATI_REPO,
         sourceFile: 'data/processed/phase3_scenarios.csv',
         sourceRef: `${sid}:${assetId}`,

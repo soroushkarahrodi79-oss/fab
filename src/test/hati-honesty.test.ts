@@ -25,13 +25,16 @@ describe('HATI honesty — evidence status is never laundered', () => {
     }
   });
 
-  it('never invents a thermal value for indoor (not-modelled) decisions', () => {
-    for (const d of decisions) {
-      if (d.attributes?.thermal_state === 'INDOOR_NOT_MODELLED') {
-        // documented basis, and NO fabricated UTCI (missing means missing)
-        expect(d.evidenceStatus, d.id).toBe('documented');
-        expect(utciOf(d), `${d.id} must not fake a UTCI`).toBeUndefined();
-      }
+  it('labels indoor refuge decisions as derived (rule-based), never modelled/measured, with no faked UTCI', () => {
+    const indoor = decisions.filter((d) => d.attributes?.thermal_state === 'INDOOR_NOT_MODELLED');
+    expect(indoor.length).toBeGreaterThan(0);
+    for (const d of indoor) {
+      // The INDOOR_REFUGE decision is a rule over documented evidence → derived.
+      expect(d.evidenceStatus, d.id).toBe('derived');
+      // The thermal environment is explicitly not modelled: no fabricated UTCI.
+      expect(utciOf(d), `${d.id} must not fake a UTCI`).toBeUndefined();
+      // The documentary basis (OSM opening-hours / tags) is preserved.
+      expect(d.provenance.sourceId, `${d.id} keeps documentary provenance`).toBe('openstreetmap');
     }
   });
 
