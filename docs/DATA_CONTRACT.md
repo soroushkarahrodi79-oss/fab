@@ -118,6 +118,71 @@ interface FieldState {
 }
 ```
 
+## Evidence layer (Phase 2) — generic, project-agnostic
+
+Added to ingest an authentic research project (first: HATI Madrid) without
+project-specific fields. Names carry no project semantics; HATI's tokens
+(`AVOID_PROLONGED_OUTDOOR_EXPOSURE`, `ACCESSIBILITY_CONSTRAINT`, …) live in the
+DATA as opaque strings, never in the types.
+
+### EvidenceStatus + Provenance
+
+The scientific-honesty backbone. A boolean `validated` cannot say *how* a value
+was produced, so status is its own type and every evidence object keeps a
+`Provenance`.
+
+```ts
+type EvidenceStatus =
+  | 'observed'    // directly measured / sensed
+  | 'documented'  // authoritative record, not a measurement (e.g. OSM hours)
+  | 'derived'     // deterministically computed by a rule
+  | 'modelled'    // model output (e.g. SOLWEIG/UTCI), not measured
+  | 'simulated';  // scenario-forced / hypothetical model run
+
+interface Provenance {
+  sourceId: string;         // resolves in the sources collection
+  sourceRepo?: string;      // originating repository
+  sourceFile?: string;      // file within that repo/snapshot
+  sourceRef?: string;       // record ref (scenario id, OSM ref, Wikidata id …)
+  temporalContext?: string; // temporal frame the evidence applies to
+  fetchedAt?: string;       // ISO date the snapshot was captured
+  note?: string;
+}
+```
+
+### Asset / Scenario / Decision / Metric
+
+```ts
+interface Asset {                 // a located feature scenarios reason about
+  id; label; category: string;    // category is a data token
+  position?: [number, number]; territoryId?: string;
+  attributes?: Record<string, string>; provenance: Provenance;
+}
+interface Scenario {              // a bounded decision context on one subject
+  id; label; subjectId: string;   // Asset.id
+  context?: string; summary?: string; provenance: Provenance;
+}
+interface Metric { key; label?; value: number | null; unit?; evidenceStatus; }
+interface Decision {              // one asset's recorded outcome in a scenario
+  id;                             // `${scenarioId}:${assetId}`
+  scenarioId; assetId;
+  role: 'subject' | 'alternative' | 'excluded';
+  state: string;                  // decision token (data)
+  confidence?: string;            // confidence token (data)
+  constraintReason?: string;      // exclusion token when excluded (data)
+  evidenceStatus: EvidenceStatus; // status of THIS decision's basis
+  evidenceConfidence?: string;
+  metrics?: Metric[];             // e.g. modelled UTCI; absent when not modelled
+  attributes?: Record<string, string>;
+  provenance: Provenance;
+}
+```
+
+`AtlasData` gains optional `assets`, `scenarios`, `decisions`. FAB **consumes**
+these decision outputs; it never recomputes state, confidence, ranking, UTCI, or
+eligibility. `value: null` / an absent metric means genuinely missing — never a
+placeholder. See `docs/PHASE_2_HATI.md` for the ingestion seam.
+
 ## Referential integrity (enforced by tests)
 
 - Every `Signal.from`/`to` resolves to an existing entity id.
@@ -125,6 +190,11 @@ interface FieldState {
 - Every `Project.territoryIds` resolves to a `Territory`.
 - Every `Observation.territoryId` (if present) resolves to a `Territory`.
 - Ids are unique within each collection.
+- (Phase 2) Every `Scenario.subjectId`, `Decision.scenarioId`, `Decision.assetId`
+  resolves; every `Provenance.sourceId` resolves to a `ResearchSource`; every
+  `Asset.territoryId` resolves.
 
-These invariants are asserted in `contracts.test.ts`; a real dataset must pass
-the same suite, which is how "swap mock for real" stays safe.
+These invariants are asserted in `contracts.test.ts` and `hati-integrity.test.ts`;
+a real dataset must pass the same suites, which is how "swap mock for real" stays
+safe. `hati-honesty.test.ts` additionally fails if modelled/simulated evidence
+ever loses its status label or a thermal value is invented where none is modelled.
