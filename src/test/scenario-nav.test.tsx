@@ -20,16 +20,19 @@ function mount(scenarioId: string) {
 }
 
 describe('SCENARIO navigation & scanner', () => {
-  it('exposes every decision as a keyboard-focusable, labelled control', () => {
+  it('exposes every decision as a keyboard-focusable, labelled data mark (not a button)', () => {
     mount('S1');
-    const source = screen.getByRole('button', { name: /source asset: Fuente de Neptuno/i });
+    // Inspectable data marks are focusable images, not controls: they carry the
+    // full label but must not advertise button semantics they cannot honour.
+    const source = screen.getByRole('img', { name: /source asset: Fuente de Neptuno/i });
     expect(source).toHaveAttribute('tabindex', '0');
+    expect(screen.queryByRole('button', { name: /Fuente de Neptuno/i })).toBeNull();
   });
 
   it('reports the full evidence readout for a modelled outdoor source', () => {
     mount('S1');
     const scanner = screen.getByRole('complementary', { name: /field scanner/i });
-    const source = screen.getByRole('button', { name: /source asset: Fuente de Neptuno/i });
+    const source = screen.getByRole('img', { name: /source asset: Fuente de Neptuno/i });
     fireEvent.focus(source); // keyboard focus, not hover
 
     // "SCENARIO" appears as both the module source tag and the field key.
@@ -43,7 +46,7 @@ describe('SCENARIO navigation & scanner', () => {
   it('distinguishes an indoor refuge as documented, with no faked thermal value', () => {
     mount('S1');
     const scanner = screen.getByRole('complementary', { name: /field scanner/i });
-    const prado = screen.getByRole('button', { name: /Museo del Prado/i });
+    const prado = screen.getByRole('img', { name: /Museo del Prado/i });
     fireEvent.focus(prado);
 
     expect(within(scanner).getByText(/Indoor refuge/i)).toBeInTheDocument();
@@ -55,7 +58,7 @@ describe('SCENARIO navigation & scanner', () => {
   it('explains why an excluded candidate was excluded', () => {
     mount('S1');
     const scanner = screen.getByRole('complementary', { name: /field scanner/i });
-    const excluded = screen.getByRole('button', { name: /excluded candidate: .*Reina Sof/i });
+    const excluded = screen.getByRole('img', { name: /excluded candidate: .*Reina Sof/i });
     fireEvent.focus(excluded);
 
     expect(within(scanner).getByText(/Excluded — .*search radius/i)).toBeInTheDocument();

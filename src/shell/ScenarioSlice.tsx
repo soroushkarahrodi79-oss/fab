@@ -28,7 +28,7 @@ export function ScenarioSlice({ data }: { data: AtlasData }) {
         <div className="slice__body">
           <div
             className="slice__picker"
-            role="tablist"
+            role="group"
             aria-label="Select a HATI heat-refuge scenario"
           >
             {scenarios.map((s) => {
@@ -36,8 +36,8 @@ export function ScenarioSlice({ data }: { data: AtlasData }) {
               return (
                 <button
                   key={s.id}
-                  role="tab"
-                  aria-selected={active}
+                  type="button"
+                  aria-pressed={active}
                   className={`slice__tab${active ? ' is-active' : ''}`}
                   onClick={() => setSelected(s.id)}
                 >

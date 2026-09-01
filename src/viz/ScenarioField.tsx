@@ -109,7 +109,11 @@ export function ScenarioField({ data, scenarioId }: { data: AtlasData; scenarioI
             className={`sc-node sc-node--${n.role} sc-state--${STATE_CLASS[n.state] ?? 'other'}${focused ? ' is-focused' : ''}`}
             style={{ opacity }}
             tabIndex={0}
-            role="button"
+            // An inspectable data mark, not a control: it is focusable so its
+            // evidence reaches the FIELD SCANNER by keyboard as well as pointer,
+            // but it has no activation, so it must not claim button semantics.
+            // role="img" announces the full label without promising an action.
+            role="img"
             aria-label={ariaFor(n)}
             onMouseEnter={() => setScan(scanFor(view, n))}
             onFocus={() => setScan(scanFor(view, n))}

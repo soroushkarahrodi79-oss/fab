@@ -1,6 +1,13 @@
 import type { ResearchSource } from './types';
 
-/** Deterministic mock research sources. Real missions/surveys drop in here. */
+/**
+ * Research sources — a mixed real/placeholder collection. The EO/field entries
+ * (Sentinel, field survey, land-cover model) are still deterministic
+ * placeholders awaiting live integration, while the HATI evidence sources below
+ * (HATI Madrid, OpenStreetMap, SOLWEIG/UTCI) are authentic origins that back the
+ * Phase 2 provenance chain. New missions/surveys drop in here under the same
+ * ResearchSource contract.
+ */
 export const sources: ResearchSource[] = [
   {
     id: 'sentinel-2',
