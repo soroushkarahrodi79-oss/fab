@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { AtlasData } from '../data/types';
-import { buildScenarioView, type ScenarioNode } from '../adapters/hati';
+import { buildScenarioView, scenarioNodeScan, type ScenarioNode } from '../adapters/hati';
 import { useField } from '../interaction/FieldContext';
 
 const V = 100;
@@ -20,26 +20,6 @@ const RING_CLASS: Record<string, string> = {
 };
 // evidence_confidence → opacity channel (HATI EVIDENCE_OPACITY).
 const EVIDENCE_OPACITY: Record<string, number> = { HIGH: 1, MODERATE: 0.66, LOW: 0.4 };
-
-function scanFor(view: { id: string; label: string }, n: ScenarioNode) {
-  const statusText =
-    n.role === 'excluded'
-      ? `Excluded — ${n.constraintLabel ?? n.constraintReason ?? 'constraint'}`
-      : n.role === 'subject'
-        ? 'Source · heat-exposed'
-        : 'Alternative';
-  return {
-    elementId: n.decisionId,
-    module: 'scenario' as const,
-    coord: n.coord,
-    asset: `${n.label} · ${n.category}`,
-    scenario: `${view.id} · ${view.label}`,
-    decision: `${n.stateLabel}${n.confidenceLabel ? ` · ${n.confidenceLabel}` : ''}`,
-    status: statusText,
-    source: n.sourceLabel,
-    evidence: `${n.evidenceStatusLabel}${n.utci != null ? ` · UTCI ${n.utci}°C` : ''}`,
-  };
-}
 
 function ariaFor(n: ScenarioNode): string {
   const role =
@@ -115,8 +95,8 @@ export function ScenarioField({ data, scenarioId }: { data: AtlasData; scenarioI
             // role="img" announces the full label without promising an action.
             role="img"
             aria-label={ariaFor(n)}
-            onMouseEnter={() => setScan(scanFor(view, n))}
-            onFocus={() => setScan(scanFor(view, n))}
+            onMouseEnter={() => setScan(scenarioNodeScan(view, n))}
+            onFocus={() => setScan(scenarioNodeScan(view, n))}
             onMouseLeave={() => clearScan(n.decisionId)}
             onBlur={() => clearScan(n.decisionId)}
           >

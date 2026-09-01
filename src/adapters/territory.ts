@@ -34,11 +34,42 @@ export interface TerritoryView {
   observations: ObservationMark[];
 }
 
-function extendBBox(b: [number, number, number, number], [lon, lat]: LonLat): void {
+export type BBox = [number, number, number, number]; // [minLon, minLat, maxLon, maxLat]
+
+function extendBBox(b: BBox, [lon, lat]: LonLat): void {
   if (lon < b[0]) b[0] = lon;
   if (lat < b[1]) b[1] = lat;
   if (lon > b[2]) b[2] = lon;
   if (lat > b[3]) b[3] = lat;
+}
+
+/**
+ * Compute a padded bounding box that frames a set of points. Generic and pure —
+ * reused to frame the whole region (TERRITORY) or a single scenario's assets
+ * (the geographic scenario view), so both share one projection, not two maps.
+ */
+export function frameBBox(points: LonLat[], padFrac = 0.1): BBox {
+  const b: BBox = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const p of points) extendBBox(b, p);
+  if (!Number.isFinite(b[0])) return [-0.1, -0.1, 0.1, 0.1];
+  const padX = (b[2] - b[0]) * padFrac || 0.002;
+  const padY = (b[3] - b[1]) * padFrac || 0.002;
+  return [b[0] - padX, b[1] - padY, b[2] + padX, b[3] + padY];
+}
+
+/**
+ * A deterministic equirectangular projector into normalised instrument space
+ * [0,1], north up. Each axis is fit independently to the bbox — a research
+ * instrument frame, not a slippy map. The single projection used everywhere.
+ */
+export function makeProjector(bbox: BBox): (p: LonLat) => Pt {
+  const [minLon, minLat, maxLon, maxLat] = bbox;
+  const spanLon = maxLon - minLon || 1;
+  const spanLat = maxLat - minLat || 1;
+  return ([lon, lat]: LonLat): Pt => ({
+    x: (lon - minLon) / spanLon,
+    y: 1 - (lat - minLat) / spanLat,
+  });
 }
 
 /**
@@ -77,14 +108,7 @@ export function projectTerritories(data: AtlasData): TerritoryView {
   bbox[2] += padX;
   bbox[3] += padY;
 
-  const [minLon, minLat, maxLon, maxLat] = bbox;
-  const spanLon = maxLon - minLon || 1;
-  const spanLat = maxLat - minLat || 1;
-
-  const project = ([lon, lat]: LonLat): Pt => ({
-    x: (lon - minLon) / spanLon,
-    y: 1 - (lat - minLat) / spanLat, // flip: north is up
-  });
+  const project = makeProjector(bbox);
 
   const obsByTerritory = new Map<string, number>();
   for (const o of data.observations) {

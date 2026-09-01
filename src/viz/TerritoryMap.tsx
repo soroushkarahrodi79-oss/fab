@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import type { AtlasData } from '../data/types';
-import { projectTerritories, formatCoord } from '../adapters/territory';
+import { projectTerritories, makeProjector, formatCoord } from '../adapters/territory';
+import type { MapMark } from '../adapters/territoryScenario';
 import { useField } from '../interaction/FieldContext';
 
 const V = 100; // viewBox units
@@ -17,9 +18,21 @@ const KIND_LABEL: Record<string, string> = {
  * features with native hit-testing and accessible labels. No WebGL, no tiles.
  * Purely presentational: consumes the projected view model.
  */
-export function TerritoryMap({ data }: { data: AtlasData }) {
+export function TerritoryMap({
+  data,
+  locator,
+}: {
+  data: AtlasData;
+  /**
+   * Optional region-scale locator for an active selection (e.g. the current
+   * scenario's subject). Generic: any located mark can be pinned here. When
+   * absent the map renders exactly as before — Phase 1 behaviour is untouched.
+   */
+  locator?: MapMark;
+}) {
   const view = useMemo(() => projectTerritories(data), [data]);
   const { scan, setScan, clearScan } = useField();
+  const locAt = locator ? makeProjector(view.bbox)(locator.lonlat) : null;
 
   return (
     <svg
@@ -124,6 +137,28 @@ export function TerritoryMap({ data }: { data: AtlasData }) {
           </g>
         );
       })}
+
+      {/* active-scenario locator: a crosshair pinning the scenario subject in
+          the region, so TERRITORY visibly reflects the shared selection. */}
+      {locator && locAt && (
+        <g
+          className={`territory-locator${scan?.elementId === locator.decisionId ? ' is-focused' : ''}`}
+          tabIndex={0}
+          role="img"
+          aria-label={`Active scenario location: ${locator.label} (${formatCoord(locator.lonlat)})`}
+          onMouseEnter={() => setScan(locator.scan)}
+          onFocus={() => setScan(locator.scan)}
+          onMouseLeave={() => clearScan(locator.decisionId)}
+          onBlur={() => clearScan(locator.decisionId)}
+        >
+          <circle className="territory-locator__ring" cx={locAt.x * V} cy={locAt.y * V} r={2.6} />
+          <line className="territory-locator__x" x1={locAt.x * V - 3.6} y1={locAt.y * V} x2={locAt.x * V + 3.6} y2={locAt.y * V} />
+          <line className="territory-locator__x" x1={locAt.x * V} y1={locAt.y * V - 3.6} x2={locAt.x * V} y2={locAt.y * V + 3.6} />
+          <text className="territory-locator__label" x={locAt.x * V + 3} y={locAt.y * V - 3} textAnchor="start">
+            scenario
+          </text>
+        </g>
+      )}
     </svg>
   );
 }

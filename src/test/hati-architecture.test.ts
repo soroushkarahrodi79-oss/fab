@@ -5,6 +5,7 @@ import territorySrc from '../viz/TerritoryMap.tsx?raw';
 import signalSrc from '../viz/SignalGraph.tsx?raw';
 import coreSrc from '../viz/FieldStateCore.tsx?raw';
 import scenarioSrc from '../viz/ScenarioField.tsx?raw';
+import territoryScenarioSrc from '../viz/TerritoryScenario.tsx?raw';
 
 /**
  * Architecture boundary: the visualisation layer must never touch raw HATI
@@ -17,6 +18,7 @@ const vizFiles: Array<[string, string]> = [
   ['SignalGraph.tsx', signalSrc],
   ['FieldStateCore.tsx', coreSrc],
   ['ScenarioField.tsx', scenarioSrc],
+  ['TerritoryScenario.tsx', territoryScenarioSrc],
 ];
 
 describe('architecture — viz never parses raw HATI files', () => {
@@ -31,5 +33,9 @@ describe('architecture — viz never parses raw HATI files', () => {
 
   it('the SCENARIO viz depends on the adapter, not raw data', () => {
     expect(scenarioSrc).toMatch(/from '\.\.\/adapters\/hati'/);
+  });
+
+  it('the geographic scenario viz depends on adapters, not raw data', () => {
+    expect(territoryScenarioSrc).toMatch(/from '\.\.\/adapters\/territoryScenario'/);
   });
 });

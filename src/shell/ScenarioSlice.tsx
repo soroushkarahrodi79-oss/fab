@@ -1,21 +1,33 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { AtlasData } from '../data/types';
 import { listScenarios } from '../adapters/hati';
+import { buildTerritoryScenario } from '../adapters/territoryScenario';
+import { useField } from '../interaction/FieldContext';
 import { Module } from './Module';
 import { ScenarioField } from '../viz/ScenarioField';
+import { TerritoryScenario } from '../viz/TerritoryScenario';
 
 /**
- * SCENARIO slice — the Phase 2 authentic vertical: HATI Madrid heat-refuge
- * scenarios. Owns the selected-scenario interaction (keyboard + pointer) and
- * frames the evidence field with an explicit provenance / limitations caption.
- * All information here is real HATI decision output; FAB recomputes nothing.
+ * SCENARIO slice — the HATI Madrid heat-refuge scenarios. Selection lives in the
+ * shared FIELD interaction context (single source of truth), so the abstract
+ * access field and the geographic Madrid view reflect the SAME scenario, and a
+ * focused asset reports the same decision identity in both. FAB recomputes
+ * nothing — all state is real HATI decision output.
  */
 export function ScenarioSlice({ data }: { data: AtlasData }) {
   const scenarios = useMemo(() => listScenarios(data), [data]);
-  const [selected, setSelected] = useState(scenarios[0]?.id ?? '');
-  const current = scenarios.find((s) => s.id === selected) ?? scenarios[0];
+  const { scenarioId, selectScenario } = useField();
+  const current = scenarios.find((s) => s.id === scenarioId) ?? scenarios[0];
+
+  const geo = useMemo(
+    () => (current ? buildTerritoryScenario(data, current.id) : null),
+    [data, current],
+  );
 
   if (!current) return null;
+
+  const spanX = geo ? Math.round(geo.spanMeters.x) : 0;
+  const spanY = geo ? Math.round(geo.spanMeters.y) : 0;
 
   return (
     <section className="slice" aria-label="HATI Madrid scenarios">
@@ -39,7 +51,7 @@ export function ScenarioSlice({ data }: { data: AtlasData }) {
                   type="button"
                   aria-pressed={active}
                   className={`slice__tab${active ? ' is-active' : ''}`}
-                  onClick={() => setSelected(s.id)}
+                  onClick={() => selectScenario(s.id)}
                 >
                   <span className="slice__tab-id u-micro">{s.id}</span>
                   <span className="slice__tab-label">{s.label}</span>
@@ -69,7 +81,22 @@ export function ScenarioSlice({ data }: { data: AtlasData }) {
                 OpenStreetMap (ODbL). This is screening, not a prediction of choice.
               </p>
             </header>
-            <ScenarioField data={data} scenarioId={current.id} />
+
+            <div className="slice__views">
+              <figure className="slice__view">
+                <figcaption className="u-micro slice__view-cap">
+                  ACCESS FIELD · relationships
+                </figcaption>
+                <ScenarioField data={data} scenarioId={current.id} />
+              </figure>
+              <figure className="slice__view">
+                <figcaption className="u-micro slice__view-cap">
+                  {geo?.territoryLabel ?? 'TERRITORY'} · real coordinates
+                  {geo ? ` · ~${spanX}×${spanY} m straight-line` : ''}
+                </figcaption>
+                <TerritoryScenario data={data} scenarioId={current.id} />
+              </figure>
+            </div>
           </div>
         </div>
       </Module>

@@ -2,6 +2,8 @@ import { lazy, Suspense, useMemo } from 'react';
 import type { AtlasData } from '../data/types';
 import { deriveFieldState } from '../adapters/fieldState';
 import { earthProvenance } from '../adapters/earth';
+import { buildTerritoryScenario } from '../adapters/territoryScenario';
+import { useField } from '../interaction/FieldContext';
 import { Masthead } from './Masthead';
 import { Module } from './Module';
 import { ScenarioSlice } from './ScenarioSlice';
@@ -16,6 +18,13 @@ const EarthField = lazy(() => import('../viz/EarthField'));
 
 export function Shell({ data }: { data: AtlasData }) {
   const fs = useMemo(() => deriveFieldState(data), [data]);
+  const { scenarioId } = useField();
+  // The active scenario's subject, pinned on the region map so TERRITORY reflects
+  // the same selection as SCENARIO (shared state, no duplication).
+  const territoryLocator = useMemo(() => {
+    if (!scenarioId) return undefined;
+    return buildTerritoryScenario(data, scenarioId)?.marks.find((m) => m.role === 'subject');
+  }, [data, scenarioId]);
 
   return (
     <div className="shell">
@@ -29,7 +38,7 @@ export function Shell({ data }: { data: AtlasData }) {
             meta={`${data.territories.length} areas`}
             state={data.territories.length ? 'idle' : 'empty'}
           >
-            <TerritoryMap data={data} />
+            <TerritoryMap data={data} locator={territoryLocator} />
           </Module>
         </div>
 
