@@ -36,4 +36,29 @@ export const sources: ResearchSource[] = [
     agency: 'github.com',
     detail: 'Source repositories for the research software projects',
   },
+  // ── HATI Madrid evidence sources (Phase 2 vertical slice) ────────────────
+  {
+    id: 'hati-madrid-repo',
+    label: 'HATI Madrid',
+    kind: 'repository',
+    agency: 'soroushkarahrodi79-oss',
+    detail:
+      'Heat-Aware Tourism Intelligence — decision-layer CSV artifacts ' +
+      '(Phase 3 asset catalog, scenarios, screening).',
+  },
+  {
+    id: 'openstreetmap',
+    label: 'OpenStreetMap',
+    kind: 'repository',
+    agency: 'OSM / ODbL',
+    detail: 'Documented asset location, category and opening hours (via Overpass).',
+  },
+  {
+    id: 'solweig-utci',
+    label: 'SOLWEIG / UTCI',
+    kind: 'model',
+    detail:
+      'Modelled outdoor thermal environment (Tmrt → UTCI). Not field-measured; ' +
+      'indoor environments are not modelled.',
+  },
 ];

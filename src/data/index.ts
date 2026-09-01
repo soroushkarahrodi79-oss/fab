@@ -4,18 +4,26 @@ import { territories } from './territories';
 import { projects } from './projects';
 import { signals } from './signals';
 import { observations } from './observations';
+import { hatiAssets, hatiScenarios, hatiDecisions } from './hati';
 
-/** The complete deterministic mock dataset for Phase 1. */
+/**
+ * The complete deterministic dataset. Phase 1 collections are joined by the
+ * Phase 2 evidence layer (HATI Madrid), ingested from real research artifacts.
+ */
 export const atlas: AtlasData = {
   sources,
   territories,
   projects,
   signals,
   observations,
+  assets: hatiAssets,
+  scenarios: hatiScenarios,
+  decisions: hatiDecisions,
 };
 
 export * from './types';
 export { sources, territories, projects, signals, observations };
+export { hatiAssets, hatiScenarios, hatiDecisions };
 
 /** Resolve any entity id to a human label across all collections. */
 export function labelForId(data: AtlasData, id: string): string | undefined {

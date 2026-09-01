@@ -4,6 +4,7 @@ const MODULE_LABEL: Record<string, string> = {
   territory: 'TERRITORY',
   earth: 'EARTH',
   signals: 'SIGNALS',
+  scenario: 'SCENARIO',
 };
 
 interface Row {
@@ -23,7 +24,11 @@ export function FieldScanner() {
   const rows: Row[] = [];
   if (scan) {
     if (scan.coord) rows.push({ k: 'COORD', v: scan.coord });
+    if (scan.asset) rows.push({ k: 'ASSET', v: scan.asset });
     if (scan.territory) rows.push({ k: 'TERRITORY', v: scan.territory });
+    if (scan.scenario) rows.push({ k: 'SCENARIO', v: scan.scenario });
+    if (scan.decision) rows.push({ k: 'DECISION', v: scan.decision });
+    if (scan.status) rows.push({ k: 'STATUS', v: scan.status });
     if (scan.source) rows.push({ k: 'SOURCE', v: scan.source });
     if (scan.project) rows.push({ k: 'PROJECT', v: scan.project });
     if (scan.signal) rows.push({ k: 'SIGNAL', v: scan.signal });

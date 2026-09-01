@@ -281,6 +281,102 @@
 .scanner__row dt { color: var(--ink-faint); }
 .scanner__row dd { margin: 0; color: var(--ink); }
 
+/* ---- SCENARIO slice (HATI Madrid vertical) ----------------------------- */
+.slice { display: flex; }
+.slice .module { flex: 1; }
+.slice__body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: var(--s3);
+  min-width: 0;
+  min-height: 0;
+}
+.slice__picker {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid var(--panel-line);
+  padding-right: var(--s3);
+  overflow: auto;
+}
+.slice__tab {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-left: 2px solid var(--panel-line);
+  padding: var(--s2);
+  color: var(--ink-dim);
+  cursor: pointer;
+  font: inherit;
+  transition: border-color var(--dur-state) var(--ease), color var(--dur-state) var(--ease);
+}
+.slice__tab:hover { color: var(--ink); }
+.slice__tab.is-active {
+  border-left-color: var(--signal);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--signal) 6%, transparent);
+}
+.slice__tab:focus-visible { outline: 1px solid var(--signal); outline-offset: 1px; }
+.slice__tab-id { color: var(--signal); }
+.slice__tab-label { font-size: var(--fs-label); }
+.slice__stage { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.slice__caption { margin-bottom: var(--s2); }
+.slice__scenario-desc { color: var(--ink-dim); font-size: var(--fs-label); }
+.slice__ctx { color: var(--signal-cool); margin-right: var(--s2); }
+.slice__provenance {
+  color: var(--ink-faint);
+  line-height: 1.5;
+  margin: var(--s1) 0 0;
+  max-width: 72ch;
+}
+.slice__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1) var(--s3);
+  margin-top: var(--s1);
+  color: var(--ink-faint);
+}
+.slice__key { display: inline-flex; align-items: center; gap: 5px; }
+.slice__key::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.slice__key--avoid { color: var(--signal-warm); }
+.slice__key--refuge { color: var(--signal-cool); }
+.slice__key:not(.slice__key--avoid):not(.slice__key--refuge)::before { display: none; }
+
+/* SCENARIO viz marks. Colour is semantic: warm = heat-exposed / avoid outdoor,
+   cool = indoor refuge — HATI's own decision_state channel, via FAB tokens. */
+.scenario .sc-edge { stroke: var(--panel-line-bright); stroke-width: 0.35; }
+.scenario .sc-edge--excluded { stroke-dasharray: 1.5 1.5; opacity: 0.6; }
+.scenario .sc-node { cursor: pointer; }
+.scenario .sc-dot { transition: r var(--dur-state) var(--ease); }
+.sc-state--avoid .sc-dot { fill: var(--signal-warm); }
+.sc-state--refuge .sc-dot { fill: var(--signal-cool); }
+.sc-state--other .sc-dot { fill: var(--ink-dim); }
+.scenario .sc-node--subject .sc-dot { stroke: var(--ink); stroke-width: 0.5; }
+.scenario .sc-ring { fill: none; stroke: var(--ink-dim); stroke-width: 0.4; }
+.scenario .sc-ring--solid { stroke-dasharray: none; }
+.scenario .sc-ring--dashed { stroke-dasharray: 1.6 1.2; }
+.scenario .sc-ring--dotted { stroke-dasharray: 0.4 1; stroke: var(--alert); }
+.scenario .sc-excl { stroke: var(--alert); stroke-width: 0.5; }
+.scenario .sc-label {
+  fill: var(--ink-dim);
+  font-size: 2.6px;
+  letter-spacing: 0.1px;
+}
+.scenario .sc-node.is-focused .sc-dot { stroke: var(--ink); stroke-width: 0.6; }
+.scenario .sc-node.is-focused .sc-label { fill: var(--ink); }
+.scenario .sc-node:focus-visible { outline: none; }
+.scenario .sc-node:focus-visible .sc-dot { stroke: var(--signal); stroke-width: 0.8; }
+
 /* ---- responsive: mobile fallback (single column stack) ----------------- */
 @media (max-width: 960px) {
   .atlas {
@@ -298,6 +394,18 @@
   .atlas__cell--core { min-height: 18rem; }
   .core__readout { position: static; margin-top: var(--s4); }
   .masthead__stamp { margin-left: 0; }
+
+  .slice__body { grid-template-columns: 1fr; }
+  .slice__picker {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid var(--panel-line);
+    padding-right: 0;
+    padding-bottom: var(--s2);
+  }
+  .slice__tab { flex: 1 1 6rem; }
+  .scenario { min-height: 16rem; }
 }
 
 @media (max-width: 480px) {

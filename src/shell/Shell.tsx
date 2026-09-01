@@ -4,6 +4,7 @@ import { deriveFieldState } from '../adapters/fieldState';
 import { earthProvenance } from '../adapters/earth';
 import { Masthead } from './Masthead';
 import { Module } from './Module';
+import { ScenarioSlice } from './ScenarioSlice';
 import { TerritoryMap } from '../viz/TerritoryMap';
 import { SignalGraph } from '../viz/SignalGraph';
 import { FieldStateCore } from '../viz/FieldStateCore';
@@ -64,6 +65,8 @@ export function Shell({ data }: { data: AtlasData }) {
           <FieldScanner />
         </div>
       </main>
+
+      {(data.scenarios?.length ?? 0) > 0 && <ScenarioSlice data={data} />}
     </div>
   );
 }

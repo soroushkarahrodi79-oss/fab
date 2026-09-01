@@ -15,14 +15,18 @@ import { useReducedMotion } from './useReducedMotion';
 export interface ScanTarget {
   /** id of the element the readout is anchored to (for focus sync). */
   elementId: string;
-  /** which module raised it — TERRITORY / EARTH / SIGNALS. */
-  module: 'territory' | 'earth' | 'signals';
+  /** which module raised it — TERRITORY / EARTH / SIGNALS / SCENARIO. */
+  module: 'territory' | 'earth' | 'signals' | 'scenario';
   coord?: string; // "40.80 N  3.96 W"
   territory?: string;
   source?: string;
   project?: string;
   signal?: string;
-  evidence?: string; // observation variable / relationship kind
+  asset?: string; // a real-world feature of interest (HATI asset)
+  scenario?: string; // the analysis context that produced this state
+  decision?: string; // decision state (+ confidence)
+  status?: string; // included / excluded (+ reason)
+  evidence?: string; // scientific status: observed / documented / derived / modelled / simulated
 }
 
 interface State {
