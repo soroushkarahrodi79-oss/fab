@@ -99,6 +99,47 @@ export interface ScenarioView {
   counts: { alternatives: number; excluded: number };
 }
 
+/**
+ * The FIELD SCANNER readout for a scenario node — a structural payload (no
+ * dependency on the interaction layer). Shared by the abstract SCENARIO field
+ * and the geographic TERRITORY view so a decision reports the SAME identity in
+ * both, keyed by the stable decision id.
+ */
+export interface ScenarioNodeScan {
+  elementId: string;
+  module: 'scenario';
+  coord?: string;
+  asset?: string;
+  scenario?: string;
+  decision?: string;
+  status?: string;
+  source?: string;
+  evidence?: string;
+}
+
+export function scenarioNodeScan(
+  view: { id: string; label: string },
+  n: ScenarioNode,
+): ScenarioNodeScan {
+  const status =
+    n.role === 'excluded'
+      ? `Excluded — ${n.constraintLabel ?? n.constraintReason ?? 'constraint'}`
+      : n.role === 'subject'
+        ? 'Source · heat-exposed'
+        : 'Alternative';
+  return {
+    elementId: n.decisionId,
+    module: 'scenario',
+    coord: n.coord,
+    asset: `${n.label} · ${n.category}`,
+    scenario: `${view.id} · ${view.label}`,
+    decision: `${n.stateLabel}${n.confidenceLabel ? ` · ${n.confidenceLabel}` : ''}`,
+    status,
+    source: n.sourceLabel,
+    evidence: `${n.evidenceStatusLabel}${n.utci != null ? ` · UTCI ${n.utci}°C` : ''}`,
+  };
+}
+
 export interface ScenarioListItem {
   id: string;
   label: string;

@@ -31,37 +31,58 @@ export interface ScanTarget {
 
 interface State {
   scan: ScanTarget | null;
+  /**
+   * The active scenario id — a single source of truth shared across modules, so
+   * SCENARIO and TERRITORY reflect the same selection without duplicating state.
+   * Generic: any future module that participates in a scenario reads this.
+   */
+  scenarioId: string | null;
 }
 
 type Action =
   | { type: 'set'; scan: ScanTarget }
-  | { type: 'clear'; elementId?: string };
+  | { type: 'clear'; elementId?: string }
+  | { type: 'selectScenario'; scenarioId: string };
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case 'set':
-      return { scan: action.scan };
+      return { ...state, scan: action.scan };
     case 'clear':
       // Only clear if the leaving element still owns the readout, so a fast
       // pointer moving between elements does not flicker the scanner off.
       if (action.elementId && state.scan?.elementId !== action.elementId) {
         return state;
       }
-      return { scan: null };
+      return { ...state, scan: null };
+    case 'selectScenario':
+      if (state.scenarioId === action.scenarioId) return state;
+      return { ...state, scenarioId: action.scenarioId };
   }
 }
 
 interface FieldContextValue {
   scan: ScanTarget | null;
+  scenarioId: string | null;
   reducedMotion: boolean;
   setScan: (t: ScanTarget) => void;
   clearScan: (elementId?: string) => void;
+  selectScenario: (scenarioId: string) => void;
 }
 
 const FieldContext = createContext<FieldContextValue | null>(null);
 
-export function FieldProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, { scan: null });
+export function FieldProvider({
+  children,
+  initialScenarioId = null,
+}: {
+  children: ReactNode;
+  initialScenarioId?: string | null;
+}) {
+  const [state, dispatch] = useReducer(reducer, {
+    scan: null,
+    scenarioId: initialScenarioId,
+  });
   const reducedMotion = useReducedMotion();
 
   const setScan = useCallback((scan: ScanTarget) => dispatch({ type: 'set', scan }), []);
@@ -69,10 +90,21 @@ export function FieldProvider({ children }: { children: ReactNode }) {
     (elementId?: string) => dispatch({ type: 'clear', elementId }),
     [],
   );
+  const selectScenario = useCallback(
+    (scenarioId: string) => dispatch({ type: 'selectScenario', scenarioId }),
+    [],
+  );
 
   const value = useMemo<FieldContextValue>(
-    () => ({ scan: state.scan, reducedMotion, setScan, clearScan }),
-    [state.scan, reducedMotion, setScan, clearScan],
+    () => ({
+      scan: state.scan,
+      scenarioId: state.scenarioId,
+      reducedMotion,
+      setScan,
+      clearScan,
+      selectScenario,
+    }),
+    [state.scan, state.scenarioId, reducedMotion, setScan, clearScan, selectScenario],
   );
 
   return <FieldContext.Provider value={value}>{children}</FieldContext.Provider>;
