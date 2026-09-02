@@ -847,7 +847,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "267.0",
-        "walk_min": "3.3"
+        "walk_min": "3.3",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -872,7 +873,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "134.0",
-        "walk_min": "1.7"
+        "walk_min": "1.7",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -897,7 +899,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "464.0",
-        "walk_min": "5.8"
+        "walk_min": "5.8",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -922,7 +925,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "749.0",
-        "walk_min": "9.4"
+        "walk_min": "9.4",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -947,7 +951,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "428.0",
-        "walk_min": "5.3"
+        "walk_min": "5.3",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -981,7 +986,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "699.0",
-        "walk_min": "8.7"
+        "walk_min": "8.7",
+        "improvement_note": "UTCI 40.5 <= source 45.0 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1015,7 +1021,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "140.0",
-        "walk_min": "1.7"
+        "walk_min": "1.7",
+        "improvement_note": "UTCI 42.6 <= source 45.0 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1049,7 +1056,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "443.0",
-        "walk_min": "5.5"
+        "walk_min": "5.5",
+        "improvement_note": "confidence gain (ROBUST vs boundary/unstable source), not hotter"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1083,7 +1091,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "538.0",
-        "walk_min": "6.7"
+        "walk_min": "6.7",
+        "improvement_note": "UTCI 38.4 <= source 45.0 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1109,7 +1118,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "803.0",
-        "walk_min": "10.0"
+        "walk_min": "10.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1135,7 +1145,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "293.0",
-        "walk_min": "3.7"
+        "walk_min": "3.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1161,7 +1172,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "936.0",
-        "walk_min": "11.7"
+        "walk_min": "11.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1187,7 +1199,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "468.0",
-        "walk_min": "5.9"
+        "walk_min": "5.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1213,7 +1226,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1447.0",
-        "walk_min": "18.1"
+        "walk_min": "18.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1239,7 +1253,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1276.0",
-        "walk_min": "16.0"
+        "walk_min": "16.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1265,7 +1280,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "875.0",
-        "walk_min": "10.9"
+        "walk_min": "10.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1291,7 +1307,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "946.0",
-        "walk_min": "11.8"
+        "walk_min": "11.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1326,7 +1343,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "462.0",
-        "walk_min": "5.8"
+        "walk_min": "5.8",
+        "improvement_note": "UTCI 44.4 vs 45.0, < 0.8 improvement"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1361,7 +1379,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "956.0",
-        "walk_min": "12.0"
+        "walk_min": "12.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1396,7 +1415,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "969.0",
-        "walk_min": "12.1"
+        "walk_min": "12.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1431,7 +1451,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "1040.0",
-        "walk_min": "13.0"
+        "walk_min": "13.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1466,7 +1487,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1386.0",
-        "walk_min": "17.3"
+        "walk_min": "17.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1501,7 +1523,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1272.0",
-        "walk_min": "15.9"
+        "walk_min": "15.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1536,7 +1559,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "571.0",
-        "walk_min": "7.1"
+        "walk_min": "7.1",
+        "improvement_note": "UTCI 45.0 vs 45.0, < 0.8 improvement"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1571,7 +1595,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "966.0",
-        "walk_min": "12.1"
+        "walk_min": "12.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1606,7 +1631,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1314.0",
-        "walk_min": "16.4"
+        "walk_min": "16.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1665,7 +1691,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "626.0",
-        "walk_min": "7.8"
+        "walk_min": "7.8",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1690,7 +1717,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "386.0",
-        "walk_min": "4.8"
+        "walk_min": "4.8",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1715,7 +1743,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "579.0",
-        "walk_min": "7.2"
+        "walk_min": "7.2",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1740,7 +1769,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "159.0",
-        "walk_min": "2.0"
+        "walk_min": "2.0",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1774,7 +1804,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "377.0",
-        "walk_min": "4.7"
+        "walk_min": "4.7",
+        "improvement_note": "UTCI 40.5 <= source 44.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1808,7 +1839,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "486.0",
-        "walk_min": "6.1"
+        "walk_min": "6.1",
+        "improvement_note": "UTCI 42.6 <= source 44.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -1834,7 +1866,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1262.0",
-        "walk_min": "15.8"
+        "walk_min": "15.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1860,7 +1893,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "916.0",
-        "walk_min": "11.4"
+        "walk_min": "11.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1886,7 +1920,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "210.0",
-        "walk_min": "2.6"
+        "walk_min": "2.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1912,7 +1947,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1330.0",
-        "walk_min": "16.6"
+        "walk_min": "16.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1938,7 +1974,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "333.0",
-        "walk_min": "4.2"
+        "walk_min": "4.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1964,7 +2001,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1755.0",
-        "walk_min": "21.9"
+        "walk_min": "21.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -1990,7 +2028,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1685.0",
-        "walk_min": "21.1"
+        "walk_min": "21.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2016,7 +2055,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1175.0",
-        "walk_min": "14.7"
+        "walk_min": "14.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2042,7 +2082,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "1378.0",
-        "walk_min": "17.2"
+        "walk_min": "17.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2077,7 +2118,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "462.0",
-        "walk_min": "5.8"
+        "walk_min": "5.8",
+        "improvement_note": "outdoor and hotter (45.0 > 44.4)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2112,7 +2154,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "114.0",
-        "walk_min": "1.4"
+        "walk_min": "1.4",
+        "improvement_note": "outdoor and hotter (44.5 > 44.4)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2147,7 +2190,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1308.0",
-        "walk_min": "16.4"
+        "walk_min": "16.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2182,7 +2226,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1009.0",
-        "walk_min": "12.6"
+        "walk_min": "12.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2217,7 +2262,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "929.0",
-        "walk_min": "11.6"
+        "walk_min": "11.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2252,7 +2298,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "1131.0",
-        "walk_min": "14.1"
+        "walk_min": "14.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2287,7 +2334,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1442.0",
-        "walk_min": "18.0"
+        "walk_min": "18.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2322,7 +2370,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1439.0",
-        "walk_min": "18.0"
+        "walk_min": "18.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2357,7 +2406,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "658.0",
-        "walk_min": "8.2"
+        "walk_min": "8.2",
+        "improvement_note": "outdoor and hotter (45.0 > 44.4)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2392,7 +2442,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "878.0",
-        "walk_min": "11.0"
+        "walk_min": "11.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2427,7 +2478,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1292.0",
-        "walk_min": "16.1"
+        "walk_min": "16.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2486,7 +2538,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "728.0",
-        "walk_min": "9.1"
+        "walk_min": "9.1",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2511,7 +2564,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "202.0",
-        "walk_min": "2.5"
+        "walk_min": "2.5",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2536,7 +2590,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "535.0",
-        "walk_min": "6.7"
+        "walk_min": "6.7",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2570,7 +2625,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "764.0",
-        "walk_min": "9.5"
+        "walk_min": "9.5",
+        "improvement_note": "UTCI 40.1 <= source 42.7 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2596,7 +2652,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1418.0",
-        "walk_min": "17.7"
+        "walk_min": "17.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2622,7 +2679,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "683.0",
-        "walk_min": "8.5"
+        "walk_min": "8.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2648,7 +2706,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1069.0",
-        "walk_min": "13.4"
+        "walk_min": "13.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2674,7 +2733,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "414.0",
-        "walk_min": "5.2"
+        "walk_min": "5.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2700,7 +2760,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1359.0",
-        "walk_min": "17.0"
+        "walk_min": "17.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2726,7 +2787,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "259.0",
-        "walk_min": "3.2"
+        "walk_min": "3.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2752,7 +2814,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1665.0",
-        "walk_min": "20.8"
+        "walk_min": "20.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2778,7 +2841,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1716.0",
-        "walk_min": "21.4"
+        "walk_min": "21.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2804,7 +2868,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1261.0",
-        "walk_min": "15.8"
+        "walk_min": "15.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2830,7 +2895,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "1460.0",
-        "walk_min": "18.2"
+        "walk_min": "18.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -2865,7 +2931,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "377.0",
-        "walk_min": "4.7"
+        "walk_min": "4.7",
+        "improvement_note": "outdoor and hotter (44.2 > 42.7)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2900,7 +2967,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "699.0",
-        "walk_min": "8.7"
+        "walk_min": "8.7",
+        "improvement_note": "outdoor and hotter (45.2 > 42.7)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2935,7 +3003,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "643.0",
-        "walk_min": "8.0"
+        "walk_min": "8.0",
+        "improvement_note": "outdoor and hotter (43.9 > 42.7)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -2970,7 +3039,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "297.0",
-        "walk_min": "3.7"
+        "walk_min": "3.7",
+        "improvement_note": "outdoor and hotter (43.0 > 42.7)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3005,7 +3075,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1290.0",
-        "walk_min": "16.1"
+        "walk_min": "16.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3040,7 +3111,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "995.0",
-        "walk_min": "12.4"
+        "walk_min": "12.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3075,7 +3147,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "908.0",
-        "walk_min": "11.3"
+        "walk_min": "11.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3110,7 +3183,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1172.0",
-        "walk_min": "14.6"
+        "walk_min": "14.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3145,7 +3219,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1246.0",
-        "walk_min": "15.6"
+        "walk_min": "15.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3180,7 +3255,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "534.0",
-        "walk_min": "6.7"
+        "walk_min": "6.7",
+        "improvement_note": "outdoor and hotter (42.9 > 42.7)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3215,7 +3291,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "564.0",
-        "walk_min": "7.0"
+        "walk_min": "7.0",
+        "improvement_note": "outdoor and hotter (43.9 > 42.7)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3250,7 +3327,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "983.0",
-        "walk_min": "12.3"
+        "walk_min": "12.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3309,7 +3387,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "452.0",
-        "walk_min": "5.7"
+        "walk_min": "5.7",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3343,7 +3422,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "564.0",
-        "walk_min": "7.0"
+        "walk_min": "7.0",
+        "improvement_note": "UTCI 42.7 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3377,7 +3457,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "767.0",
-        "walk_min": "9.6"
+        "walk_min": "9.6",
+        "improvement_note": "UTCI 43.0 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3411,7 +3492,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "274.0",
-        "walk_min": "3.4"
+        "walk_min": "3.4",
+        "improvement_note": "UTCI 40.1 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3445,7 +3527,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "423.0",
-        "walk_min": "5.3"
+        "walk_min": "5.3",
+        "improvement_note": "UTCI 42.9 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3479,7 +3562,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "617.0",
-        "walk_min": "7.7"
+        "walk_min": "7.7",
+        "improvement_note": "UTCI 41.9 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3513,7 +3597,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "431.0",
-        "walk_min": "5.4"
+        "walk_min": "5.4",
+        "improvement_note": "UTCI 42.9 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3547,7 +3632,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "420.0",
-        "walk_min": "5.3"
+        "walk_min": "5.3",
+        "improvement_note": "UTCI 42.2 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3573,7 +3659,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "822.0",
-        "walk_min": "10.3"
+        "walk_min": "10.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3599,7 +3686,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1419.0",
-        "walk_min": "17.7"
+        "walk_min": "17.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3625,7 +3713,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1026.0",
-        "walk_min": "12.8"
+        "walk_min": "12.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3651,7 +3740,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1126.0",
-        "walk_min": "14.1"
+        "walk_min": "14.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3677,7 +3767,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "790.0",
-        "walk_min": "9.9"
+        "walk_min": "9.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3703,7 +3794,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1179.0",
-        "walk_min": "14.7"
+        "walk_min": "14.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3729,7 +3821,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "566.0",
-        "walk_min": "7.1"
+        "walk_min": "7.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3755,7 +3848,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1281.0",
-        "walk_min": "16.0"
+        "walk_min": "16.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3781,7 +3875,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1496.0",
-        "walk_min": "18.7"
+        "walk_min": "18.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3807,7 +3902,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1181.0",
-        "walk_min": "14.8"
+        "walk_min": "14.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3833,7 +3929,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1022.0",
-        "walk_min": "12.8"
+        "walk_min": "12.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3859,7 +3956,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "1344.0",
-        "walk_min": "16.8"
+        "walk_min": "16.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -3894,7 +3992,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "878.0",
-        "walk_min": "11.0"
+        "walk_min": "11.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3929,7 +4028,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "966.0",
-        "walk_min": "12.1"
+        "walk_min": "12.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3964,7 +4064,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "843.0",
-        "walk_min": "10.5"
+        "walk_min": "10.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -3999,7 +4100,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1049.0",
-        "walk_min": "13.1"
+        "walk_min": "13.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4034,7 +4136,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "944.0",
-        "walk_min": "11.8"
+        "walk_min": "11.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4069,7 +4172,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "762.0",
-        "walk_min": "9.5"
+        "walk_min": "9.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4128,7 +4232,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "703.0",
-        "walk_min": "8.8"
+        "walk_min": "8.8",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4153,7 +4258,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "622.0",
-        "walk_min": "7.8"
+        "walk_min": "7.8",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4178,7 +4284,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "611.0",
-        "walk_min": "7.6"
+        "walk_min": "7.6",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4203,7 +4310,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "448.0",
-        "walk_min": "5.6"
+        "walk_min": "5.6",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4228,7 +4336,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "359.0",
-        "walk_min": "4.5"
+        "walk_min": "4.5",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4253,7 +4362,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "381.0",
-        "walk_min": "4.8"
+        "walk_min": "4.8",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4287,7 +4397,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "424.0",
-        "walk_min": "5.3"
+        "walk_min": "5.3",
+        "improvement_note": "UTCI 38.4 <= source 41.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4313,7 +4424,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1091.0",
-        "walk_min": "13.6"
+        "walk_min": "13.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4339,7 +4451,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1099.0",
-        "walk_min": "13.7"
+        "walk_min": "13.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4365,7 +4478,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "173.0",
-        "walk_min": "2.2"
+        "walk_min": "2.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4391,7 +4505,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1060.0",
-        "walk_min": "13.3"
+        "walk_min": "13.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4417,7 +4532,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "505.0",
-        "walk_min": "6.3"
+        "walk_min": "6.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4443,7 +4559,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1341.0",
-        "walk_min": "16.8"
+        "walk_min": "16.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4469,7 +4586,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1347.0",
-        "walk_min": "16.8"
+        "walk_min": "16.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4504,7 +4622,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1290.0",
-        "walk_min": "16.1"
+        "walk_min": "16.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4539,7 +4658,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1308.0",
-        "walk_min": "16.4"
+        "walk_min": "16.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4574,7 +4694,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "956.0",
-        "walk_min": "12.0"
+        "walk_min": "12.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4609,7 +4730,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "854.0",
-        "walk_min": "10.7"
+        "walk_min": "10.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4644,7 +4766,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1223.0",
-        "walk_min": "15.3"
+        "walk_min": "15.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4679,7 +4802,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "812.0",
-        "walk_min": "10.2"
+        "walk_min": "10.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4714,7 +4838,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "723.0",
-        "walk_min": "9.0"
+        "walk_min": "9.0",
+        "improvement_note": "outdoor and hotter (43.9 > 41.4)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4749,7 +4874,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "958.0",
-        "walk_min": "12.0"
+        "walk_min": "12.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4784,7 +4910,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "644.0",
-        "walk_min": "8.0"
+        "walk_min": "8.0",
+        "improvement_note": "outdoor and hotter (45.0 > 41.4)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4819,7 +4946,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "763.0",
-        "walk_min": "9.5"
+        "walk_min": "9.5",
+        "improvement_note": "outdoor and hotter (45.0 > 41.4)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4854,7 +4982,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "1049.0",
-        "walk_min": "13.1"
+        "walk_min": "13.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4889,7 +5018,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1082.0",
-        "walk_min": "13.5"
+        "walk_min": "13.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -4948,7 +5078,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "151.0",
-        "walk_min": "1.9"
+        "walk_min": "1.9",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4973,7 +5104,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "791.0",
-        "walk_min": "9.9"
+        "walk_min": "9.9",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -4998,7 +5130,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "440.0",
-        "walk_min": "5.5"
+        "walk_min": "5.5",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5023,7 +5156,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "689.0",
-        "walk_min": "8.6"
+        "walk_min": "8.6",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5048,7 +5182,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "496.0",
-        "walk_min": "6.2"
+        "walk_min": "6.2",
+        "improvement_note": "indoor refuge vs outdoor source (categorical)"
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5082,7 +5217,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "643.0",
-        "walk_min": "8.0"
+        "walk_min": "8.0",
+        "improvement_note": "UTCI 42.7 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5116,7 +5252,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "433.0",
-        "walk_min": "5.4"
+        "walk_min": "5.4",
+        "improvement_note": "UTCI 43.0 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5150,7 +5287,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "450.0",
-        "walk_min": "5.6"
+        "walk_min": "5.6",
+        "improvement_note": "UTCI 39.9 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5184,7 +5322,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "436.0",
-        "walk_min": "5.4"
+        "walk_min": "5.4",
+        "improvement_note": "UTCI 42.9 <= source 43.9 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5210,7 +5349,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "257.0",
-        "walk_min": "3.2"
+        "walk_min": "3.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5236,7 +5376,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "282.0",
-        "walk_min": "3.5"
+        "walk_min": "3.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5262,7 +5403,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "854.0",
-        "walk_min": "10.7"
+        "walk_min": "10.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5288,7 +5430,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "392.0",
-        "walk_min": "4.9"
+        "walk_min": "4.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5314,7 +5457,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1333.0",
-        "walk_min": "16.7"
+        "walk_min": "16.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5340,7 +5484,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1204.0",
-        "walk_min": "15.1"
+        "walk_min": "15.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5366,7 +5511,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "801.0",
-        "walk_min": "10.0"
+        "walk_min": "10.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5392,7 +5538,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "892.0",
-        "walk_min": "11.1"
+        "walk_min": "11.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5427,7 +5574,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "486.0",
-        "walk_min": "6.1"
+        "walk_min": "6.1",
+        "improvement_note": "outdoor and hotter (44.2 > 43.9)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5462,7 +5610,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "140.0",
-        "walk_min": "1.7"
+        "walk_min": "1.7",
+        "improvement_note": "outdoor and hotter (45.2 > 43.9)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5497,7 +5646,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "854.0",
-        "walk_min": "10.7"
+        "walk_min": "10.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5532,7 +5682,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "832.0",
-        "walk_min": "10.4"
+        "walk_min": "10.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5567,7 +5718,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "901.0",
-        "walk_min": "11.3"
+        "walk_min": "11.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5602,7 +5754,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1246.0",
-        "walk_min": "15.6"
+        "walk_min": "15.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5637,7 +5790,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1135.0",
-        "walk_min": "14.2"
+        "walk_min": "14.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5672,7 +5826,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "843.0",
-        "walk_min": "10.5"
+        "walk_min": "10.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5707,7 +5862,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "1179.0",
-        "walk_min": "14.7"
+        "walk_min": "14.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5775,7 +5931,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "497.0",
-        "walk_min": "6.2"
+        "walk_min": "6.2",
+        "improvement_note": "UTCI 40.1 <= source 45.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5809,7 +5966,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "345.0",
-        "walk_min": "4.3"
+        "walk_min": "4.3",
+        "improvement_note": "UTCI 42.9 <= source 45.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5843,7 +6001,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "347.0",
-        "walk_min": "4.3"
+        "walk_min": "4.3",
+        "improvement_note": "UTCI 41.9 <= source 45.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5877,7 +6036,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "782.0",
-        "walk_min": "9.8"
+        "walk_min": "9.8",
+        "improvement_note": "UTCI 42.9 <= source 45.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5911,7 +6071,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "762.0",
-        "walk_min": "9.5"
+        "walk_min": "9.5",
+        "improvement_note": "UTCI 43.9 <= source 45.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5945,7 +6106,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "555.0",
-        "walk_min": "6.9"
+        "walk_min": "6.9",
+        "improvement_note": "UTCI 42.2 <= source 45.4 - 0.8"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -5971,7 +6133,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1015.0",
-        "walk_min": "12.7"
+        "walk_min": "12.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -5997,7 +6160,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1247.0",
-        "walk_min": "15.6"
+        "walk_min": "15.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6023,7 +6187,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1390.0",
-        "walk_min": "17.4"
+        "walk_min": "17.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6049,7 +6214,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1122.0",
-        "walk_min": "14.0"
+        "walk_min": "14.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6075,7 +6241,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1267.0",
-        "walk_min": "15.8"
+        "walk_min": "15.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6101,7 +6268,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "817.0",
-        "walk_min": "10.2"
+        "walk_min": "10.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6127,7 +6295,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1114.0",
-        "walk_min": "13.9"
+        "walk_min": "13.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6153,7 +6322,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "582.0",
-        "walk_min": "7.3"
+        "walk_min": "7.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6179,7 +6349,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "991.0",
-        "walk_min": "12.4"
+        "walk_min": "12.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6205,7 +6376,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "969.0",
-        "walk_min": "12.1"
+        "walk_min": "12.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6231,7 +6403,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1195.0",
-        "walk_min": "14.9"
+        "walk_min": "14.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6257,7 +6430,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1541.0",
-        "walk_min": "19.3"
+        "walk_min": "19.3",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6283,7 +6457,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "1025.0",
-        "walk_min": "12.8"
+        "walk_min": "12.8",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6318,7 +6493,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1246.0",
-        "walk_min": "15.6"
+        "walk_min": "15.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6353,7 +6529,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1439.0",
-        "walk_min": "18.0"
+        "walk_min": "18.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6388,7 +6565,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1272.0",
-        "walk_min": "15.9"
+        "walk_min": "15.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6423,7 +6601,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1135.0",
-        "walk_min": "14.2"
+        "walk_min": "14.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6458,7 +6637,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1329.0",
-        "walk_min": "16.6"
+        "walk_min": "16.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6493,7 +6673,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "644.0",
-        "walk_min": "8.0"
+        "walk_min": "8.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6528,7 +6709,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "884.0",
-        "walk_min": "11.1"
+        "walk_min": "11.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6588,7 +6770,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "763.0",
-        "walk_min": "9.5"
+        "walk_min": "9.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6614,7 +6797,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1260.0",
-        "walk_min": "15.7"
+        "walk_min": "15.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6640,7 +6824,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1060.0",
-        "walk_min": "13.2"
+        "walk_min": "13.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6666,7 +6851,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1010.0",
-        "walk_min": "12.6"
+        "walk_min": "12.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6692,7 +6878,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "871.0",
-        "walk_min": "10.9"
+        "walk_min": "10.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6718,7 +6905,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "957.0",
-        "walk_min": "12.0"
+        "walk_min": "12.0",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6744,7 +6932,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "677.0",
-        "walk_min": "8.5"
+        "walk_min": "8.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6770,7 +6959,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_cultural",
         "distance_m": "1008.0",
-        "walk_min": "12.6"
+        "walk_min": "12.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6796,7 +6986,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1253.0",
-        "walk_min": "15.7"
+        "walk_min": "15.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6822,7 +7013,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1000.0",
-        "walk_min": "12.5"
+        "walk_min": "12.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6848,7 +7040,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "699.0",
-        "walk_min": "8.7"
+        "walk_min": "8.7",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6874,7 +7067,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "transit_refuge",
         "distance_m": "1134.0",
-        "walk_min": "14.2"
+        "walk_min": "14.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6900,7 +7094,8 @@
         "thermal_state": "INDOOR_NOT_MODELLED",
         "experience_type": "indoor_green_refuge",
         "distance_m": "1139.0",
-        "walk_min": "14.2"
+        "walk_min": "14.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "openstreetmap",
@@ -6935,7 +7130,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "764.0",
-        "walk_min": "9.5"
+        "walk_min": "9.5",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -6970,7 +7166,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "1009.0",
-        "walk_min": "12.6"
+        "walk_min": "12.6",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7005,7 +7202,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "969.0",
-        "walk_min": "12.1"
+        "walk_min": "12.1",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7040,7 +7238,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "832.0",
-        "walk_min": "10.4"
+        "walk_min": "10.4",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7075,7 +7274,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "895.0",
-        "walk_min": "11.2"
+        "walk_min": "11.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7110,7 +7310,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "outdoor_monument",
         "distance_m": "812.0",
-        "walk_min": "10.2"
+        "walk_min": "10.2",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7145,7 +7346,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "795.0",
-        "walk_min": "9.9"
+        "walk_min": "9.9",
+        "improvement_note": ""
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7180,7 +7382,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "152.0",
-        "walk_min": "1.9"
+        "walk_min": "1.9",
+        "improvement_note": "outdoor and hotter (43.9 > 38.6)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7215,7 +7418,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "435.0",
-        "walk_min": "5.4"
+        "walk_min": "5.4",
+        "improvement_note": "outdoor and hotter (44.4 > 38.6)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7250,7 +7454,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "497.0",
-        "walk_min": "6.2"
+        "walk_min": "6.2",
+        "improvement_note": "outdoor and hotter (45.0 > 38.6)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7285,7 +7490,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "400.0",
-        "walk_min": "5.0"
+        "walk_min": "5.0",
+        "improvement_note": "outdoor and hotter (45.0 > 38.6)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7320,7 +7526,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "shaded_outdoor",
         "distance_m": "274.0",
-        "walk_min": "3.4"
+        "walk_min": "3.4",
+        "improvement_note": "outdoor and hotter (42.1 > 38.6)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
@@ -7355,7 +7562,8 @@
         "thermal_state": "VERY_STRONG_HEAT_STRESS",
         "experience_type": "green_outdoor",
         "distance_m": "355.0",
-        "walk_min": "4.4"
+        "walk_min": "4.4",
+        "improvement_note": "outdoor and hotter (43.5 > 38.6)"
       },
       "provenance": {
         "sourceId": "solweig-utci",
