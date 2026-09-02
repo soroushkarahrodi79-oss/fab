@@ -84,7 +84,10 @@ export function buildSntoObservations(csvRows, geojson) {
     if (row.data_source !== EXPECTED_SOURCE)
       throw new Error(`gate: ${assetId} data_source ${row.data_source} !== ${EXPECTED_SOURCE}`);
 
-    const slug = assetId.replace(/^pnsg_/, '');
+    // FAB ids are stable kebab-case slugs (DATA CONTRACT). Derive one from the
+    // upstream asset_id: drop the leading `pnsg_`, then `_` → `-`. The exact
+    // upstream identity (with underscores) is preserved in provenance.sourceRef.
+    const slug = assetId.replace(/^pnsg_/, '').replace(/_/g, '-');
 
     return {
       id: `snto-pnsg-ndvi-2026-06-${slug}`,

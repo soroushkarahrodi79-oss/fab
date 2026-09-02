@@ -55,6 +55,22 @@ describe('SNTO slice — bounded and correctly typed', () => {
     expect(new Set(assetIds)).toEqual(new Set(EXPECTED_IDS));
   });
 
+  it('uses stable kebab-case ids (no underscore), while sourceRef keeps upstream identity', () => {
+    const KEBAB = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+    const EXPECTED = new Set([
+      'snto-pnsg-ndvi-2026-06-vuelo-libre-el-nevero',
+      'snto-pnsg-ndvi-2026-06-vuelo-libre-la-nevera',
+      'snto-pnsg-ndvi-2026-06-vuelo-libre-el-espartal',
+    ]);
+    for (const o of sntoObservations) {
+      expect(o.id).not.toContain('_');
+      expect(o.id, o.id).toMatch(KEBAB);
+      // Upstream identity is preserved verbatim (underscores) in provenance.
+      expect(o.provenance!.sourceRef).toContain('_');
+    }
+    expect(new Set(sntoObservations.map((o) => o.id))).toEqual(EXPECTED);
+  });
+
   it('admits no Polygon or LineString asset', () => {
     for (const o of sntoObservations) {
       const assetId = o.provenance!.sourceRef!.split('@')[0];
