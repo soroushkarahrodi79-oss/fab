@@ -137,6 +137,7 @@ export function TerritoryMap({
                 source: o.source,
                 evidence: `${o.variable} · ${statusLabel}`,
                 fieldValidation: fieldVal,
+                detail: o.detail,
               })
             }
             onFocus={() =>
@@ -147,6 +148,7 @@ export function TerritoryMap({
                 source: o.source,
                 evidence: `${o.variable} · ${statusLabel}`,
                 fieldValidation: fieldVal,
+                detail: o.detail,
               })
             }
             onMouseLeave={() => clearScan(o.id)}

@@ -79,4 +79,13 @@ describe('data contract — referential integrity', () => {
         );
     }
   });
+
+  it('keeps observation.sourceId and provenance.sourceId consistent', () => {
+    // Prevents silent divergence between the legacy source channel and the
+    // provenance chain (discovered in PR #7 review; enforced from 4C2A).
+    for (const o of atlas.observations) {
+      if (o.provenance)
+        expect(o.provenance.sourceId, `obs ${o.id} sourceId vs provenance`).toBe(o.sourceId);
+    }
+  });
 });

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "snto-pnsg-ndvi-2026-06-vuelo-libre-el-nevero",
+    "at": [
+      -3.836133,
+      40.983965
+    ],
+    "territoryId": "sierra-de-guadarrama",
+    "sourceId": "sentinel-2",
+    "variable": "ndvi",
+    "value": 0.4404067723841726,
+    "unit": "index",
+    "observedAt": "2026-06-01T00:00:00Z",
+    "evidenceStatus": "derived",
+    "validated": false,
+    "provenance": {
+      "sourceId": "sentinel-2",
+      "sourceRepo": "snto-smart-tourism-observatory",
+      "sourceFile": "clean_assets/timeseries/pnsg_gee_timeseries.csv",
+      "sourceRef": "pnsg_vuelo_libre_el_nevero@2026-06-01",
+      "temporalContext": "monthly composite · 2026-06",
+      "fetchedAt": "2026-09-02",
+      "note": "Sentinel-2 NDVI (GEE:S2_SR_HARMONIZED), derived from reflectance and aggregated as a monthly composite. Value is a zonal aggregate over a 50 m buffer around this Point asset (upstream reduceRegion); the displayed coordinate is the asset anchor, not a pixel measurement. Field validation pending in SNTO. Pinned snapshot add3a51d17000fe3be68fac9b0fb485ade6973f4."
+    }
+  },
+  {
+    "id": "snto-pnsg-ndvi-2026-06-vuelo-libre-la-nevera",
+    "at": [
+      -3.781435,
+      40.999756
+    ],
+    "territoryId": "sierra-de-guadarrama",
+    "sourceId": "sentinel-2",
+    "variable": "ndvi",
+    "value": 0.4440660234570109,
+    "unit": "index",
+    "observedAt": "2026-06-01T00:00:00Z",
+    "evidenceStatus": "derived",
+    "validated": false,
+    "provenance": {
+      "sourceId": "sentinel-2",
+      "sourceRepo": "snto-smart-tourism-observatory",
+      "sourceFile": "clean_assets/timeseries/pnsg_gee_timeseries.csv",
+      "sourceRef": "pnsg_vuelo_libre_la_nevera@2026-06-01",
+      "temporalContext": "monthly composite · 2026-06",
+      "fetchedAt": "2026-09-02",
+      "note": "Sentinel-2 NDVI (GEE:S2_SR_HARMONIZED), derived from reflectance and aggregated as a monthly composite. Value is a zonal aggregate over a 50 m buffer around this Point asset (upstream reduceRegion); the displayed coordinate is the asset anchor, not a pixel measurement. Field validation pending in SNTO. Pinned snapshot add3a51d17000fe3be68fac9b0fb485ade6973f4."
+    }
+  },
+  {
+    "id": "snto-pnsg-ndvi-2026-06-vuelo-libre-el-espartal",
+    "at": [
+      -3.849381,
+      40.873043
+    ],
+    "territoryId": "sierra-de-guadarrama",
+    "sourceId": "sentinel-2",
+    "variable": "ndvi",
+    "value": 0.30574323924910374,
+    "unit": "index",
+    "observedAt": "2026-06-01T00:00:00Z",
+    "evidenceStatus": "derived",
+    "validated": false,
+    "provenance": {
+      "sourceId": "sentinel-2",
+      "sourceRepo": "snto-smart-tourism-observatory",
+      "sourceFile": "clean_assets/timeseries/pnsg_gee_timeseries.csv",
+      "sourceRef": "pnsg_vuelo_libre_el_espartal@2026-06-01",
+      "temporalContext": "monthly composite · 2026-06",
+      "fetchedAt": "2026-09-02",
+      "note": "Sentinel-2 NDVI (GEE:S2_SR_HARMONIZED), derived from reflectance and aggregated as a monthly composite. Value is a zonal aggregate over a 50 m buffer around this Point asset (upstream reduceRegion); the displayed coordinate is the asset anchor, not a pixel measurement. Field validation pending in SNTO. Pinned snapshot add3a51d17000fe3be68fac9b0fb485ade6973f4."
+    }
+  }
+]
