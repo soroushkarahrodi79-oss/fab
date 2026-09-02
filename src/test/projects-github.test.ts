@@ -6,9 +6,10 @@ import type { ProjectDomain } from '../data/types';
 /**
  * Guards the mock→real PROJECTS swap. Projects are now derived from real GitHub
  * repositories; this asserts the data is genuinely repo-backed and that the ids
- * SIGNALS structurally derives edges from survived the swap (so no viz changes
- * were needed and referential integrity holds). Since Phase 4D, SIGNALS derives
- * from PROJECTS rather than the reverse — see docs/PHASE_4D_SIGNALS.md.
+ * SIGNALS structurally derives shares-territory edges from survived the swap
+ * (so no viz changes were needed and referential integrity holds). Since
+ * Phase 4D, SIGNALS derives from PROJECTS rather than the reverse — see
+ * docs/PHASE_4D_SIGNALS.md.
  */
 const VALID_DOMAINS: ProjectDomain[] = [
   'tourism',

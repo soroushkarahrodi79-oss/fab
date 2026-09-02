@@ -64,13 +64,13 @@ export interface Signal {
   to: string;
   kind: SignalKind;
   /**
-   * Edge weight, 0..1. OPTIONAL — present only when a committed quantity
-   * grounds it (e.g. the Jaccard overlap of two projects' `territoryIds`).
-   * Absent is not a fabricated default: an edge with no defined strength
-   * renders at a fixed idle weight and is announced without a strength claim
-   * (Phase 4D — see docs/PHASE_4D_SIGNALS.md).
+   * The backing relationship exists in the currently loaded canonical Atlas
+   * snapshot. Nothing more: NOT project status, NOT a live API/pipeline
+   * connection, NOT scientific confidence, NOT importance, NOT validation
+   * quality. A structurally derived edge is `true` because its backing
+   * canonical fact currently exists; an authored, unproven edge must not be
+   * `true` (Phase 4D1 — see docs/PHASE_4D_SIGNALS.md).
    */
-  strength?: number;
   active: boolean;
   note?: string;
 }

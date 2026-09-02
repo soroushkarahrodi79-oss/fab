@@ -14,10 +14,10 @@ import { hatiAssets, hatiScenarios, hatiDecisions } from './hati';
  * observation slice — both ingested from real research artifacts. The existing
  * observations are preserved unchanged; SNTO records are appended.
  *
- * `signals` is `derives-from`/`shares-territory` edges derived structurally
- * from Project facts (never authored, can't drift), plus any authored
- * `feeds`/`validates` edges with an independently proven backing fact
- * (Phase 4D — see docs/PHASE_4D_SIGNALS.md).
+ * `signals` is exact-shared-territory edges derived structurally from
+ * Project facts (never authored, can't drift), plus any authored edges with
+ * an independently proven backing fact (Phase 4D1 — see
+ * docs/PHASE_4D_SIGNALS.md).
  */
 export const atlas: AtlasData = {
   sources,

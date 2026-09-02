@@ -6,10 +6,11 @@ import { useField } from '../interaction/FieldContext';
 
 const V = 100;
 
-// Fixed stroke width for edges with no defined strength — not a computed
-// default, just the idle weight (Phase 4D: an absent strength must never be
-// silently filled in with a number).
-const IDLE_EDGE_STROKE = 0.95;
+// One neutral fixed edge width. Phase 4D1: a territory-overlap count is not
+// a generic scientific "relationship strength" — no numeric weight is
+// derived or displayed. The exact shared territory is disclosed by the
+// relationship itself (kind + note), not by stroke thickness.
+const EDGE_STROKE_WIDTH = 0.95;
 
 const NODE_ROLE: Record<string, string> = {
   project: 'project',
@@ -46,9 +47,7 @@ export function SignalGraph({ data }: { data: AtlasData }) {
             className={`edge edge--${e.active ? 'active' : 'idle'}${focused ? ' is-focused' : ''}`}
             tabIndex={0}
             role="button"
-            aria-label={`Signal: ${fromL} ${e.kind.replace('-', ' ')} ${toL}${
-              e.strength != null ? `, strength ${e.strength.toFixed(2)}` : ''
-            }, ${e.active ? 'active' : 'planned'}`}
+            aria-label={`Signal: ${fromL} ${e.kind.replace('-', ' ')} ${toL}, ${e.active ? 'active' : 'planned'}`}
             onMouseEnter={() =>
               setScan({
                 elementId: e.id,
@@ -73,7 +72,7 @@ export function SignalGraph({ data }: { data: AtlasData }) {
               y1={e.a.y * V}
               x2={e.b.x * V}
               y2={e.b.y * V}
-              strokeWidth={e.strength != null ? 0.4 + e.strength * 1.1 : IDLE_EDGE_STROKE}
+              strokeWidth={EDGE_STROKE_WIDTH}
             />
           </g>
         );

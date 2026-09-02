@@ -15,7 +15,6 @@ export interface GraphEdge {
   from: string;
   to: string;
   kind: SignalKind;
-  strength?: number;
   active: boolean;
   a: { x: number; y: number };
   b: { x: number; y: number };
@@ -86,7 +85,6 @@ export function buildSignalGraph(data: AtlasData): SignalGraph {
     from: s.from,
     to: s.to,
     kind: s.kind,
-    strength: s.strength,
     active: s.active,
     a: pos.get(s.from)!,
     b: pos.get(s.to)!,
