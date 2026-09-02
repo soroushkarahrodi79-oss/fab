@@ -281,6 +281,71 @@
 .scanner__row dt { color: var(--ink-faint); }
 .scanner__row dd { margin: 0; color: var(--ink); }
 
+/* ---- SCANNER: evidence + provenance disclosure (Phase 3C) --------------- */
+.scanner__disclosure {
+  margin-top: var(--s2);
+  border-top: 1px solid var(--panel-line);
+  padding-top: var(--s2);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.scanner__toggle {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  display: flex;
+  align-items: center;
+  gap: var(--s1);
+  padding: var(--s1) 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.scanner__toggle:hover { color: var(--ink); }
+.scanner__toggle:focus-visible { outline: 1px solid var(--signal); outline-offset: 2px; }
+.scanner__toggle-mark { color: var(--signal); width: 0.8em; display: inline-block; }
+.scanner__detail {
+  margin-top: var(--s2);
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.scanner__evempty { color: var(--ink-faint); }
+.scanner__evgroup { display: flex; flex-direction: column; gap: var(--s1); }
+.scanner__evgroup-label { color: var(--signal); letter-spacing: 0.08em; }
+.scanner__evgrid { margin: 0; display: flex; flex-direction: column; gap: 2px; }
+.scanner__evrow {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: var(--s2);
+  align-items: baseline;
+}
+.scanner__evrow dt { color: var(--ink-faint); }
+.scanner__evrow dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+/* status tag: the WORD carries the meaning (never colour alone); colour only
+   reinforces the "needs caution" statuses. */
+.scanner__evtag {
+  display: inline-block;
+  margin-left: var(--s1);
+  padding: 0 0.35em;
+  border: 1px solid var(--panel-line-bright);
+  border-radius: 2px;
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+.scanner__evtag[data-status='not modelled'],
+.scanner__evtag[data-status='unavailable'],
+.scanner__evtag[data-status='missing'],
+.scanner__evtag[data-status='simulated'] {
+  color: var(--alert);
+  border-color: var(--alert);
+}
+
 /* ---- SCENARIO slice (HATI Madrid vertical) ----------------------------- */
 .slice { display: flex; }
 .slice .module { flex: 1; }
