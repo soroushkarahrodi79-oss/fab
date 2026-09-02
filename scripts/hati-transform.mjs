@@ -173,6 +173,11 @@ export function buildHati(raw) {
         experience_type: clean(r.experience_type),
         distance_m: clean(r.distance_m),
         walk_min: clean(r.walk_min),
+        // HATI's own decision-rationale trace (candidate rows only): the rule
+        // derivation HATI applied to reach this candidate's state. Passed
+        // through VERBATIM (trim only) — FAB never parses, recomputes, or
+        // reinterprets it. Subject rows have no such upstream column.
+        improvement_note: clean(r.improvement_note),
       },
       provenance: {
         sourceId: basisSource(thermal),

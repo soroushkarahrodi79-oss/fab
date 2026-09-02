@@ -225,6 +225,11 @@ export function buildDecisionEvidence(
   if (d.confidence) decisionRows.push({ k: 'Confidence', v: confidenceLabel(d.confidence)! });
   if (d.role === 'excluded' && d.constraintReason)
     decisionRows.push({ k: 'Excluded because', v: exclusionLabel(d.constraintReason) ?? d.constraintReason });
+  // HATI's own decision-rationale trace (candidate decisions, where present),
+  // shown VERBATIM — never parsed, recomputed, or relabelled as measurement.
+  // It is rule DERIVATION, distinct from the evidence rows; the tag says so.
+  if (attr.improvement_note)
+    decisionRows.push({ k: 'Decision basis', v: attr.improvement_note, status: 'HATI rationale' });
   decisionRows.push({ k: 'Evidence basis', v: evidenceStatusLabel(d.evidenceStatus), status: d.evidenceStatus });
   if (d.evidenceConfidence) decisionRows.push({ k: 'Evidence confidence', v: d.evidenceConfidence });
   groups.push({ label: 'DECISION', rows: decisionRows });
