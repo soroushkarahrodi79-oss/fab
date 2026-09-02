@@ -63,7 +63,14 @@ export interface Signal {
   from: string;
   to: string;
   kind: SignalKind;
-  strength: number; // 0..1
+  /**
+   * Edge weight, 0..1. OPTIONAL — present only when a committed quantity
+   * grounds it (e.g. the Jaccard overlap of two projects' `territoryIds`).
+   * Absent is not a fabricated default: an edge with no defined strength
+   * renders at a fixed idle weight and is announced without a strength claim
+   * (Phase 4D — see docs/PHASE_4D_SIGNALS.md).
+   */
+  strength?: number;
   active: boolean;
   note?: string;
 }

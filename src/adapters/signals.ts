@@ -15,7 +15,7 @@ export interface GraphEdge {
   from: string;
   to: string;
   kind: SignalKind;
-  strength: number;
+  strength?: number;
   active: boolean;
   a: { x: number; y: number };
   b: { x: number; y: number };

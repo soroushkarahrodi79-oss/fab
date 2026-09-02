@@ -67,14 +67,23 @@ A **relationship** between two entities (project↔project, project↔territory,
 project↔source). Signals are edges — SIGNALS renders these; it does not invent
 them. Relationships live here, not in rendering logic.
 
+As of Phase 4D, `derives-from` and `shares-territory` edges are **derived**,
+not authored: `deriveStructuralSignals` (`src/data/signals-derive.ts`)
+re-projects `Project.sourceIds`/`territoryIds` — facts this contract already
+tests — into edges, so they cannot drift from their source. Only `feeds`/
+`validates` edges are authored (`src/data/signals.ts`), and only when a
+specific fact independently backs them; that list is empty until one is
+proven. See docs/PHASE_4D_SIGNALS.md.
+
 ```ts
 interface Signal {
-  id: string;                    // "snto-fieldos-shared-territory"
+  id: string;                    // "shares-territory:hati-madrid:firstlook-mad"
   from: string;                  // entity id (project/territory/source)
   to: string;                    // entity id
   kind: 'derives-from' | 'validates' | 'shares-territory'
     | 'feeds' | 'related';
-  strength: number;              // 0..1, drives edge weight
+  strength?: number;             // 0..1, drives edge weight — OPTIONAL, only
+                                  // when a committed quantity grounds it
   active: boolean;               // is the relationship currently live
   note?: string;
 }

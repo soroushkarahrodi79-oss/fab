@@ -6,7 +6,9 @@ import csvText from '../data/snto/pnsg_gee_timeseries.snapshot.csv?raw';
 import geojsonText from '../data/snto/pnsg_assets.snapshot.geojson?raw';
 import { atlas, sntoObservations } from '../data/index';
 import { earthProvenance } from '../adapters/earth';
-import { signals as mockSignals } from '../data/signals';
+import { signals as authoredSignals } from '../data/signals';
+import { deriveStructuralSignals } from '../data/signals-derive';
+import { projects } from '../data/projects';
 import { hatiAssets, hatiScenarios, hatiDecisions } from '../data/hati';
 import { FieldProvider } from '../interaction/FieldContext';
 import { TerritoryMap } from '../viz/TerritoryMap';
@@ -165,8 +167,10 @@ describe('SNTO slice — no collateral change', () => {
   });
 
   it('adds no Signal edges', () => {
-    expect(atlas.signals).toHaveLength(6);
-    expect(atlas.signals).toEqual(mockSignals);
+    // SIGNALS is derived from PROJECTS facts plus any authored feeds/validates
+    // edges (Phase 4D — docs/PHASE_4D_SIGNALS.md); SNTO's Observation
+    // ingestion must not add to or otherwise change it.
+    expect(atlas.signals).toEqual([...deriveStructuralSignals({ projects }), ...authoredSignals]);
     expect(atlas.signals.some((s) => s.from.startsWith('snto-pnsg') || s.to.startsWith('snto-pnsg'))).toBe(
       false,
     );

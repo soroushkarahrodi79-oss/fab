@@ -3,6 +3,7 @@ import { sources } from './sources';
 import { territories } from './territories';
 import { projects } from './projects';
 import { signals } from './signals';
+import { deriveStructuralSignals } from './signals-derive';
 import { observations } from './observations';
 import { sntoObservations } from './snto';
 import { hatiAssets, hatiScenarios, hatiDecisions } from './hati';
@@ -12,12 +13,17 @@ import { hatiAssets, hatiScenarios, hatiDecisions } from './hati';
  * Phase 2 evidence layer (HATI Madrid) and the Phase 4C2A authentic SNTO NDVI
  * observation slice — both ingested from real research artifacts. The existing
  * observations are preserved unchanged; SNTO records are appended.
+ *
+ * `signals` is `derives-from`/`shares-territory` edges derived structurally
+ * from Project facts (never authored, can't drift), plus any authored
+ * `feeds`/`validates` edges with an independently proven backing fact
+ * (Phase 4D — see docs/PHASE_4D_SIGNALS.md).
  */
 export const atlas: AtlasData = {
   sources,
   territories,
   projects,
-  signals,
+  signals: [...deriveStructuralSignals({ projects }), ...signals],
   observations: [...observations, ...sntoObservations],
   assets: hatiAssets,
   scenarios: hatiScenarios,
@@ -27,6 +33,7 @@ export const atlas: AtlasData = {
 export * from './types';
 export { sources, territories, projects, signals, observations, sntoObservations };
 export { hatiAssets, hatiScenarios, hatiDecisions };
+export { deriveStructuralSignals };
 
 /** Resolve any entity id to a human label across all collections. */
 export function labelForId(data: AtlasData, id: string): string | undefined {
