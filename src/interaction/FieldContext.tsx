@@ -37,12 +37,26 @@ interface State {
    * Generic: any future module that participates in a scenario reads this.
    */
   scenarioId: string | null;
+  /**
+   * The one authoritative HATI decision currently being emphasised, keyed by the
+   * stable decision identity `${scenarioId}:${assetId}`. Both scenario views read
+   * this to cross-highlight the same decision; it is deliberately separate from
+   * `scan` (the SCANNER readout) so the highlight has a single, unambiguous owner.
+   */
+  activeDecisionId: string | null;
 }
 
 type Action =
   | { type: 'set'; scan: ScanTarget }
   | { type: 'clear'; elementId?: string }
-  | { type: 'selectScenario'; scenarioId: string };
+  | { type: 'selectScenario'; scenarioId: string }
+  | { type: 'focusDecision'; decisionId: string }
+  | { type: 'clearDecision'; decisionId?: string };
+
+/** A decision id `${scenarioId}:${assetId}` belongs to a scenario iff prefixed. */
+function belongsToScenario(decisionId: string, scenarioId: string): boolean {
+  return decisionId.startsWith(`${scenarioId}:`);
+}
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -55,19 +69,48 @@ function reducer(state: State, action: Action): State {
         return state;
       }
       return { ...state, scan: null };
-    case 'selectScenario':
+    case 'focusDecision':
+      if (state.activeDecisionId === action.decisionId) return state;
+      return { ...state, activeDecisionId: action.decisionId };
+    case 'clearDecision':
+      // Owner-guarded, mirroring `clear`: a pointer/focus moving from mark A to
+      // mark B fires focus(B) then leave(A); the guard stops leave(A) from
+      // erasing the newer active B. Deterministic, no timers, no flicker.
+      if (action.decisionId && state.activeDecisionId !== action.decisionId) {
+        return state;
+      }
+      return { ...state, activeDecisionId: null };
+    case 'selectScenario': {
       if (state.scenarioId === action.scenarioId) return state;
-      return { ...state, scenarioId: action.scenarioId };
+      // Changing scenario must not leave a stale highlight or scanner readout
+      // from the previous scenario. A decision id is scenario-scoped, so drop
+      // anything that does not belong to the newly selected scenario.
+      const activeDecisionId =
+        state.activeDecisionId && belongsToScenario(state.activeDecisionId, action.scenarioId)
+          ? state.activeDecisionId
+          : null;
+      const scan =
+        state.scan &&
+        state.scan.module === 'scenario' &&
+        !belongsToScenario(state.scan.elementId, action.scenarioId)
+          ? null
+          : state.scan;
+      return { ...state, scenarioId: action.scenarioId, activeDecisionId, scan };
+    }
   }
 }
 
 interface FieldContextValue {
   scan: ScanTarget | null;
   scenarioId: string | null;
+  /** The one authoritative active decision identity (`${scenarioId}:${assetId}`). */
+  activeDecisionId: string | null;
   reducedMotion: boolean;
   setScan: (t: ScanTarget) => void;
   clearScan: (elementId?: string) => void;
   selectScenario: (scenarioId: string) => void;
+  focusDecision: (decisionId: string) => void;
+  clearDecision: (decisionId?: string) => void;
 }
 
 const FieldContext = createContext<FieldContextValue | null>(null);
@@ -82,6 +125,7 @@ export function FieldProvider({
   const [state, dispatch] = useReducer(reducer, {
     scan: null,
     scenarioId: initialScenarioId,
+    activeDecisionId: null,
   });
   const reducedMotion = useReducedMotion();
 
@@ -94,17 +138,38 @@ export function FieldProvider({
     (scenarioId: string) => dispatch({ type: 'selectScenario', scenarioId }),
     [],
   );
+  const focusDecision = useCallback(
+    (decisionId: string) => dispatch({ type: 'focusDecision', decisionId }),
+    [],
+  );
+  const clearDecision = useCallback(
+    (decisionId?: string) => dispatch({ type: 'clearDecision', decisionId }),
+    [],
+  );
 
   const value = useMemo<FieldContextValue>(
     () => ({
       scan: state.scan,
       scenarioId: state.scenarioId,
+      activeDecisionId: state.activeDecisionId,
       reducedMotion,
       setScan,
       clearScan,
       selectScenario,
+      focusDecision,
+      clearDecision,
     }),
-    [state.scan, state.scenarioId, reducedMotion, setScan, clearScan, selectScenario],
+    [
+      state.scan,
+      state.scenarioId,
+      state.activeDecisionId,
+      reducedMotion,
+      setScan,
+      clearScan,
+      selectScenario,
+      focusDecision,
+      clearDecision,
+    ],
   );
 
   return <FieldContext.Provider value={value}>{children}</FieldContext.Provider>;

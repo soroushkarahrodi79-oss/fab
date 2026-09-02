@@ -29,7 +29,7 @@ export function TerritoryScenario({
   scenarioId: string;
 }) {
   const view = useMemo(() => buildTerritoryScenario(data, scenarioId), [data, scenarioId]);
-  const { scan, setScan, clearScan } = useField();
+  const { activeDecisionId, setScan, clearScan, focusDecision, clearDecision } = useField();
 
   if (!view) {
     return (
@@ -67,7 +67,7 @@ export function TerritoryScenario({
       ))}
 
       {marks.map((m) => {
-        const focused = scan?.elementId === m.decisionId;
+        const focused = activeDecisionId === m.decisionId;
         const isSubject = m.role === 'subject';
         const r = isSubject ? 2.8 : 1.9;
         return (
@@ -77,10 +77,22 @@ export function TerritoryScenario({
             tabIndex={0}
             role="img"
             aria-label={m.aria}
-            onMouseEnter={() => setScan(m.scan)}
-            onFocus={() => setScan(m.scan)}
-            onMouseLeave={() => clearScan(m.decisionId)}
-            onBlur={() => clearScan(m.decisionId)}
+            onMouseEnter={() => {
+              setScan(m.scan);
+              focusDecision(m.decisionId);
+            }}
+            onFocus={() => {
+              setScan(m.scan);
+              focusDecision(m.decisionId);
+            }}
+            onMouseLeave={() => {
+              clearScan(m.decisionId);
+              clearDecision(m.decisionId);
+            }}
+            onBlur={() => {
+              clearScan(m.decisionId);
+              clearDecision(m.decisionId);
+            }}
           >
             {isSubject && <circle className="geo__subject-halo" cx={m.at.x * V} cy={m.at.y * V} r={r + 1.8} />}
             <circle className="sc-dot" cx={m.at.x * V} cy={m.at.y * V} r={focused ? r + 0.8 : r} />
