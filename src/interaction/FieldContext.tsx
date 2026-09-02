@@ -9,6 +9,25 @@ import {
 import { useReducedMotion } from './useReducedMotion';
 
 /**
+ * One traceable evidence line in the scanner's provenance disclosure. Generic:
+ * `k` is a label, `v` the value verbatim from the data. `status` is an optional
+ * short scientific-status tag (e.g. "modelled", "derived", "simulated",
+ * "documented", "not modelled", "unavailable") rendered as TEXT — never colour
+ * alone — so a modelled or missing value can never be read as measured.
+ */
+export interface EvidenceRow {
+  k: string;
+  v: string;
+  status?: string;
+}
+
+/** A labelled group of evidence rows (e.g. DECISION, THERMAL, ACCESS, SOURCE). */
+export interface EvidenceGroup {
+  label: string;
+  rows: EvidenceRow[];
+}
+
+/**
  * The FIELD SCANNER readout. Only fields that exist for the focused element are
  * present — the scanner never invents data (see docs/VISUAL_SYSTEM.md §8).
  */
@@ -27,6 +46,13 @@ export interface ScanTarget {
   decision?: string; // decision state (+ confidence)
   status?: string; // included / excluded (+ reason)
   evidence?: string; // scientific status: observed / documented / derived / modelled / simulated
+  /**
+   * Optional traceable evidence + provenance for THIS exact element, revealed on
+   * demand behind the scanner's disclosure. A module that has a full evidence
+   * chain (e.g. a HATI decision) fills this via its adapter; the scanner stays
+   * generic and renders whatever groups are present. Absent → no disclosure.
+   */
+  detail?: EvidenceGroup[];
 }
 
 interface State {

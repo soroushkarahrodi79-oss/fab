@@ -1,4 +1,5 @@
-import type { AtlasData, Asset, Decision, EvidenceStatus, LonLat } from '../data/types';
+import type { AtlasData, Asset, Decision, EvidenceStatus, LonLat, Scenario } from '../data/types';
+import type { EvidenceGroup, EvidenceRow } from '../interaction/FieldContext';
 
 /**
  * HATI adapter — turns the evidence layer (Asset / Scenario / Decision) into a
@@ -54,7 +55,25 @@ const INDOOR_DERIVED_LABEL =
   'Derived — rule-based from documented indoor/opening-hours evidence; ' +
   'indoor thermal not physically modelled';
 
+/**
+ * HATI's own scenario-level recommendation token (a pre-existing scenario
+ * OUTPUT, not FAB advice). Only these two values occur in the data.
+ */
+const RECOMMENDATION_LABEL: Record<string, string> = {
+  ALTERNATIVES_FOUND: 'Alternatives found',
+  NO_DEFENSIBLE_ALTERNATIVE: 'No defensible alternative',
+};
+/** decision-basis thermal state token → human copy (display only, HATI's token). */
+const THERMAL_STATE_LABEL: Record<string, string> = {
+  VERY_STRONG_HEAT_STRESS: 'Very strong heat stress',
+  STRONG_HEAT_STRESS: 'Strong heat stress',
+  MODERATE_HEAT_STRESS: 'Moderate heat stress',
+  INDOOR_NOT_MODELLED: 'Indoor — not modelled',
+};
+
 export const decisionStateLabel = (t: string) => DECISION_STATE_LABEL[t] ?? t;
+export const recommendationLabel = (t?: string) =>
+  t ? (RECOMMENDATION_LABEL[t] ?? t) : undefined;
 export const confidenceLabel = (t?: string) => (t ? (CONFIDENCE_LABEL[t] ?? t) : undefined);
 export const exclusionLabel = (t?: string) => (t ? (EXCLUSION_LABEL[t] ?? t) : undefined);
 export const experienceLabel = (t?: string) => (t ? (EXPERIENCE_LABEL[t] ?? t) : undefined);
@@ -84,6 +103,9 @@ export interface ScenarioNode {
   position?: LonLat;
   coord?: string;
   sourceLabel: string;
+  /** Traceable evidence + provenance for this exact decision (claim→evidence→
+   * source→limitation), composed from existing Decision/Asset/Scenario fields. */
+  evidence: EvidenceGroup[];
   x: number; // 0..1 layout position
   y: number; // 0..1 layout position
 }
@@ -115,6 +137,7 @@ export interface ScenarioNodeScan {
   status?: string;
   source?: string;
   evidence?: string;
+  detail?: EvidenceGroup[];
 }
 
 export function scenarioNodeScan(
@@ -137,6 +160,7 @@ export function scenarioNodeScan(
     status,
     source: n.sourceLabel,
     evidence: `${n.evidenceStatusLabel}${n.utci != null ? ` · UTCI ${n.utci}°C` : ''}`,
+    detail: n.evidence,
   };
 }
 
@@ -160,7 +184,146 @@ const SOURCE_LABEL: Record<string, string> = {
   'hati-madrid-repo': 'HATI Madrid',
 };
 
-function nodeFrom(d: Decision, asset: Asset | undefined, x: number, y: number): ScenarioNode {
+/** Pull the existing Wikidata Q-id out of the asset's evidence string, verbatim. */
+function extractWikidata(s?: string): string | undefined {
+  const m = s?.match(/Wikidata:(Q\d+)/i);
+  return m ? m[1] : undefined;
+}
+
+/**
+ * Compose the traceable evidence + provenance for ONE decision:
+ * claim (decision) → evidence (thermal, access) → source (provenance) → limitation.
+ *
+ * Reads ONLY existing Decision / Asset / Scenario fields. It recomputes no
+ * science: no UTCI, no accessibility, no ranking, no scoring, no composite
+ * confidence. Missing evidence is stated explicitly ("Not modelled",
+ * "Unavailable", "Missing source metadata") — never faked. HATI's own scenario
+ * recommendation is passed through, clearly tagged as a pre-existing HATI output.
+ */
+export function buildDecisionEvidence(
+  d: Decision,
+  asset: Asset | undefined,
+  scenario: Scenario | undefined,
+): EvidenceGroup[] {
+  const attr = d.attributes ?? {};
+  const aattr = asset?.attributes ?? {};
+  const prov = d.provenance;
+  const groups: EvidenceGroup[] = [];
+
+  const roleLabel =
+    d.role === 'subject'
+      ? 'Source (heat-exposed)'
+      : d.role === 'excluded'
+        ? 'Excluded candidate'
+        : 'Alternative';
+
+  // 1) DECISION — the claim being made.
+  const decisionRows: EvidenceRow[] = [
+    { k: 'State', v: decisionStateLabel(d.state) },
+    { k: 'Role', v: roleLabel },
+  ];
+  if (d.confidence) decisionRows.push({ k: 'Confidence', v: confidenceLabel(d.confidence)! });
+  if (d.role === 'excluded' && d.constraintReason)
+    decisionRows.push({ k: 'Excluded because', v: exclusionLabel(d.constraintReason) ?? d.constraintReason });
+  decisionRows.push({ k: 'Evidence basis', v: evidenceStatusLabel(d.evidenceStatus), status: d.evidenceStatus });
+  if (d.evidenceConfidence) decisionRows.push({ k: 'Evidence confidence', v: d.evidenceConfidence });
+  groups.push({ label: 'DECISION', rows: decisionRows });
+
+  // 2) THERMAL — the thermal evidence the decision rests on (or its honest absence).
+  const utciMetric = d.metrics?.find((m) => m.key === 'utci');
+  const thermalRows: EvidenceRow[] = [];
+  if (attr.thermal_state === 'INDOOR_NOT_MODELLED') {
+    thermalRows.push({ k: 'UTCI', v: 'Not modelled (indoor)', status: 'not modelled' });
+    thermalRows.push({ k: 'Thermal state', v: 'Indoor — not modelled' });
+    thermalRows.push({
+      k: 'Limitation',
+      v: 'Indoor thermal environment not physically modelled; the refuge decision is derived from documented indoor / opening-hours evidence.',
+    });
+  } else {
+    if (utciMetric && utciMetric.value != null) {
+      thermalRows.push({
+        k: 'UTCI',
+        v: `${utciMetric.value} ${utciMetric.unit ?? '°C'}`,
+        status: utciMetric.evidenceStatus,
+      });
+    } else {
+      thermalRows.push({ k: 'UTCI', v: 'Unavailable', status: 'unavailable' });
+    }
+    if (attr.thermal_state)
+      thermalRows.push({ k: 'Thermal state', v: THERMAL_STATE_LABEL[attr.thermal_state] ?? attr.thermal_state });
+    thermalRows.push({
+      k: 'Limitation',
+      v:
+        d.evidenceStatus === 'simulated'
+          ? 'Simulated — scenario-forced model run; the decision flips under the tested forcing envelope. Not field-measured.'
+          : 'Modelled (SOLWEIG / UTCI) — not field-measured.',
+    });
+  }
+  if (prov.temporalContext) thermalRows.push({ k: 'Timestamp', v: prov.temporalContext });
+  groups.push({ label: 'THERMAL', rows: thermalRows });
+
+  // 3) ACCESS — the accessibility evidence (straight-line, never routed).
+  const accessRows: EvidenceRow[] = [];
+  if (asset?.position) accessRows.push({ k: 'Coordinate', v: fmtCoord(asset.position) });
+  if (d.role === 'subject') {
+    accessRows.push({ k: 'Access', v: 'Scenario origin (source asset)' });
+  } else {
+    accessRows.push(
+      attr.distance_m
+        ? { k: 'Distance', v: `${Math.round(Number(attr.distance_m))} m`, status: 'straight-line' }
+        : { k: 'Distance', v: 'Unavailable', status: 'unavailable' },
+    );
+    if (attr.walk_min) accessRows.push({ k: 'Walk estimate', v: `~${attr.walk_min} min` });
+    if (attr.experience_type)
+      accessRows.push({ k: 'Experience', v: experienceLabel(attr.experience_type) ?? attr.experience_type });
+    accessRows.push({
+      k: 'Limitation',
+      v: 'Straight-line distance and a derived walk estimate — not a routed walking path.',
+    });
+  }
+  groups.push({ label: 'ACCESS', rows: accessRows });
+
+  // 4) SOURCE — provenance identifiers, verbatim.
+  const provRows: EvidenceRow[] = [{ k: 'Source', v: SOURCE_LABEL[prov.sourceId] ?? prov.sourceId }];
+  if (prov.sourceRepo) provRows.push({ k: 'Dataset', v: prov.sourceRepo });
+  if (prov.sourceFile) provRows.push({ k: 'File', v: prov.sourceFile });
+  if (prov.sourceRef) provRows.push({ k: 'Record', v: prov.sourceRef });
+  if (asset?.provenance?.sourceRef)
+    provRows.push({ k: 'OSM', v: asset.provenance.sourceRef, status: 'documented' });
+  const wikidata = extractWikidata(aattr.tourism_relevance_evidence);
+  provRows.push(
+    wikidata
+      ? { k: 'Wikidata', v: wikidata, status: 'documented' }
+      : { k: 'Wikidata', v: 'Missing source metadata', status: 'missing' },
+  );
+  if (aattr.opening_hours) provRows.push({ k: 'Opening hours', v: aattr.opening_hours, status: 'documented' });
+  if (aattr.evidence_completeness) provRows.push({ k: 'Asset evidence', v: aattr.evidence_completeness });
+  if (prov.fetchedAt) provRows.push({ k: 'Fetched', v: prov.fetchedAt });
+  if (asset?.provenance?.note) provRows.push({ k: 'Note', v: asset.provenance.note });
+  groups.push({ label: 'SOURCE', rows: provRows });
+
+  // 5) SCENARIO OUTCOME — HATI's own pre-existing scenario output (never FAB advice).
+  const outRows: EvidenceRow[] = [];
+  if (attr.recommendation)
+    outRows.push({
+      k: 'HATI recommendation',
+      v: recommendationLabel(attr.recommendation) ?? attr.recommendation,
+      status: 'HATI output',
+    });
+  if (attr.n_alternatives != null) outRows.push({ k: 'Alternatives', v: attr.n_alternatives });
+  if (scenario?.summary) outRows.push({ k: 'Scenario note', v: scenario.summary, status: 'HATI output' });
+  if (outRows.length) groups.push({ label: 'SCENARIO OUTCOME', rows: outRows });
+
+  return groups;
+}
+
+function nodeFrom(
+  d: Decision,
+  asset: Asset | undefined,
+  x: number,
+  y: number,
+  scenario: Scenario | undefined,
+): ScenarioNode {
   const attr = d.attributes ?? {};
   const utci = d.metrics?.find((m) => m.key === 'utci')?.value ?? null;
   const indoorNotModelled = attr.thermal_state === 'INDOOR_NOT_MODELLED';
@@ -192,6 +355,7 @@ function nodeFrom(d: Decision, asset: Asset | undefined, x: number, y: number): 
     position: asset?.position,
     coord: asset?.position ? fmtCoord(asset.position) : undefined,
     sourceLabel: SOURCE_LABEL[d.provenance.sourceId] ?? d.provenance.sourceId,
+    evidence: buildDecisionEvidence(d, asset, scenario),
     x,
     y,
   };
@@ -252,7 +416,7 @@ export function buildScenarioView(data: AtlasData, scenarioId: string): Scenario
     // defensive: synthesise nothing — a scenario must have a subject
     rows[0];
   const subjectAsset = assetById.get(scenario.subjectId);
-  const subject = nodeFrom(subjectDecision, subjectAsset, 0.5, 0.5);
+  const subject = nodeFrom(subjectDecision, subjectAsset, 0.5, 0.5, scenario);
 
   const candidates = rows.filter((d) => d.role !== 'subject');
   const maxDist = candidates.reduce((m, d) => {
@@ -264,7 +428,7 @@ export function buildScenarioView(data: AtlasData, scenarioId: string): Scenario
     const asset = assetById.get(d.assetId);
     const distM = d.attributes?.distance_m ? Number(d.attributes.distance_m) : null;
     const p = layout(subjectAsset?.position, asset?.position, i, candidates.length, maxDist, distM);
-    return nodeFrom(d, asset, p.x, p.y);
+    return nodeFrom(d, asset, p.x, p.y, scenario);
   });
 
   return {
