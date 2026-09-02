@@ -1,4 +1,6 @@
 import type { AtlasData, EvidenceStatus, LonLat, Territory, Observation } from '../data/types';
+import type { EvidenceGroup } from '../interaction/FieldContext';
+import { buildObservationEvidence } from './observation';
 
 export interface Pt {
   x: number; // 0..1 within the instrument viewport
@@ -29,6 +31,8 @@ export interface ObservationMark {
   territoryId?: string;
   source?: string;
   lonlat: LonLat;
+  /** Traceable evidence + provenance for the scanner disclosure (generic). */
+  detail: EvidenceGroup[];
 }
 
 export interface TerritoryView {
@@ -152,6 +156,7 @@ export function projectTerritories(data: AtlasData): TerritoryView {
     territoryId: o.territoryId,
     source: sourceLabel.get(o.sourceId),
     lonlat: o.at,
+    detail: buildObservationEvidence(o, sourceLabel.get(o.sourceId)),
   }));
 
   return { bbox, shapes, observations: marks };

@@ -14,7 +14,8 @@
     "data:territories": "node scripts/build-territories.mjs",
     "data:projects": "node scripts/build-projects.mjs",
     "data:earth": "node scripts/build-earth-grid.mjs",
-    "data:hati": "node scripts/build-hati.mjs"
+    "data:hati": "node scripts/build-hati.mjs",
+    "data:snto": "node scripts/build-snto-observations.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
