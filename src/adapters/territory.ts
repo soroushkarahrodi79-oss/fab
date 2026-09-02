@@ -1,4 +1,4 @@
-import type { AtlasData, LonLat, Territory, Observation } from '../data/types';
+import type { AtlasData, EvidenceStatus, LonLat, Territory, Observation } from '../data/types';
 
 export interface Pt {
   x: number; // 0..1 within the instrument viewport
@@ -22,6 +22,9 @@ export interface ObservationMark {
   at: Pt;
   variable: Observation['variable'];
   value: number;
+  /** Production status — drives the mark's categorical appearance. */
+  evidenceStatus: EvidenceStatus;
+  /** Independent field-validation state — never the mark's trust colour. */
   validated: boolean;
   territoryId?: string;
   source?: string;
@@ -144,6 +147,7 @@ export function projectTerritories(data: AtlasData): TerritoryView {
     at: project(o.at),
     variable: o.variable,
     value: o.value,
+    evidenceStatus: o.evidenceStatus,
     validated: o.validated,
     territoryId: o.territoryId,
     source: sourceLabel.get(o.sourceId),

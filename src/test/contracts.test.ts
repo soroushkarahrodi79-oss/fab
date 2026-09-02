@@ -54,4 +54,29 @@ describe('data contract — referential integrity', () => {
       expect(s.strength).toBeLessThanOrEqual(1);
     }
   });
+
+  const EVIDENCE_STATUSES = new Set([
+    'observed',
+    'documented',
+    'derived',
+    'modelled',
+    'simulated',
+  ]);
+
+  it('gives every observation a valid evidence-production status', () => {
+    for (const o of atlas.observations) {
+      expect(EVIDENCE_STATUSES.has(o.evidenceStatus), `obs ${o.id} status=${o.evidenceStatus}`).toBe(
+        true,
+      );
+    }
+  });
+
+  it('resolves observation provenance.sourceId when provenance is present', () => {
+    for (const o of atlas.observations) {
+      if (o.provenance)
+        expect(sourceIds.has(o.provenance.sourceId), `obs ${o.id} prov → ${o.provenance.sourceId}`).toBe(
+          true,
+        );
+    }
+  });
 });

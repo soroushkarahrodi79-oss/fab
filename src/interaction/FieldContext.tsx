@@ -47,6 +47,12 @@ export interface ScanTarget {
   status?: string; // included / excluded (+ reason)
   evidence?: string; // scientific status: observed / documented / derived / modelled / simulated
   /**
+   * Field-validation state, kept SEPARATE from `evidence` (production status) so
+   * the two are never conflated: e.g. "Not field-validated" alongside
+   * "ndvi · Derived". Absent when the element has no field-validation concept.
+   */
+  fieldValidation?: string;
+  /**
    * Optional traceable evidence + provenance for THIS exact element, revealed on
    * demand behind the scanner's disclosure. A module that has a full evidence
    * chain (e.g. a HATI decision) fills this via its adapter; the scanner stays

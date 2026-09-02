@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { AtlasData } from '../data/types';
+import type { AtlasData, EvidenceStatus } from '../data/types';
 import { projectTerritories, makeProjector, formatCoord } from '../adapters/territory';
 import type { MapMark } from '../adapters/territoryScenario';
 import { useField } from '../interaction/FieldContext';
@@ -11,6 +11,18 @@ const KIND_LABEL: Record<string, string> = {
   protected: 'protected',
   range: 'range',
   transition: 'transition',
+};
+
+/**
+ * Generic (FAB-owned) plain labels for the evidence PRODUCTION-status channel.
+ * Neutral wording only — a production status is never a verdict on quality.
+ */
+const EVIDENCE_STATUS_LABEL: Record<EvidenceStatus, string> = {
+  observed: 'Observed',
+  documented: 'Documented',
+  derived: 'Derived',
+  modelled: 'Modelled',
+  simulated: 'Simulated',
 };
 
 /**
@@ -102,23 +114,29 @@ export function TerritoryMap({
         );
       })}
 
-      {/* observation marks */}
+      {/* observation marks — the mark's appearance encodes the EVIDENCE
+          PRODUCTION status (categorical), never the field-validation boolean.
+          A derived value that is not yet field-validated is sound evidence,
+          so it is never drawn as an alert/flag. */}
       {view.observations.map((o) => {
         const focused = scan?.elementId === o.id;
+        const statusLabel = EVIDENCE_STATUS_LABEL[o.evidenceStatus];
+        const fieldVal = o.validated ? 'Field-validated' : 'Not field-validated';
         return (
           <g
             key={o.id}
-            className={`obs obs--${o.validated ? 'ok' : 'flag'}${focused ? ' is-focused' : ''}`}
+            className={`obs obs--${o.evidenceStatus}${focused ? ' is-focused' : ''}`}
             tabIndex={0}
             role="button"
-            aria-label={`Observation ${o.variable}${o.validated ? ', validated' : ', unvalidated'}, source ${o.source ?? 'unknown'}`}
+            aria-label={`Observation ${o.variable}, ${statusLabel} evidence, ${fieldVal.toLowerCase()}, source ${o.source ?? 'unknown'}`}
             onMouseEnter={() =>
               setScan({
                 elementId: o.id,
                 module: 'territory',
                 coord: formatCoord(o.lonlat),
                 source: o.source,
-                evidence: `${o.variable}${o.validated ? ' · validated' : ' · flagged'}`,
+                evidence: `${o.variable} · ${statusLabel}`,
+                fieldValidation: fieldVal,
               })
             }
             onFocus={() =>
@@ -127,7 +145,8 @@ export function TerritoryMap({
                 module: 'territory',
                 coord: formatCoord(o.lonlat),
                 source: o.source,
-                evidence: `${o.variable}${o.validated ? ' · validated' : ' · flagged'}`,
+                evidence: `${o.variable} · ${statusLabel}`,
+                fieldValidation: fieldVal,
               })
             }
             onMouseLeave={() => clearScan(o.id)}

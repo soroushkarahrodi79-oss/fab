@@ -75,6 +75,23 @@ export type ObservationVariable =
   | 'presence'
   | 'mobility';
 
+/**
+ * A located quantitative measurement. Carries TWO independent axes that must
+ * never be conflated (they were, before Phase 4C1 — a bare `validated` boolean
+ * was read as a generic trust state):
+ *
+ *  1. Evidence PRODUCTION status — `evidenceStatus` — how the value was made
+ *     (observed / documented / derived / modelled / simulated). This is the
+ *     scientific-honesty channel shared with the rest of the evidence layer.
+ *  2. Field-VALIDATION state — `validated` — whether the value has been
+ *     independently confirmed in the field. It means ONLY that. It is NOT
+ *     evidence quality, scientific validity, confidence, "good/bad", nor
+ *     measured-vs-derived.
+ *
+ * The axes are orthogonal: a Sentinel-derived NDVI may be
+ * `evidenceStatus: 'derived'` with `validated: false` and still be entirely
+ * sound — "not yet field-validated", never "flagged" or "invalid".
+ */
 export interface Observation {
   id: string;
   at: LonLat;
@@ -84,7 +101,16 @@ export interface Observation {
   value: number;
   unit?: string;
   observedAt: string;
+  /** How this value was produced (production status). Required. */
+  evidenceStatus: EvidenceStatus;
+  /**
+   * Whether this observation has been independently field-validated. `false`
+   * means "not field-validated / field validation pending or unavailable" —
+   * never "bad", "flagged", or scientifically invalid.
+   */
   validated: boolean;
+  /** Optional traceable origin. Absent means missing — never faked. */
+  provenance?: Provenance;
   note?: string;
 }
 
