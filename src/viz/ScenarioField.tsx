@@ -46,7 +46,7 @@ function ariaFor(n: ScenarioNode): string {
  */
 export function ScenarioField({ data, scenarioId }: { data: AtlasData; scenarioId: string }) {
   const view = useMemo(() => buildScenarioView(data, scenarioId), [data, scenarioId]);
-  const { scan, setScan, clearScan } = useField();
+  const { activeDecisionId, setScan, clearScan, focusDecision, clearDecision } = useField();
 
   if (!view) {
     return (
@@ -78,7 +78,7 @@ export function ScenarioField({ data, scenarioId }: { data: AtlasData; scenarioI
 
       {/* nodes */}
       {nodes.map((n) => {
-        const focused = scan?.elementId === n.decisionId;
+        const focused = activeDecisionId === n.decisionId;
         const isSubject = n.role === 'subject';
         const r = isSubject ? 3.6 : 2.4;
         const ring = RING_CLASS[n.confidence ?? ''] ?? 'none';
@@ -95,10 +95,22 @@ export function ScenarioField({ data, scenarioId }: { data: AtlasData; scenarioI
             // role="img" announces the full label without promising an action.
             role="img"
             aria-label={ariaFor(n)}
-            onMouseEnter={() => setScan(scenarioNodeScan(view, n))}
-            onFocus={() => setScan(scenarioNodeScan(view, n))}
-            onMouseLeave={() => clearScan(n.decisionId)}
-            onBlur={() => clearScan(n.decisionId)}
+            onMouseEnter={() => {
+              setScan(scenarioNodeScan(view, n));
+              focusDecision(n.decisionId);
+            }}
+            onFocus={() => {
+              setScan(scenarioNodeScan(view, n));
+              focusDecision(n.decisionId);
+            }}
+            onMouseLeave={() => {
+              clearScan(n.decisionId);
+              clearDecision(n.decisionId);
+            }}
+            onBlur={() => {
+              clearScan(n.decisionId);
+              clearDecision(n.decisionId);
+            }}
           >
             {/* confidence ring */}
             {ring !== 'none' && (

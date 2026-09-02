@@ -372,10 +372,15 @@
   font-size: 2.6px;
   letter-spacing: 0.1px;
 }
-.scenario .sc-node.is-focused .sc-dot { stroke: var(--ink); stroke-width: 0.6; }
+/* Active-decision emphasis. Shared, restrained ring in the interaction accent so
+   the SAME decision reads as active in BOTH scenario views — the mark the pointer
+   or keyboard targets AND its paired mark in the other view. Emphasis is carried
+   by stroke colour AND stroke-width (+ the focused radius bump in the markup), so
+   it never depends on colour alone (a11y). No new animation is introduced. */
+.scenario .sc-node.is-focused .sc-dot { stroke: var(--signal); stroke-width: 0.9; }
 .scenario .sc-node.is-focused .sc-label { fill: var(--ink); }
 .scenario .sc-node:focus-visible { outline: none; }
-.scenario .sc-node:focus-visible .sc-dot { stroke: var(--signal); stroke-width: 0.8; }
+.scenario .sc-node:focus-visible .sc-dot { stroke: var(--signal); stroke-width: 0.9; }
 
 /* ---- SCENARIO: two-view stage (access field + geographic) -------------- */
 .slice__views {
