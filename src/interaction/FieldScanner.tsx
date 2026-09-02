@@ -43,6 +43,7 @@ export function FieldScanner() {
     if (scan.project) rows.push({ k: 'PROJECT', v: scan.project });
     if (scan.signal) rows.push({ k: 'SIGNAL', v: scan.signal });
     if (scan.evidence) rows.push({ k: 'EVIDENCE', v: scan.evidence });
+    if (scan.fieldValidation) rows.push({ k: 'FIELD VAL', v: scan.fieldValidation });
   }
 
   const detail = scan?.detail;

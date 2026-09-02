@@ -149,11 +149,27 @@
 .obs circle {
   transition: r var(--dur-state) var(--ease);
 }
-.obs--ok circle { fill: var(--signal); }
-.obs--flag circle {
+/* Categorical by EVIDENCE PRODUCTION status — NOT field validation. None use
+   --alert: a not-yet-field-validated derived/modelled value is sound evidence,
+   never an anomaly. Measured evidence reads solid; computed evidence reads as an
+   outline (hollow), in a neutral hue family — a legible distinction, no verdict. */
+.obs--observed circle { fill: var(--signal); }
+.obs--documented circle { fill: var(--signal-cool); }
+.obs--derived circle {
   fill: none;
-  stroke: var(--alert);
+  stroke: var(--signal-cool);
   stroke-width: 0.5;
+}
+.obs--modelled circle {
+  fill: none;
+  stroke: var(--ink-dim);
+  stroke-width: 0.5;
+}
+.obs--simulated circle {
+  fill: none;
+  stroke: var(--ink-dim);
+  stroke-width: 0.5;
+  stroke-dasharray: 0.9 0.9;
 }
 .obs { cursor: pointer; }
 
@@ -248,7 +264,7 @@
   width: 100%;
 }
 .core__readout div { display: flex; justify-content: space-between; gap: var(--s2); }
-.core__readout dt { color: var(--ink-faint); }
+.core__readout dt { color: var(--ink-faint); white-space: nowrap; }
 .core__readout dd { margin: 0; color: var(--ink-dim); }
 
 /* ---- FIELD SCANNER ----------------------------------------------------- */

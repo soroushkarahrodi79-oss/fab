@@ -82,7 +82,21 @@ interface Signal {
 
 ## Observation
 
-A point measurement / field record. Later fed by FieldOS or EO extraction.
+A located quantitative measurement / field record. Later fed by FieldOS or EO
+extraction.
+
+An Observation carries **two independent axes** (separated in Phase 4C1 — see
+`docs/PHASE_4C1_OBSERVATION_EVIDENCE.md`):
+
+- **`evidenceStatus`** — how the value was *produced* (the same
+  `EvidenceStatus` vocabulary the rest of the evidence layer uses).
+- **`validated`** — whether the value has been *independently field-validated*.
+  This is its ONLY meaning: not evidence quality, not scientific validity, not
+  confidence, not "good/bad", not measured-vs-derived.
+
+They are orthogonal. A Sentinel-derived NDVI may be `evidenceStatus: 'derived'`
+with `validated: false` and still be entirely sound — *not yet field-validated*,
+never *flagged* or *invalid*.
 
 ```ts
 interface Observation {
@@ -95,7 +109,9 @@ interface Observation {
   value: number;                 // normalised or physical, see unit
   unit?: string;                 // "index" | "°C" | "count" ...
   observedAt: string;            // ISO-8601
-  validated: boolean;            // field-validated?
+  evidenceStatus: EvidenceStatus; // production status (required)
+  validated: boolean;            // field-validated? (this axis only)
+  provenance?: Provenance;       // optional traceable origin; absent = missing
   note?: string;
 }
 ```
@@ -112,7 +128,7 @@ interface FieldState {
   activeProjects: number;        // projects where status === 'active'
   experiments: number;           // projects where status === 'concept'
   observations: number;
-  validatedRatio: number;        // validated observations / total, 0..1
+  validatedRatio: number;        // FIELD-validated observations / total, 0..1
   dominantDomain: Project['domains'][number] | null;
   updatedAt: string;             // max observedAt, or build time
 }

@@ -14,7 +14,8 @@ const C = 2 * Math.PI * R;
 export function FieldStateCore({ data }: { data: AtlasData }) {
   const fs = useMemo(() => deriveFieldState(data), [data]);
 
-  // Outer ring: validated fraction of observations.
+  // Outer ring: FIELD-validated fraction of observations (field validation only,
+  // not evidence quality — see deriveFieldState / Observation contract).
   const validatedArc = C * fs.validatedRatio;
 
   // Signal ticks: one mark per active signal, evenly spaced.
@@ -62,7 +63,7 @@ export function FieldStateCore({ data }: { data: AtlasData }) {
         <div><dt>TERRITORIES</dt><dd>{fs.territories}</dd></div>
         <div><dt>EXPERIMENTS</dt><dd>{fs.experiments}</dd></div>
         <div><dt>OBSERVATIONS</dt><dd>{fs.observations}</dd></div>
-        <div><dt>VALIDATED</dt><dd>{Math.round(fs.validatedRatio * 100)}%</dd></div>
+        <div><dt>FIELD-VALIDATED</dt><dd>{Math.round(fs.validatedRatio * 100)}%</dd></div>
         <div><dt>FOCUS</dt><dd>{fs.dominantDomain ?? '—'}</dd></div>
       </dl>
 
@@ -70,7 +71,7 @@ export function FieldStateCore({ data }: { data: AtlasData }) {
         Field state: {fs.activeProjects} active projects, {fs.experiments} experiments,
         {fs.activeSignals} active signals across {fs.territories} territories,
         {fs.observations} observations of which {Math.round(fs.validatedRatio * 100)} percent
-        validated. Dominant research focus: {fs.dominantDomain ?? 'none'}.
+        field-validated. Dominant research focus: {fs.dominantDomain ?? 'none'}.
       </p>
     </div>
   );

@@ -35,9 +35,10 @@ describe('FIELD STATE core fallback', () => {
       </FieldProvider>,
     );
     expect(screen.getAllByText(/active projects/).length).toBeGreaterThanOrEqual(1);
-    // The screen-reader-only paragraph carries the full derived state.
+    // The screen-reader-only paragraph carries the full derived state. The
+    // ratio is FIELD validation specifically (Phase 4C1), not generic quality.
     expect(
-      screen.getByText(/percent\s+validated/i),
+      screen.getByText(/percent\s+field-validated/i),
     ).toBeInTheDocument();
   });
 });

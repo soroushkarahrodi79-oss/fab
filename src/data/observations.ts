@@ -3,6 +3,13 @@ import type { Observation } from './types';
 /**
  * Deterministic mock observations. Point records over the study territories.
  * Later fed by FieldOS / EO extraction via the same Observation shape.
+ *
+ * Each record carries two independent axes (see Observation in types.ts):
+ *  - `evidenceStatus` — how the value was produced;
+ *  - `validated` — whether it has been independently field-validated.
+ * A satellite-derived index that has not been field-checked is
+ * `evidenceStatus: 'derived'` + `validated: false` — sound evidence, pending
+ * field validation, NOT flagged or invalid.
  */
 export const observations: Observation[] = [
   {
@@ -14,6 +21,8 @@ export const observations: Observation[] = [
     value: 0.71,
     unit: 'index',
     observedAt: '2025-06-14T10:41:00Z',
+    // NDVI is a deterministic band-ratio index from Sentinel-2 reflectance.
+    evidenceStatus: 'derived',
     validated: true,
   },
   {
@@ -25,6 +34,7 @@ export const observations: Observation[] = [
     value: 0.58,
     unit: 'index',
     observedAt: '2025-06-14T10:41:00Z',
+    evidenceStatus: 'derived',
     validated: true,
   },
   {
@@ -36,6 +46,8 @@ export const observations: Observation[] = [
     value: 24.6,
     unit: '°C',
     observedAt: '2025-07-02T11:03:00Z',
+    // A surface-temperature retrieval requires a model, not a direct reading.
+    evidenceStatus: 'modelled',
     validated: false,
   },
   {
@@ -47,6 +59,8 @@ export const observations: Observation[] = [
     value: 3,
     unit: 'class',
     observedAt: '2025-06-20T00:00:00Z',
+    // Output of a land-cover classification model.
+    evidenceStatus: 'modelled',
     validated: false,
     note: 'Class 3 = coniferous forest.',
   },
@@ -59,6 +73,7 @@ export const observations: Observation[] = [
     value: 0.63,
     unit: 'index',
     observedAt: '2025-06-16T10:52:00Z',
+    evidenceStatus: 'derived',
     validated: true,
   },
   {
@@ -70,6 +85,8 @@ export const observations: Observation[] = [
     value: 1,
     unit: 'count',
     observedAt: '2025-06-16T09:15:00Z',
+    // A direct in-situ field record.
+    evidenceStatus: 'observed',
     validated: true,
   },
   {
@@ -81,6 +98,8 @@ export const observations: Observation[] = [
     value: 0.82,
     unit: 'index',
     observedAt: '2025-06-01T08:00:00Z',
+    // A normalised mobility index computed from survey records.
+    evidenceStatus: 'derived',
     validated: true,
   },
   {
@@ -92,7 +111,8 @@ export const observations: Observation[] = [
     value: 31.2,
     unit: '°C',
     observedAt: '2025-07-18T13:20:00Z',
+    evidenceStatus: 'modelled',
     validated: false,
-    note: 'Urban heat — flagged for validation.',
+    note: 'Urban heat — field validation pending.',
   },
 ];
