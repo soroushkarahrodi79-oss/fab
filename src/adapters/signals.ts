@@ -16,6 +16,13 @@ export interface GraphEdge {
   to: string;
   kind: SignalKind;
   active: boolean;
+  /**
+   * The specific committed fact backing this edge (e.g. which canonical
+   * territory both endpoints reference), verbatim from `Signal.note`. Phase
+   * 4D2: carried through to the graph so the UI can name the exact evidence
+   * instead of only the relationship kind — see docs/PHASE_4D_SIGNALS.md.
+   */
+  note?: string;
   a: { x: number; y: number };
   b: { x: number; y: number };
 }
@@ -86,6 +93,7 @@ export function buildSignalGraph(data: AtlasData): SignalGraph {
     to: s.to,
     kind: s.kind,
     active: s.active,
+    note: s.note,
     a: pos.get(s.from)!,
     b: pos.get(s.to)!,
   }));

@@ -129,3 +129,126 @@ with a `note` naming the specific committed fact that proves it (the way
 HATI/SNTO provenance names a `sourceRepo`/`sourceFile`) — never as a
 plausible-sounding guess, and never by widening `deriveStructuralSignals` to
 infer from a field that isn't provenance-grade for the claim being made.
+
+## Phase 4D2 — SIGNALS UX / decision context
+
+### Gate decision: SMALL UX PATCH
+
+Phase 4D1 made the *data* honest — one real `shares-territory` edge, no
+fabricated strength, no laundered heuristic. Phase 4D2 asked a narrower
+question: was that one honest edge represented in the UI in a way a viewer
+could not misread? The audit (below) found the structure was already correct
+— one edge, correctly kinded, correctly kebab-cased, referentially sound —
+but two concrete presentation gaps let the correct data still be
+misinterpreted. Both were small, local, UI-only fixes; neither the SIGNALS
+data model, the derivation function, nor any other module needed to change.
+STRUCTURAL UX PATCH (cross-module linking/highlighting between SIGNALS and
+TERRITORY) was considered and rejected as disproportionate: TERRITORY and
+SIGNALS already render together in the same one-screen `atlas` grid (see
+`src/shell/Shell.tsx`) — there is no separate route to navigate between, so
+"navigation" here means naming the evidence in place, not building a link.
+
+### Honesty audit
+
+| Element | Claim (as rendered pre-patch) | Evidence | Classification | Action |
+|---|---|---|---|---|
+| Edge `kind`/`active` (`shares-territory-firstlook-mad-hati-madrid`) | `Signal: FirstLook MAD shares territory HATI Madrid, active` | `Project.territoryIds` exact match on `madrid`, referential integrity tested (`contracts.test.ts`), one-edge census pinned (`signals-derivation.test.ts`) | PROVEN | None — claim already provable; kept |
+| Edge directionality (`→` arrow, `from`/`to` order) | Visually and textually implied a direction (A → B) | `shares-territory` is derived as an unordered pair (`from < to` is a canonicalisation rule for dedup, not a claim of direction) | AMBIGUOUS → risk of implying causality/precedence | Changed the scanner's `signal` readout from `A → B` to `A ↔ B`; the arrow was the one part of the UI that suggested asymmetry the data doesn't have |
+| `Signal.note` (`"Shared territory: madrid"` — the actual evidence naming the shared canonical `Territory.id`) | Existed in committed data but was never rendered anywhere in the UI | Data present (`src/data/signals-derive.ts`), zero call sites read it before this patch | UNSUPPORTED — not a false claim, but the one thing that would let a viewer verify *why* the edge exists was silently dropped | `note` is now threaded through `GraphEdge` (`src/adapters/signals.ts`) into both the edge's `aria-label` and its scanner `evidence` row (`src/viz/SignalGraph.tsx`) |
+| The bare relationship kind, `shares-territory` | Rendered only as `"shares territory"` — technically accurate but the kind name alone does not rule out the readings STEP 2 lists (causal, methodological, collaboration, corroboration, etc.) | `shares-territory`'s semantic contract (this doc, `src/data/types.ts`) explicitly bounds it to exact `Territory.id` match, nothing more | DERIVED BUT HONEST, under-explained | Added a `KIND_CLAIM` bounded-meaning string in `SignalGraph.tsx`, read into the edge's label: "...territorial reference only — not a collaboration, methodology, data, or lineage link" |
+| TERRITORY module (Madrid polygon) | Shows label, code, kind, observation count — never which projects reference it | `projectTerritories` (`src/adapters/territory.ts`) does not read `Project.territoryIds` at all | Out of scope for this gate — see Remaining risks | Not changed. TERRITORY's own "which projects reference Madrid" gap is real but is a TERRITORY-side omission, not a SIGNALS overclaim; fixing it would mean adding a projects-per-territory feature to TERRITORY, which STEP 4 explicitly asks to avoid unless the SIGNALS relationship itself cannot otherwise be understood. It can: the edge's own evidence line now names "madrid" directly, without depending on TERRITORY. |
+| Node `aria-label`s (`project HATI Madrid, 1 signals`), `SignalGraph`'s outer group label | Generic, count-based, no relationship-kind wording | Node degree is a real count (`buildSignalGraph`) | PROVEN | None |
+| `SignalGraph`'s stroke width, node radius | Fixed values (Phase 4D1); radius scales only with `degree`, a real count | No numeric weight derived or displayed | PROVEN | None |
+
+### Changes
+
+- `src/adapters/signals.ts` — `GraphEdge` gained an optional `note` field,
+  passed through unchanged from `Signal.note` in `buildSignalGraph`. No new
+  data, no new derivation — the field already existed on `Signal` and was
+  simply not forwarded to the view model.
+- `src/viz/SignalGraph.tsx`:
+  - Added `KIND_CLAIM`, a small `Record<string, string>` naming the exact,
+    bounded meaning of `shares-territory` (the only kind any committed edge
+    currently uses) and an `edgeClaim` helper that falls back to the old
+    generic phrasing for any future kind that doesn't yet have bounded
+    wording — so an edge is never left with *no* claim, only a less specific
+    one until its own microcopy is written.
+  - The edge's `aria-label` and scanner `evidence` now read: relationship
+    claim (bounded meaning) + `Evidence: <note>` (the exact shared
+    territory) + active/planned state — all three, always, for every edge.
+  - The scanner's `signal` readout changed from `A → B` to `A ↔ B` — the only
+    edge kind in production is symmetric, and an arrow read as directionality
+    the data never asserted.
+- `src/test/signals-accessibility.test.tsx` — two new tests (below).
+- Nothing else changed: no data files, no derivation logic, no other module,
+  no dependency, no build script.
+
+### What deliberately did not change
+
+- `deriveStructuralSignals` and `src/data/signals.ts` — the derivation logic
+  and its purity contract are untouched; this phase only changed how an
+  already-correct edge is *read*, never what counts as evidence for one.
+- `Signal.note`'s own text (`"Shared territory: madrid"`, raw canonical
+  `Territory.id`, not a display label) — left as the precise technical
+  identifier being matched rather than swapped for the human-facing
+  `Territory.label` ("Madrid"). `deriveStructuralSignals` only receives
+  `Project`, not `Territory`, by design (a smaller, more testable surface);
+  resolving to a display label would need territory data threaded into a
+  function whose whole point is to stay a pure, narrow function of projects.
+  The raw id is still unambiguous evidence.
+- TERRITORY's Madrid view — not given a "projects referencing this
+  territory" list. See Remaining risks.
+- `SignalKind` values `derives-from`, `validates`, `feeds`, `related` — still
+  declared in the type, still unused by any committed edge, still without
+  bounded microcopy in `KIND_CLAIM`. Not exercised by any current data, so
+  not in scope; the next author adding a real edge of one of these kinds must
+  add its bounded meaning to `KIND_CLAIM` before it renders, per Phase 4D1's
+  standing rule that a new edge needs a `note` naming its specific backing
+  fact.
+
+### Evidence supporting the relation
+
+`firstlook-mad.territoryIds = ['madrid']`,
+`hati-madrid.territoryIds = ['madrid']` (both in
+`src/data/projects.generated.json`); `Territory.id = 'madrid'`
+(`src/data/territories.ts`) exists in the canonical TERRITORY collection.
+The edge's `note`, `"Shared territory: madrid"`, names exactly this fact and
+is now rendered wherever the edge is.
+
+### Tests
+
+- `src/test/signals-accessibility.test.tsx`:
+  - *names the canonical shared territory in the edge's accessible label* —
+    fails if `note` is ever dropped from the rendered label again.
+  - *never implies a stronger relationship than a territorial reference* —
+    fails if an affirmative (non-negated) causal/collaborative/corroborative
+    claim appears in any edge label, and asserts the bounded-meaning
+    disclaimer is present on the `shares-territory` edge specifically.
+- Existing `signals-derivation.test.ts`, `contracts.test.ts`,
+  `adapters.test.ts` (signals) all still pass unmodified — this phase did not
+  touch the data contract they guard.
+- Full validation run: `npm run typecheck`, `npm run lint`, `npm run test`
+  (143 passed), `npm run build` — all clean.
+
+### Known limitations
+
+- TERRITORY does not yet list which projects reference a given territory (a
+  user can confirm the fact from PROJECTS/SIGNALS, just not from clicking the
+  Madrid polygon itself). Real gap, deliberately deferred — see Next gate.
+- The bounded-meaning microcopy (`KIND_CLAIM`) only covers `shares-territory`
+  because that is the only kind any committed edge uses; it is not a
+  general-purpose translation table yet.
+- `Signal.note` remains free text, not a structured evidence reference
+  (e.g. a `territoryId` field the UI could resolve/link on its own). This was
+  judged unnecessary complexity for one honest edge; revisit if/when a second
+  distinct evidence kind is ever added.
+
+### Next gate
+
+If a TERRITORY-side "projects referencing this territory" view is wanted, run
+it as its own honesty-gated micro-phase (Phase 4D3): the claim to prove is
+narrow ("Territory X is referenced by Project.territoryIds ⊇ {X}" — already
+provable, same data, no new contract), and it should be evaluated with the
+same STOP GATE discipline as this phase before any code is written. Do not
+bundle it with the next EARTH, SCENARIO, or decision-engine work — SIGNALS'
+own honesty gate is closed as of this phase.

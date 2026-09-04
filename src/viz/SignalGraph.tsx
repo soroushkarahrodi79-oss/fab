@@ -20,6 +20,24 @@ const NODE_ROLE: Record<string, string> = {
 };
 
 /**
+ * Phase 4D2: the exact, bounded meaning of each `SignalKind`, read aloud by
+ * the edge's own label so a viewer never has to infer what the relationship
+ * is (or isn't) from the kind name alone. `shares-territory` is the only kind
+ * any committed edge currently uses — see docs/PHASE_4D_SIGNALS.md for why it
+ * is deliberately NOT read as causal, methodological, collaborative, or a
+ * data/lineage link.
+ */
+const KIND_CLAIM: Record<string, string> = {
+  'shares-territory':
+    'both reference the same canonical territory. This is a territorial ' +
+    'reference only — not a collaboration, methodology, data, or lineage link',
+};
+
+function edgeClaim(kind: string, fromL: string, toL: string): string {
+  return KIND_CLAIM[kind] ?? `${fromL} ${kind.replace('-', ' ')} ${toL}`;
+}
+
+/**
  * SIGNALS — SVG relationship graph. Nodes and edges come from the signals data
  * file via a deterministic precomputed layout (no force simulation, no rAF).
  * Edges encode real relationships; nothing here is decorative.
@@ -41,27 +59,31 @@ export function SignalGraph({ data }: { data: AtlasData }) {
         const focused = scan?.elementId === e.id;
         const fromL = labelForId(data, e.from) ?? e.from;
         const toL = labelForId(data, e.to) ?? e.to;
+        const claim = edgeClaim(e.kind, fromL, toL);
+        // The specific committed fact (e.g. which canonical territory) —
+        // named in full so the relationship is never left to inference.
+        const evidence = e.note ? `${claim}. Evidence: ${e.note}` : claim;
         return (
           <g
             key={e.id}
             className={`edge edge--${e.active ? 'active' : 'idle'}${focused ? ' is-focused' : ''}`}
             tabIndex={0}
             role="button"
-            aria-label={`Signal: ${fromL} ${e.kind.replace('-', ' ')} ${toL}, ${e.active ? 'active' : 'planned'}`}
+            aria-label={`Signal: ${fromL} and ${toL} — ${evidence}. ${e.active ? 'Active' : 'Planned'}.`}
             onMouseEnter={() =>
               setScan({
                 elementId: e.id,
                 module: 'signals',
-                signal: `${fromL} → ${toL}`,
-                evidence: `${e.kind} · ${e.active ? 'active' : 'planned'}`,
+                signal: `${fromL} ↔ ${toL}`,
+                evidence,
               })
             }
             onFocus={() =>
               setScan({
                 elementId: e.id,
                 module: 'signals',
-                signal: `${fromL} → ${toL}`,
-                evidence: `${e.kind} · ${e.active ? 'active' : 'planned'}`,
+                signal: `${fromL} ↔ ${toL}`,
+                evidence,
               })
             }
             onMouseLeave={() => clearScan(e.id)}
