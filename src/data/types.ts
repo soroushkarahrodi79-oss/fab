@@ -63,7 +63,14 @@ export interface Signal {
   from: string;
   to: string;
   kind: SignalKind;
-  strength: number; // 0..1
+  /**
+   * The backing relationship exists in the currently loaded canonical Atlas
+   * snapshot. Nothing more: NOT project status, NOT a live API/pipeline
+   * connection, NOT scientific confidence, NOT importance, NOT validation
+   * quality. A structurally derived edge is `true` because its backing
+   * canonical fact currently exists; an authored, unproven edge must not be
+   * `true` (Phase 4D1 — see docs/PHASE_4D_SIGNALS.md).
+   */
   active: boolean;
   note?: string;
 }

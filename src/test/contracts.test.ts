@@ -48,10 +48,9 @@ describe('data contract — referential integrity', () => {
         expect(territoryIds.has(o.territoryId), `obs ${o.id} → ${o.territoryId}`).toBe(true);
   });
 
-  it('keeps signal strength within [0,1]', () => {
+  it('never carries a strength field (Phase 4D1 — removed, not optional)', () => {
     for (const s of atlas.signals) {
-      expect(s.strength).toBeGreaterThanOrEqual(0);
-      expect(s.strength).toBeLessThanOrEqual(1);
+      expect('strength' in s, `signal ${s.id} carries strength`).toBe(false);
     }
   });
 

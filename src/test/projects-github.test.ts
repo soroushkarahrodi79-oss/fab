@@ -1,13 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { projects } from '../data/projects';
-import { signals } from '../data/signals';
+import { deriveStructuralSignals } from '../data/signals-derive';
 import type { ProjectDomain } from '../data/types';
 
 /**
  * Guards the mock→real PROJECTS swap. Projects are now derived from real GitHub
  * repositories; this asserts the data is genuinely repo-backed and that the ids
- * the SIGNALS relationships depend on survived the swap (so no viz changes were
- * needed and referential integrity holds).
+ * SIGNALS structurally derives shares-territory edges from survived the swap
+ * (so no viz changes were needed and referential integrity holds). Since
+ * Phase 4D, SIGNALS derives from PROJECTS rather than the reverse — see
+ * docs/PHASE_4D_SIGNALS.md.
  */
 const VALID_DOMAINS: ProjectDomain[] = [
   'tourism',
@@ -28,25 +30,20 @@ describe('PROJECTS derived from real GitHub repos', () => {
     }
   });
 
-  it('preserves the project ids that SIGNALS reference', () => {
+  it('preserves the project ids SIGNALS structurally derives from', () => {
     const ids = new Set(projects.map((p) => p.id));
-    const referenced = new Set<string>();
-    for (const s of signals) {
-      referenced.add(s.from);
-      referenced.add(s.to);
-    }
-    // The four conceptual projects wired into signals must still exist.
+    // The four conceptual projects the original vertical slice was built
+    // around must still exist under the same ids after the GitHub swap.
     for (const id of ['snto', 'fieldos', 'hati-madrid', 'radar']) {
       expect(ids.has(id), `project ${id} missing after swap`).toBe(true);
     }
-    // Any project endpoint a signal names must resolve to a real project.
-    for (const s of signals) {
-      const endpoints = [s.from, s.to].filter((e) => e.startsWith('snto') || ids.has(e));
-      for (const e of endpoints) {
-        if (ids.has(e)) expect(ids.has(e)).toBe(true);
-      }
+    // PROJECTS data must still support SIGNALS having something to derive —
+    // every derived edge's project endpoint must resolve to a real project.
+    const derived = deriveStructuralSignals({ projects });
+    expect(derived.length).toBeGreaterThan(0);
+    for (const s of derived) {
+      expect(ids.has(s.from), `signal ${s.id}.from=${s.from}`).toBe(true);
     }
-    expect(referenced.size).toBeGreaterThan(0);
   });
 
   it('assigns valid statuses and non-empty domains', () => {

@@ -67,15 +67,30 @@ A **relationship** between two entities (project↔project, project↔territory,
 project↔source). Signals are edges — SIGNALS renders these; it does not invent
 them. Relationships live here, not in rendering logic.
 
+As of Phase 4D1, `shares-territory` is the only **derived** kind:
+`deriveStructuralSignals` (`src/data/signals-derive.ts`) re-projects two
+projects' `territoryIds` — matched exactly, id-for-id — into an edge, so it
+cannot drift from its source. `derives-from` is deliberately NOT derived:
+`Project.sourceIds` is populated heuristically by `scripts/build-projects.mjs`
+from repository topics/text, not verified scientific provenance, so
+`sourceIds` membership does not prove a `derives-from` relationship — deriving
+one from it would launder a heuristic into a stronger claim than the data
+supports. Any edge (`derives-from`, `validates`, `feeds`, …) may still be
+authored (`src/data/signals.ts`), but only when a specific fact independently
+backs it; that list is empty until one is proven. All ids are stable
+kebab-case, including generated ids — never `:`-delimited. See
+docs/PHASE_4D_SIGNALS.md.
+
 ```ts
 interface Signal {
-  id: string;                    // "snto-fieldos-shared-territory"
+  id: string;                    // "shares-territory-firstlook-mad-hati-madrid"
   from: string;                  // entity id (project/territory/source)
   to: string;                    // entity id
   kind: 'derives-from' | 'validates' | 'shares-territory'
     | 'feeds' | 'related';
-  strength: number;              // 0..1, drives edge weight
-  active: boolean;               // is the relationship currently live
+  active: boolean;               // the backing relationship exists in the
+                                  // currently loaded canonical snapshot —
+                                  // NOT status/confidence/importance/quality
   note?: string;
 }
 ```

@@ -6,6 +6,12 @@ import { useField } from '../interaction/FieldContext';
 
 const V = 100;
 
+// One neutral fixed edge width. Phase 4D1: a territory-overlap count is not
+// a generic scientific "relationship strength" — no numeric weight is
+// derived or displayed. The exact shared territory is disclosed by the
+// relationship itself (kind + note), not by stroke thickness.
+const EDGE_STROKE_WIDTH = 0.95;
+
 const NODE_ROLE: Record<string, string> = {
   project: 'project',
   territory: 'territory',
@@ -41,7 +47,7 @@ export function SignalGraph({ data }: { data: AtlasData }) {
             className={`edge edge--${e.active ? 'active' : 'idle'}${focused ? ' is-focused' : ''}`}
             tabIndex={0}
             role="button"
-            aria-label={`Signal: ${fromL} ${e.kind.replace('-', ' ')} ${toL}, strength ${e.strength.toFixed(2)}, ${e.active ? 'active' : 'planned'}`}
+            aria-label={`Signal: ${fromL} ${e.kind.replace('-', ' ')} ${toL}, ${e.active ? 'active' : 'planned'}`}
             onMouseEnter={() =>
               setScan({
                 elementId: e.id,
@@ -66,7 +72,7 @@ export function SignalGraph({ data }: { data: AtlasData }) {
               y1={e.a.y * V}
               x2={e.b.x * V}
               y2={e.b.y * V}
-              strokeWidth={0.4 + e.strength * 1.1}
+              strokeWidth={EDGE_STROKE_WIDTH}
             />
           </g>
         );
