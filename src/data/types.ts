@@ -122,22 +122,82 @@ export interface Observation {
 }
 
 /**
+ * Provenance of an EarthGrid — enough to identify the exact upstream product(s)
+ * and the processing that produced the committed raster (Phase 5A). A mock grid
+ * fills the structural fields with `provider: 'mock'` and discloses in `note`
+ * that no bands were processed; a real Sentinel-2 grid carries exact `itemIds`.
+ * The band/mask/composite fields describe the pipeline that WILL run for real
+ * data — on a mock grid they are the target shape, never a claim that the mock
+ * derived anything from reflectance (guarded by `evidenceStatus: 'simulated'`).
+ */
+export interface EarthGridProvenance {
+  provider:
+    | 'mock'
+    | 'copernicus-data-space'
+    | 'earth-search'
+    | 'planetary-computer';
+  collection: string;
+  /** Exact upstream scene/item/product identifiers when available. */
+  itemIds?: string[];
+  /** Upstream processing baseline/version when available. */
+  processingBaseline?: string;
+  bands: {
+    red: 'B04';
+    nir: 'B08';
+    mask: 'SCL';
+  };
+  temporalComposite: 'median';
+  /** SCL classes excluded before NDVI compositing. */
+  sclExcluded: number[];
+  /** How native/composite pixels become EarthGrid cells. */
+  spatialAggregation: 'average';
+  /** Snapshot generation date; NOT acquisition date. */
+  generatedAt: string;
+  attribution?: string;
+  note?: string;
+}
+
+/**
  * Raw Earth-observation raster for the EARTH module — a resampled NDVI field
  * over a territory's bounding box. This is the seam where a real Sentinel-2
  * derived grid replaces the mock provider (see docs/EARTH_REAL_DATA.md); the
  * adapter and viz consume this shape unchanged either way.
+ *
+ * Phase 5A hardening: there is NO single `capturedAt` (a composite has a
+ * window, `compositeStart`/`compositeEnd`), NO top-level `cloudCover` (ambiguous
+ * across a masked multi-scene composite — real support is per-cell
+ * `validFraction`), and `nodata` is required so missing EO support is never
+ * silently read as a valid NDVI of 0.
  */
 export interface EarthGrid {
-  source: string; // "mock-deterministic" | "sentinel-2"
+  source: 'mock-deterministic' | 'sentinel-2';
+  /**
+   * mock-deterministic → 'simulated'; real Sentinel-2 NDVI → 'derived'.
+   */
+  evidenceStatus: EvidenceStatus;
   variable: 'ndvi';
   territoryId?: string;
-  bbox: [number, number, number, number]; // [minLon, minLat, maxLon, maxLat]
+  /** Target grid extent in the target CRS. [minLon, minLat, maxLon, maxLat]. */
+  bbox: [number, number, number, number];
+  /** CRS of bbox / output grid. */
+  crs: string;
   cols: number;
   rows: number;
-  capturedAt: string; // ISO date of the (composite) acquisition
-  cloudCover?: number; // 0..1
-  nodata?: number; // sentinel value for masked cells
-  values: number[]; // row-major NDVI, length cols*rows
+  /** Spatial resampling/aggregation from the native composite into this grid. */
+  resampling: 'average';
+  /** Temporal support of the composite. */
+  compositeStart: string;
+  compositeEnd: string;
+  /** Sentinel value representing no valid EO support. Required — never faked. */
+  nodata: number;
+  /** Row-major NDVI values, length cols*rows. Masked cells hold `nodata`. */
+  values: number[];
+  /**
+   * Optional row-major fraction 0..1 of valid native pixels contributing to
+   * each output cell. Absent on a mock grid (no native pixels).
+   */
+  validFraction?: number[];
+  provenance: EarthGridProvenance;
 }
 
 /**

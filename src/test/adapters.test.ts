@@ -81,30 +81,37 @@ describe('adapters/signals', () => {
 });
 
 describe('adapters/earth', () => {
-  it('produces cols*rows cells with ndvi in [0,1] from the grid', () => {
-    const f = buildEarthField(atlas);
+  it('produces cols*rows cells with ndvi in [0,1] or null from the grid', () => {
+    const f = buildEarthField();
     expect(f.cols).toBeGreaterThan(0);
     expect(f.rows).toBeGreaterThan(0);
     expect(f.cells.length).toBe(f.cols * f.rows);
     for (const c of f.cells) {
+      if (c.ndvi === null) continue; // masked cell — no valid EO support
       expect(c.ndvi).toBeGreaterThanOrEqual(0);
       expect(c.ndvi).toBeLessThanOrEqual(1);
     }
   });
 
   it('is deterministic — no randomness', () => {
-    expect(buildEarthField(atlas)).toEqual(buildEarthField(atlas));
+    expect(buildEarthField()).toEqual(buildEarthField());
   });
 
-  it('carries provenance from the grid (source + capture date)', () => {
-    const f = buildEarthField(atlas);
+  it('carries provenance from the grid (source + evidence + composite window)', () => {
+    const f = buildEarthField();
     expect(f.source).toBeTruthy();
-    expect(f.capturedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(f.evidenceStatus).toMatch(/^(simulated|derived)$/);
+    expect(f.compositeStart).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(f.compositeEnd).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(Date.parse(f.compositeStart)).toBeLessThan(Date.parse(f.compositeEnd));
   });
 
-  it('summary ndvi range brackets the mean', () => {
-    const f = buildEarthField(atlas);
+  it('summary ndvi range brackets the mean and coverage is 0..1', () => {
+    const f = buildEarthField();
     expect(f.summary.ndviMin).toBeLessThanOrEqual(f.summary.ndviMean);
     expect(f.summary.ndviMean).toBeLessThanOrEqual(f.summary.ndviMax);
+    expect(f.summary.validCoverage).toBeGreaterThanOrEqual(0);
+    expect(f.summary.validCoverage).toBeLessThanOrEqual(1);
+    expect(f.summary.validCells).toBeLessThanOrEqual(f.summary.totalCells);
   });
 });

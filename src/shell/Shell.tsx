@@ -51,10 +51,10 @@ export function Shell({ data }: { data: AtlasData }) {
             code="02"
             title="EARTH"
             meta={`EO · ${earthProvenance.source}`}
-            state={data.observations.length ? 'idle' : 'empty'}
+            state="idle"
           >
             <Suspense fallback={<div className="viz-skeleton" aria-hidden="true" />}>
-              <EarthField data={data} />
+              <EarthField />
             </Suspense>
           </Module>
         </div>
