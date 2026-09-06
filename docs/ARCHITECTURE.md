@@ -25,8 +25,8 @@ shell/           app composition, layout, masthead, module framing
   `sources` as plain typed data conforming to `DATA_CONTRACT.md`. No rendering
   concepts leak in (no pixels, no colours).
 - **`adapters/`** transform domain → view model: project geo coordinates to
-  the instrument's local space, precompute the signal graph layout, bucket
-  observations into the Earth grid, derive the FIELD STATE summary. Pure,
+  the instrument's local space, precompute the signal graph layout, pack the
+  committed Earth grid into cells, derive the FIELD STATE summary. Pure,
   deterministic, unit-tested. This is the seam where mock data is later
   swapped for real data with **zero** changes downstream.
 - **`viz/`** components receive a finished view model and draw. They know
@@ -44,7 +44,7 @@ Phase 1.** Each module uses the lightest technology that fully encodes its data:
 | Module | Tech | Why not WebGL |
 |---|---|---|
 | **TERRITORY** | **SVG** | A handful of GeoJSON polygons + labelled points. SVG gives crisp vector cartography, native hit-testing, and accessible `<title>`/`role`. WebGL would add a projection/label pipeline for <100 features — unjustified. |
-| **EARTH** | **Canvas 2D** | A deterministic raster field (NDVI/land-cover grid ~ 40×24 cells) + orbital arcs. Canvas draws thousands of cells cheaply in one paint; no per-cell DOM. Not enough geometry to need GPU shaders yet. |
+| **EARTH** | **Canvas 2D** | A deterministic NDVI raster field (48×28 cells; `nodata` cells render as neutral missing-data). Canvas draws thousands of cells cheaply in one paint; no per-cell DOM. Not enough geometry to need GPU shaders yet. Phase 5A removed the illustrative land-cover/anomaly/arc layers — see [`EARTH_REAL_DATA.md`](EARTH_REAL_DATA.md). |
 | **SIGNALS** | **SVG** | ~4–12 nodes and their edges with **precomputed** positions. SVG edges/nodes are hit-testable and labelled. No live force simulation → no `rAF` loop → no canvas needed. |
 | **FIELD STATE core** | **SVG + DOM** | A compact radial readout driven by summary numbers. DOM carries the accessible text; SVG carries the ring. |
 

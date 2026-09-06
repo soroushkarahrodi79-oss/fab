@@ -74,17 +74,39 @@ for (let r = 0; r < rows; r++) {
   }
 }
 
+// Phase 5A hardened EarthGrid (mock arm of the discriminated union). No
+// `capturedAt` (a composite has a window), no top-level `cloudCover` (ambiguous
+// across a masked multi-scene composite). Mock provenance carries ONLY what
+// actually happened — provider 'mock', a collection label, a generation date,
+// and a note. It names NO Sentinel-2 bands/mask/composite/itemIds, because the
+// mock processed none: the type system (MockEarthGridProvenance) forbids them.
+// `generatedAt` is a fixed literal so re-running this build is byte-stable. A
+// real provider writes the Sentinel-2 arm instead (source 'sentinel-2',
+// evidenceStatus 'derived', exact itemIds, band/mask/composite, validFraction).
 const grid = {
   source: 'mock-deterministic',
+  evidenceStatus: 'simulated',
   variable: 'ndvi',
   territoryId: TERRITORY,
   bbox: bbox.map((n) => Math.round(n * 1e4) / 1e4),
+  crs: 'EPSG:4326',
   cols,
   rows,
-  capturedAt: '2025-07-15',
-  cloudCover: 0.12,
+  resampling: 'average',
+  compositeStart: '2025-06-01',
+  compositeEnd: '2025-08-31',
   nodata: -1,
   values,
+  provenance: {
+    provider: 'mock',
+    collection: 'mock-deterministic-ndvi',
+    generatedAt: '2026-09-06',
+    note:
+      'Simulated NDVI field anchored to the real Sierra de Guadarrama bbox. ' +
+      'No Sentinel-2 reflectance was processed; this grid carries no EO ' +
+      'pipeline provenance. Replaced wholesale by a real Sentinel-2 L2A ' +
+      'snapshot in Phase 5B (see docs/EARTH_REAL_DATA.md).',
+  },
 };
 
 mkdirSync(outDir, { recursive: true });

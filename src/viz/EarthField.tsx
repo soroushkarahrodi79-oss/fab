@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef } from 'react';
-import type { AtlasData } from '../data/types';
 import { buildEarthField } from '../adapters/earth';
 import { useField } from '../interaction/FieldContext';
 
@@ -24,15 +23,18 @@ function mix(a: [number, number, number], b: [number, number, number], t: number
 }
 
 /**
- * EARTH — deterministic Earth-observation field on Canvas 2D. A raster NDVI
- * field + land-cover, heat anomalies, and labelled orbital arcs. No external
- * satellite API, no randomness, and NO idle render loop: the canvas paints once
- * per data/resize, with an optional one-shot entry sweep that stops itself and
- * is skipped under reduced motion. A <figcaption> carries the meaning when the
- * canvas is unsupported or motion is off (the semantic twin).
+ * EARTH — a deterministic Earth-observation NDVI field on Canvas 2D. Phase 5A:
+ * a provenance-bearing NDVI raster and nothing more — no land-cover class, no
+ * heat-anomaly overlay, no orbital arcs (those were illustrative and would
+ * become false claims over real data). Reads only the committed grid, never the
+ * atlas, so EARTH is decoupled from mock observations. No external API, no
+ * randomness, no idle render loop: paints once per resize with an optional
+ * one-shot entry sweep (skipped under reduced motion). Cells with no valid EO
+ * support render as neutral missing-data, never as NDVI 0. A <figcaption>
+ * carries the meaning when the canvas is unsupported or motion is off.
  */
-export function EarthField({ data }: { data: AtlasData }) {
-  const field = useMemo(() => buildEarthField(data), [data]);
+export function EarthField() {
+  const field = useMemo(() => buildEarthField(), []);
   const { reducedMotion, setScan, clearScan } = useField();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
@@ -46,9 +48,7 @@ export function EarthField({ data }: { data: AtlasData }) {
 
     const low = hexToRgb(cssVar('--signal-warm', '#d9a441'));
     const high = hexToRgb(cssVar('--signal', '#7fe3c4'));
-    const alert = cssVar('--alert', '#d9694f');
-    const line = cssVar('--panel-line-bright', '#2c3742');
-    const ink = cssVar('--ink-dim', '#6b7a78');
+    const missing = cssVar('--panel-line', '#232c34');
 
     let raf = 0;
 
@@ -70,32 +70,20 @@ export function EarthField({ data }: { data: AtlasData }) {
 
       for (const cell of field.cells) {
         if (cell.col > revealCols) continue;
-        ctx.fillStyle = mix(low, high, cell.ndvi);
-        // Restrained: the field is a readout, not a wallpaper. Keep it dim so
-        // labels, arcs and anomalies stay legible over it.
-        ctx.globalAlpha = 0.28 + 0.34 * cell.ndvi;
-        ctx.fillRect(cell.col * cw, cell.row * ch, cw + 0.5, ch + 0.5);
-        if (cell.anomaly) {
-          ctx.globalAlpha = 1;
-          ctx.strokeStyle = alert;
-          ctx.lineWidth = 1.2;
-          ctx.strokeRect(cell.col * cw + 1, cell.row * ch + 1, cw - 2, ch - 2);
+        if (cell.ndvi === null) {
+          // No valid EO support: a neutral, clearly non-vegetation cell. It is
+          // never passed through the NDVI colour scale.
+          ctx.fillStyle = missing;
+          ctx.globalAlpha = 0.18;
+        } else {
+          // Restrained: the field is a readout, not a wallpaper. Keep it dim so
+          // labels stay legible over it.
+          ctx.fillStyle = mix(low, high, cell.ndvi);
+          ctx.globalAlpha = 0.28 + 0.34 * cell.ndvi;
         }
+        ctx.fillRect(cell.col * cw, cell.row * ch, cw + 0.5, ch + 0.5);
       }
       ctx.globalAlpha = 1;
-
-      // orbital arcs — labelled EO sources crossing the field
-      ctx.strokeStyle = line;
-      ctx.lineWidth = 1;
-      ctx.font = '10px ui-monospace, monospace';
-      ctx.fillStyle = ink;
-      for (const arc of field.arcs) {
-        ctx.beginPath();
-        ctx.moveTo(0, arc.y0 * h);
-        ctx.quadraticCurveTo(w * 0.5, (arc.y0 - arc.bow) * h, w, arc.y1 * h);
-        ctx.stroke();
-        ctx.fillText(arc.label.toUpperCase(), 8, arc.y0 * h - 4);
-      }
     };
 
     // one-shot entry sweep, self-terminating; skipped under reduced motion
@@ -122,10 +110,17 @@ export function EarthField({ data }: { data: AtlasData }) {
   }, [field, reducedMotion]);
 
   const s = field.summary;
-  // Provenance travels with the numbers: the field is never a bare readout.
-  // `field.source` is "mock-deterministic" now, "sentinel-2" when real.
-  const provenance = `${field.source} · ${field.capturedAt}`;
-  const summaryText = `NDVI ${s.ndviMin.toFixed(2)}–${s.ndviMax.toFixed(2)} (mean ${s.ndviMean.toFixed(2)}) · dominant cover ${s.dominantCover} · ${s.anomalies} anomal${s.anomalies === 1 ? 'y' : 'ies'} flagged`;
+  // Provenance travels with the numbers: source + evidence status + the real
+  // composite window (never a single fake acquisition date). `field.source` is
+  // "mock-deterministic" now, "sentinel-2" when real.
+  const provenance = `${field.source} · ${field.evidenceStatus}`;
+  const compositeWindow = `${field.compositeStart} → ${field.compositeEnd}`;
+  const coverage = `${Math.round(s.validCoverage * 100)}%`;
+  const summaryText = `NDVI ${s.ndviMin.toFixed(2)}–${s.ndviMax.toFixed(2)} (mean ${s.ndviMean.toFixed(2)}) · coverage ${coverage}`;
+  // Attribution exists only on the real Sentinel-2 arm of the union; the mock
+  // provenance carries none. Narrow by provider rather than assume the field.
+  const attribution =
+    field.provenance.provider === 'mock' ? undefined : field.provenance.attribution;
 
   return (
     <figure
@@ -135,8 +130,8 @@ export function EarthField({ data }: { data: AtlasData }) {
         setScan({
           elementId: 'earth-field',
           module: 'earth',
-          source: field.arcs.map((a) => a.label).join(' · ') || undefined,
-          evidence: `NDVI field · ${s.anomalies} anomalies`,
+          source: field.source,
+          evidence: `NDVI field · ${field.evidenceStatus} · ${compositeWindow}`,
         })
       }
       onMouseLeave={() => clearScan('earth-field')}
@@ -144,7 +139,8 @@ export function EarthField({ data }: { data: AtlasData }) {
       <canvas ref={canvasRef} className="earth__canvas" aria-hidden="true" />
       <figcaption className="earth__caption u-micro">
         <span className="earth__caption-title">EO FIELD</span>{' '}
-        <span className="earth__caption-src">{provenance}</span> · {summaryText}
+        <span className="earth__caption-src">{provenance}</span> · {compositeWindow} · {summaryText}
+        {attribution ? ` · ${attribution}` : ''}
       </figcaption>
     </figure>
   );

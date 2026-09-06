@@ -14,16 +14,21 @@ describe('EARTH fallback', () => {
   it('renders the textual EO summary even with no canvas context', () => {
     render(
       <FieldProvider>
-        <EarthField data={atlas} />
+        <EarthField />
       </FieldProvider>,
     );
-    // figcaption twin present with NDVI range + dominant cover.
+    // figcaption twin present with NDVI range + composite window + coverage.
     expect(screen.getByText(/EO FIELD/)).toBeInTheDocument();
     expect(screen.getByText(/NDVI/)).toBeInTheDocument();
-    expect(screen.getByText(/dominant cover/)).toBeInTheDocument();
+    expect(screen.getByText(/coverage/)).toBeInTheDocument();
+    // A composite window (start → end), never a single fake acquisition date.
+    expect(screen.getByText(/\d{4}-\d{2}-\d{2}\s*→\s*\d{4}-\d{2}-\d{2}/)).toBeInTheDocument();
     // Provenance must travel with the numbers — the mock field is never
-    // presented as evidence without its source label.
+    // presented as evidence without its source + evidence-status label.
     expect(screen.getByText(/mock-deterministic/)).toBeInTheDocument();
+    expect(screen.getByText(/simulated/)).toBeInTheDocument();
+    // The removed pseudo-scientific layers must not reappear in the readout.
+    expect(screen.queryByText(/dominant cover|coniferous|heat anomal|orbital/i)).toBeNull();
   });
 });
 
