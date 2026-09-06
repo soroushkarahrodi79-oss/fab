@@ -31,14 +31,15 @@ adapters/earth.ts  buildEarthField(grid)   ← packs cells (nodata → ndvi: nul
 viz/EarthField.tsx  (Canvas 2D)             ← UNCHANGED; consumes EarthField
 ```
 
-The `EarthGrid` raw contract (Phase 5A hardened — see `data/types.ts`):
+The `EarthGrid` raw contract (Phase 5A hardened — see `data/types.ts`). It is a
+**discriminated union** so the type system itself enforces evidence honesty: a
+mock grid is `simulated` and can name no Sentinel-2 pipeline; a real grid is
+`derived` and must pin exact upstream products.
 
 ```ts
-interface EarthGrid {
-  source: 'mock-deterministic' | 'sentinel-2';
-  evidenceStatus: EvidenceStatus;  // mock → 'simulated'; real → 'derived'
+interface EarthGridBase {
   variable: 'ndvi';
-  territoryId?: string;            // spatial anchor
+  territoryId?: string;
   bbox: [number, number, number, number]; // target extent in target CRS
   crs: string;                     // CRS of bbox / output grid, e.g. "EPSG:4326"
   cols: number; rows: number;
@@ -48,15 +49,51 @@ interface EarthGrid {
   nodata: number;                  // required — missing EO support, never a valid 0
   values: number[];                // row-major NDVI, length cols*rows
   validFraction?: number[];        // per-cell fraction of valid native pixels
-  provenance: EarthGridProvenance; // provider, collection, itemIds, bands, mask…
 }
+
+// MOCK arm — carries only what actually happened. NO band/mask/composite/itemId.
+interface MockEarthGrid extends EarthGridBase {
+  source: 'mock-deterministic';
+  evidenceStatus: 'simulated';
+  provenance: {
+    provider: 'mock';
+    collection: 'mock-deterministic-ndvi';
+    generatedAt: string;           // snapshot date, NOT an acquisition date
+    note?: string;
+  };
+}
+
+// REAL arm — exact, pinnable upstream identity. itemIds + bands REQUIRED.
+interface Sentinel2EarthGrid extends EarthGridBase {
+  source: 'sentinel-2';
+  evidenceStatus: 'derived';
+  provenance: {
+    provider: 'copernicus-data-space' | 'earth-search' | 'planetary-computer';
+    collection: string;
+    itemIds: string[];             // exact upstream products — never invented
+    processingBaseline?: string;
+    bands: { red: 'B04'; nir: 'B08'; mask: 'SCL' };
+    temporalComposite: 'median';
+    sclExcluded: number[];
+    spatialAggregation: 'average';
+    generatedAt: string;
+    attribution: string;
+    note?: string;
+  };
+}
+
+type EarthGrid = MockEarthGrid | Sentinel2EarthGrid;
 ```
 
-There is deliberately **no** single `capturedAt` (a composite spans a window)
-and **no** top-level `cloudCover` (ambiguous across a masked multi-scene
-composite; real support is the per-cell `validFraction`). Swapping mock → real
-means writing a real `grid.generated.json` from a Sentinel-2 provider (Phase
-5B). Nothing downstream changes.
+The union guarantees, at compile time, that `mock-deterministic` cannot pair
+with `derived` (or vice-versa) and that a mock's provenance cannot carry
+Sentinel-2 band/mask/composite/`itemIds` claims — a mock processed no
+reflectance, so those fields are unreachable, not merely disclaimed. There is
+also deliberately **no** single `capturedAt` (a composite spans a window) and
+**no** top-level `cloudCover` (ambiguous across a masked multi-scene composite;
+real support is the per-cell `validFraction`). Swapping mock → real means
+writing the Sentinel-2 arm into `grid.generated.json` (Phase 5B). Nothing
+downstream changes.
 
 ## Source options (evaluated)
 

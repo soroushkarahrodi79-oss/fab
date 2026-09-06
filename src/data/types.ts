@@ -122,23 +122,64 @@ export interface Observation {
 }
 
 /**
- * Provenance of an EarthGrid — enough to identify the exact upstream product(s)
- * and the processing that produced the committed raster (Phase 5A). A mock grid
- * fills the structural fields with `provider: 'mock'` and discloses in `note`
- * that no bands were processed; a real Sentinel-2 grid carries exact `itemIds`.
- * The band/mask/composite fields describe the pipeline that WILL run for real
- * data — on a mock grid they are the target shape, never a claim that the mock
- * derived anything from reflectance (guarded by `evidenceStatus: 'simulated'`).
+ * Fields shared by every EarthGrid, independent of provider (Phase 5A).
+ *
+ * There is deliberately NO single `capturedAt` (a composite spans a window,
+ * `compositeStart`/`compositeEnd`) and NO top-level `cloudCover` (ambiguous
+ * across a masked multi-scene composite — real support is the per-cell
+ * `validFraction`). `nodata` is required so missing EO support is never
+ * silently read as a valid NDVI of 0.
  */
-export interface EarthGridProvenance {
-  provider:
-    | 'mock'
-    | 'copernicus-data-space'
-    | 'earth-search'
-    | 'planetary-computer';
+export interface EarthGridBase {
+  variable: 'ndvi';
+  territoryId?: string;
+  /** Target grid extent in the target CRS. [minLon, minLat, maxLon, maxLat]. */
+  bbox: [number, number, number, number];
+  /** CRS of bbox / output grid. */
+  crs: string;
+  cols: number;
+  rows: number;
+  /** Spatial resampling from the native composite into this coarse grid. */
+  resampling: 'average';
+  /** Temporal support of the composite (a window, never one acquisition date). */
+  compositeStart: string;
+  compositeEnd: string;
+  /** Sentinel value representing no valid EO support. Required — never faked. */
+  nodata: number;
+  /** Row-major NDVI values, length cols*rows. Masked cells hold `nodata`. */
+  values: number[];
+  /**
+   * Optional row-major fraction 0..1 of valid native pixels contributing to
+   * each output cell. Absent on a mock grid (no native pixels).
+   */
+  validFraction?: number[];
+}
+
+/**
+ * Provenance for a MOCK grid. It carries ONLY what actually happened: a
+ * provider tag, a collection label, and a generation date. It has NO
+ * band/mask/composite/itemId fields — the mock processed no Sentinel-2
+ * reflectance, so naming that pipeline (even as a "target shape") would be a
+ * type-level falsehood. The union makes those fields unreachable on a mock grid.
+ */
+export interface MockEarthGridProvenance {
+  provider: 'mock';
+  collection: 'mock-deterministic-ndvi';
+  /** Snapshot generation date; NOT an acquisition date. */
+  generatedAt: string;
+  note?: string;
+}
+
+/**
+ * Provenance for a real Sentinel-2 grid — exact, pinnable upstream identity.
+ * `itemIds` and the band/mask/composite fields are REQUIRED: a real NDVI field
+ * that cannot name its exact source products is not acceptable.
+ */
+export interface Sentinel2EarthGridProvenance {
+  provider: 'copernicus-data-space' | 'earth-search' | 'planetary-computer';
   collection: string;
-  /** Exact upstream scene/item/product identifiers when available. */
-  itemIds?: string[];
+  /** Exact upstream scene/item/product identifiers. Required — never invented. */
+  itemIds: string[];
   /** Upstream processing baseline/version when available. */
   processingBaseline?: string;
   bands: {
@@ -151,54 +192,46 @@ export interface EarthGridProvenance {
   sclExcluded: number[];
   /** How native/composite pixels become EarthGrid cells. */
   spatialAggregation: 'average';
-  /** Snapshot generation date; NOT acquisition date. */
+  /** Snapshot generation date; NOT an acquisition date. */
   generatedAt: string;
-  attribution?: string;
+  attribution: string;
   note?: string;
 }
 
+export type EarthGridProvenance =
+  | MockEarthGridProvenance
+  | Sentinel2EarthGridProvenance;
+
 /**
- * Raw Earth-observation raster for the EARTH module — a resampled NDVI field
- * over a territory's bounding box. This is the seam where a real Sentinel-2
- * derived grid replaces the mock provider (see docs/EARTH_REAL_DATA.md); the
- * adapter and viz consume this shape unchanged either way.
- *
- * Phase 5A hardening: there is NO single `capturedAt` (a composite has a
- * window, `compositeStart`/`compositeEnd`), NO top-level `cloudCover` (ambiguous
- * across a masked multi-scene composite — real support is per-cell
- * `validFraction`), and `nodata` is required so missing EO support is never
- * silently read as a valid NDVI of 0.
+ * A deterministic mock NDVI field. `source`/`evidenceStatus` are pinned literals
+ * so a mock grid can NEVER compile as `derived`, and its provenance can carry no
+ * Sentinel-2 pipeline claims.
  */
-export interface EarthGrid {
-  source: 'mock-deterministic' | 'sentinel-2';
-  /**
-   * mock-deterministic → 'simulated'; real Sentinel-2 NDVI → 'derived'.
-   */
-  evidenceStatus: EvidenceStatus;
-  variable: 'ndvi';
-  territoryId?: string;
-  /** Target grid extent in the target CRS. [minLon, minLat, maxLon, maxLat]. */
-  bbox: [number, number, number, number];
-  /** CRS of bbox / output grid. */
-  crs: string;
-  cols: number;
-  rows: number;
-  /** Spatial resampling/aggregation from the native composite into this grid. */
-  resampling: 'average';
-  /** Temporal support of the composite. */
-  compositeStart: string;
-  compositeEnd: string;
-  /** Sentinel value representing no valid EO support. Required — never faked. */
-  nodata: number;
-  /** Row-major NDVI values, length cols*rows. Masked cells hold `nodata`. */
-  values: number[];
-  /**
-   * Optional row-major fraction 0..1 of valid native pixels contributing to
-   * each output cell. Absent on a mock grid (no native pixels).
-   */
-  validFraction?: number[];
-  provenance: EarthGridProvenance;
+export interface MockEarthGrid extends EarthGridBase {
+  source: 'mock-deterministic';
+  evidenceStatus: 'simulated';
+  provenance: MockEarthGridProvenance;
 }
+
+/**
+ * A real Sentinel-2 L2A-derived NDVI field. `source`/`evidenceStatus` are pinned
+ * literals so a real grid can NEVER compile as `simulated`, and its provenance
+ * REQUIRES exact `itemIds` plus the band/mask/composite fields.
+ */
+export interface Sentinel2EarthGrid extends EarthGridBase {
+  source: 'sentinel-2';
+  evidenceStatus: 'derived';
+  provenance: Sentinel2EarthGridProvenance;
+}
+
+/**
+ * Raw Earth-observation raster for the EARTH module — a discriminated union so
+ * the type system itself enforces evidence honesty (Phase 5A). This is the seam
+ * where a real Sentinel-2 grid replaces the mock provider
+ * (see docs/EARTH_REAL_DATA.md); the adapter and viz consume either arm
+ * unchanged.
+ */
+export type EarthGrid = MockEarthGrid | Sentinel2EarthGrid;
 
 /**
  * Scientific status of a piece of evidence. Generic across research projects:

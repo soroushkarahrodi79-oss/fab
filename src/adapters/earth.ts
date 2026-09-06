@@ -55,6 +55,18 @@ export const earthProvenance: { source: EarthGrid['source']; evidenceStatus: Evi
 };
 
 /**
+ * Whether the EARTH grid has any usable raster support — at least one cell with
+ * valid EO data (not `nodata`). This is EARTH's OWN availability, derived from
+ * the grid alone; the Shell uses it for the module's idle/empty state without
+ * re-coupling EARTH to `AtlasData.observations` or duplicating grid logic. An
+ * all-`nodata` grid is genuinely empty. Takes an explicit grid so the mapping
+ * is testable with fixtures.
+ */
+export function earthHasSupport(source: EarthGrid = grid): boolean {
+  return source.values.some((v) => v !== source.nodata);
+}
+
+/**
  * Shape a raw EarthGrid into the EARTH view model. Pure and source-agnostic: it
  * never learns whether the grid was mock or real. A `nodata` source value maps
  * to `ndvi: null` and is excluded from every summary statistic. Exported taking

@@ -117,7 +117,10 @@ export function EarthField() {
   const compositeWindow = `${field.compositeStart} → ${field.compositeEnd}`;
   const coverage = `${Math.round(s.validCoverage * 100)}%`;
   const summaryText = `NDVI ${s.ndviMin.toFixed(2)}–${s.ndviMax.toFixed(2)} (mean ${s.ndviMean.toFixed(2)}) · coverage ${coverage}`;
-  const attribution = field.provenance.attribution;
+  // Attribution exists only on the real Sentinel-2 arm of the union; the mock
+  // provenance carries none. Narrow by provider rather than assume the field.
+  const attribution =
+    field.provenance.provider === 'mock' ? undefined : field.provenance.attribution;
 
   return (
     <figure

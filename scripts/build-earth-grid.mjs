@@ -74,13 +74,15 @@ for (let r = 0; r < rows; r++) {
   }
 }
 
-// Phase 5A hardened EarthGrid. No `capturedAt` (a composite has a window), no
-// top-level `cloudCover` (ambiguous across a masked multi-scene composite). The
-// provenance mirrors the shape a real Sentinel-2 job fills, with provider
-// 'mock' + evidenceStatus 'simulated' and an explicit note: NOTHING here is
-// derived from reflectance. `generatedAt` is a fixed literal so re-running this
-// build is byte-stable (deterministic). A real provider swaps only the values,
-// source/evidenceStatus, the window, itemIds and validFraction.
+// Phase 5A hardened EarthGrid (mock arm of the discriminated union). No
+// `capturedAt` (a composite has a window), no top-level `cloudCover` (ambiguous
+// across a masked multi-scene composite). Mock provenance carries ONLY what
+// actually happened — provider 'mock', a collection label, a generation date,
+// and a note. It names NO Sentinel-2 bands/mask/composite/itemIds, because the
+// mock processed none: the type system (MockEarthGridProvenance) forbids them.
+// `generatedAt` is a fixed literal so re-running this build is byte-stable. A
+// real provider writes the Sentinel-2 arm instead (source 'sentinel-2',
+// evidenceStatus 'derived', exact itemIds, band/mask/composite, validFraction).
 const grid = {
   source: 'mock-deterministic',
   evidenceStatus: 'simulated',
@@ -98,16 +100,12 @@ const grid = {
   provenance: {
     provider: 'mock',
     collection: 'mock-deterministic-ndvi',
-    bands: { red: 'B04', nir: 'B08', mask: 'SCL' },
-    temporalComposite: 'median',
-    sclExcluded: [3, 8, 9, 10, 11],
-    spatialAggregation: 'average',
     generatedAt: '2026-09-06',
     note:
       'Simulated NDVI field anchored to the real Sierra de Guadarrama bbox. ' +
-      'No Sentinel-2 bands were processed: band/mask/composite fields describe ' +
-      'the target pipeline shape only. Replaced wholesale by a real Sentinel-2 ' +
-      'L2A snapshot in Phase 5B (see docs/EARTH_REAL_DATA.md).',
+      'No Sentinel-2 reflectance was processed; this grid carries no EO ' +
+      'pipeline provenance. Replaced wholesale by a real Sentinel-2 L2A ' +
+      'snapshot in Phase 5B (see docs/EARTH_REAL_DATA.md).',
   },
 };
 

@@ -1,7 +1,7 @@
 import { lazy, Suspense, useMemo } from 'react';
 import type { AtlasData } from '../data/types';
 import { deriveFieldState } from '../adapters/fieldState';
-import { earthProvenance } from '../adapters/earth';
+import { earthProvenance, earthHasSupport } from '../adapters/earth';
 import { buildTerritoryScenario } from '../adapters/territoryScenario';
 import { useField } from '../interaction/FieldContext';
 import { Masthead } from './Masthead';
@@ -51,7 +51,7 @@ export function Shell({ data }: { data: AtlasData }) {
             code="02"
             title="EARTH"
             meta={`EO · ${earthProvenance.source}`}
-            state="idle"
+            state={earthHasSupport() ? 'idle' : 'empty'}
           >
             <Suspense fallback={<div className="viz-skeleton" aria-hidden="true" />}>
               <EarthField />
