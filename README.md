@@ -2,6 +2,10 @@
 
 > A living map of research, territory, signals, and experiments.
 
+**Project status:** [`PROJECT_STATUS.md`](PROJECT_STATUS.md) — paused
+pending Sentinel-2 credentials/network access for the real EARTH data seam;
+everything else shipped is maintained and CI-green.
+
 A data-first, dark, cartographic **research instrument** — not a conventional
 portfolio. A single full-screen interactive environment composed of living
 modules, each rendering real structured data rather than decorative
